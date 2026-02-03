@@ -1,0 +1,266 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>The Witcher</title>
+    <link rel="shortcut icon" href="src/img/Favicon/favicon.png" type="image/x-icon">
+
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+    integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw=="
+    crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+
+    <link rel="stylesheet" href="src/css/estilo.css">
+    <link rel="stylesheet" href="src/css/reset.css">
+    <link rel="stylesheet" href="src/css/responsivo.css">
+</head>
+
+
+<body>
+    <header id="cabecalho">
+        <div class="logo">
+            <img src="src/img/Logo/logo1.png" alt="logo">
+        </div>
+
+        <div class="overlay"></div>
+        <button class="burger" onclick="toggleMenu()">
+            <i class="fa-solid fa-bars"></i>
+            <i class="fa-solid fa-close"></i>
+        </button>
+
+        <aside>
+            <a href="#">Jogos</a>
+            <a href="#">Mídias</a>
+            <a href="https://support.cdprojektred.com/en/" target="_blank">Suporte</a>
+            <a href="#">Comprar</a>
+            <button>
+                <span class="material-icons">
+                    search
+                </span>
+            </button>
+        </aside>
+    </header>
+
+
+    <main class="home">
+        <img class="imagem-fundo" src="src/img/Capa/poster01.jpg" alt="poster-principal">
+        <img class="imagem-fundo-tablet" src="src/img/Responsivo/poster01.jpg" alt="poster-principal">
+        <div class="titulo">
+            <h1>Um dos RPGs mais aclamados de todos os tempos. Agora pronto para a nova geração.</h1>
+            <div class="btn-saiba">
+                <a href="#">Saiba Mais</a>
+            </div>
+        </div>
+    </main>
+
+    <section id="dados">
+        <div class="info">
+            <h1>7</h1>
+            <p>JOGOS DA FRANQUIA THE WITCHER</p>
+        </div>
+        <hr>
+
+        <div class="info">
+            <h1>1.000+</h1>
+            <p>RECOMPENSAS OBTIDAS ATÉ O MOMENTO</p>
+        </div>
+        <hr>
+        <div class="info">
+            <h1>50+</h1>
+            <p>MILHÕES DE CÓPIAS <br>DE JOGO VENDIDAS DA TRILOGIA THE WITCHER</p>
+        </div>
+    </section>
+
+    <section class="cards">
+        <ul class="slider">
+            <li class="slide s1"><img src="src/img/Cards/01.jpg" alt=""></li>
+            <li class="slide s2"><img src="src/img/Cards/02.jpg" alt=""></li>
+            <li class="slide s3"><img src="src/img/Cards/03.jpg" alt=""></li>
+            <li class="slide s4"><img src="src/img/Cards/04.jpg" alt=""></li>
+            <li class="slide s5"><img src="src/img/Cards/05.jpg" alt=""></li>
+            <li class="slide s6"><img src="src/img/Cards/06.jpg" alt=""></li>
+            <li class="slide s7"><img src="src/img/Cards/07.jpg" alt=""></li>
+        </ul>
+        <button class="arrow-left">←</button>
+        <button class="arrow-right">→</button>
+    </section>
+
+    <section class="plataformas">
+        <div class="jogos-1">
+            <img src="./src/img/Logo/logo-ps5.svg" alt="Logo Playstation 5" />
+            <img src="./src/img/Logo/logo-xbox-series-s.svg" alt="Logo Xbox series X|S" />
+            <img src="src/img/Logo/logo-ps4.svg" alt="Logo Playstation 4" />
+        </div>
+
+        <div class="jogos-2">
+            <img src="./src/img/Logo/logo-xbox-one.svg" alt="Logo Xbox One" />
+            <img src="src/img/Logo/logo-pc.svg" alt="Logo PC" />
+        </div>
+
+        <div class="tudo-responsivo">
+            <img src="./src/img/Logo/logo-ps5.svg" alt="Logo Playstation 5" />
+            <img src="./src/img/Logo/logo-xbox-series-s.svg" alt="Logo Xbox series X|S" />
+            <img src="src/img/Logo/logo-ps4.svg" alt="Logo Playstation 4" />
+            <img src="./src/img/Logo/logo-xbox-one.svg" alt="Logo Xbox One" />
+            <img src="src/img/Logo/logo-pc.svg" alt="Logo PC" />
+        </div>
+    </section>
+
+
+    <section class="jogos-div" id="jogos">
+        <button class="btn-plataforma">
+            <p>Selecione a plataforma do jogo</p>
+            <ul class="jogos-da-plataforma">
+                <li>
+                    <img src="src/img/Plataformas/w-icon-pc.png" alt="Computador">
+                </li>
+                <li>
+                    <img src="src/img/Plataformas/w-icon-xbox.png" alt="Xbox">
+                </li>
+                <li>
+                    <img src="src/img/Plataformas/w-icon-playstation.png" alt="playstation">
+                </li>
+                <li>
+                    <img src="src/img/Plataformas/w-icon-Nitendo.png" alt="Nitendo Switch">
+                </li>
+            </ul>
+        </button>
+    </section>
+
+    <section class="container">
+        <div class="historia">
+            <img src="src/img/image-box/01-poster.jpg" alt="poster">
+        </div>
+        <div class="responsivo">
+            <img src="src/img/Responsivo/01-poster.jpg" alt="">
+        </div>
+        <h1>História</h1>
+        <div class="historias">
+            <div><a href="#"><img src="src/img/image-box/01/1.jpg" alt="card1"></a></div>
+            <div><a href="#"><img src="src/img/image-box/01/2.jpg" alt="card2"></a></div>
+            <div><a href="#"><img src="src/img/image-box/01/3.jpg" alt="card3"></a></div>
+            <div><a href="#"><img src="src/img/image-box/01/4.jpg" alt="card4"></a></div>
+        </div>
+    </section>
+
+    <section class="container">
+        <div class="historia">
+            <img src="src/img/image-box/02-poster.jpg" alt="poster">
+        </div>
+        <div class="responsivo">
+            <img src="src/img/Responsivo/02-poster.jpg" alt="poster">
+        </div>
+        <h1 class="mundo">Mundo Aberto</h1>
+        <div class="historias">
+            <div><a href="#"><img src="src/img/image-box/01/5.jpg" alt="card5"></a></div>
+            <div><a href="#"><img src="src/img/image-box/01/6.jpg" alt="card6"></a></div>
+            <div><a href="#"><img src="src/img/image-box/01/7.jpg" alt="card7"></a></div>
+            <div><a href="#"><img src="src/img/image-box/01/8.jpg" alt="card8"></a></div>
+        </div>
+    </section>
+    <section class="container">
+        <div class="historia">
+            <img src="src/img/image-box/03-poster.jpg" alt="poster">
+        </div>
+        <div class="responsivo">
+            <img src="src/img/Responsivo/03-poster.jpg" alt="poster">
+        </div>
+        <h1>Caçador de Monstros</h1>
+        <div class="historias">
+            <div><a href="#"><img src="src/img/image-box/01/9.jpg" alt="card9"></a></div>
+            <div><a href="#"><img src="src/img/image-box/01/10.jpg" alt="card10"></a></div>
+            <div><a href="#"><img src="src/img/image-box/01/11.jpg" alt="card11"></a></div>
+            <div><a href="#"><img src="src/img/image-box/01/12.jpg" alt="card12"></a></div>
+        </div>
+    </section>
+
+    <section class="boletim">
+        <div class="titulo-email">
+            <h2>Seja o primeiro</h2>
+            <p>Assine o boletim de THE WITCHER</p>
+        </div>
+
+        <fieldset id="btn">
+            <legend>Receba novidades direto no seu email</legend>
+
+            <div class="info-email">
+                <input id=email type="email" placeholder="Digite seu email" autocomplete="email">
+                <p>
+                    <input id="check" type="checkbox">
+                    Li e concordo com os termos de uso
+                </p>
+            </div>
+            <div class="btn-enviar">
+                <input type="button" value="Enviar" onclick="limpar()">
+            </div>
+        </fieldset>
+    </section>
+
+    <footer>
+        <div class="termos">
+            <a href="#">TERMOS DE USO E POLÍTICA DE PRIVACIDADE</a>
+            <a href="#">CARREIRAS</a>
+            <a href="#">CONTRATO DE USUÁRIO</a>
+            <a href="#">DIRETRIZES DE CONTEÚDO DE FÃS</a>
+        </div>
+
+        <div class="img-icons">
+            <a href="#"><img src="src/img/Logo/face.png" alt="Facebook"></a>
+            <a href="#"><img src="src/img/Logo/twitter.png" alt="Twitter"></a>
+            <a href="#"><img src="src/img/Logo/discord.png" alt="Discord"></a>
+            <a href="#"><img src="src/img/Logo/youtube.png" alt="Youtube"></a>
+        </div>
+
+        <div class="placa-icone">
+            <a href="#"><img src="src/img/Logo/Nvidia-Geforce-RTX-withe.png" alt="placa"></a>
+        </div>
+
+        <div class="declaracao">
+            <a href="#">Declaração de cookies</a>
+
+            <p class="txt-principal">CD PROJEKT®, The Witcher® are registered trademarks of CD PROJEKT Capital Group.
+                The Witcher game © CD PROJEKT S.A. Developed by CD PROJEKT S.A. All rights reserved. The Witcher game is
+                set in the universe created by Andrzej Sapkowski in his series of books. All other copyrights and
+                trademarks are the property of their respective owners.</p>
+
+            <p>Português (BR)</p>
+        </div>
+
+        <div class="linha">
+            <hr>
+        </div>
+
+        <div class="end">
+
+            <div>
+                <a class="cd-projekt" href="https://www.cdprojekt.com/pl/" target="_blank"><img
+                        src="src/img/Logo/CDPR-572e1eff..png" alt="CD Projekt Red"></a>
+            </div>
+            <div class="censura">
+                <a href="https://pegi.info/" target="_blank"><img src="src/img/Logo/Ratings-02921adb..png"
+                        alt="Censura"></a>
+            </div>
+        </div>
+
+        <div class="links-final">
+            <a href="#">CENTRO DE IMPRENSA</a>
+            <a href="">SUPORTE</a>
+            <a href="#">CARREIRAS</a>
+            <a href="#">LOJA</a>
+        </div>
+
+        <div class="credito">
+            <p>&copy; Site criado por Pamella Moraes</p>
+        </div>
+    </footer>
+
+    <script src="src/js/index.js"></script>
+
+</body>
+
+</html>

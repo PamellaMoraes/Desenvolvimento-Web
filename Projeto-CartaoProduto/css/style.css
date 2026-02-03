@@ -1,0 +1,115 @@
+@charset "UTF-8";
+
+*{
+    margin:0px;
+    padding:0px;
+    box-sizing: border-box;
+    overflow: hidden;
+    
+}
+body{
+    background-color:   hsl(30, 38%, 92%);
+    
+}
+
+#container{
+    
+    display:flex;
+    height: 100vh;
+    width: 100vw;
+    align-items: center;
+    justify-content: center;
+    
+    
+}
+
+.imagem-fundo{
+    background-image: url(../img/image-product-desktop.jpg);
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
+    border-radius: 10px 0px 0px 10px;
+    background-color: green;
+    width: 300px;
+    height: 450px;
+}
+
+
+
+.conteudo{
+    background-color: white;
+    width: 300px;
+    height: 450px;
+    border-radius: 0px 10px 10px 0px;
+    padding: 20px;
+    
+}
+
+h1{
+    font-family: 'Fraunces', serif;
+    font-size: 35px;
+    line-height: 40px;
+    padding-bottom: 10px;
+    padding-left: 10px;
+   
+}
+
+.paragrafo{
+    font-family: 'Montserrat', sem serifa;
+    font-size: 14px;
+    padding: 10px; 
+    color: hsl(228, 12%, 48%);
+}
+.perfume{
+    font-size: 14px;
+    letter-spacing: 5px;
+    padding-bottom: 30px;
+    padding-left: 10px;
+    color:hsl(228, 12%, 48%);
+
+}
+
+.preço{
+    display: inline-block;
+    color:hsl(158, 36%, 37%);
+    font-family: 'Fraunces', serif;
+    font-size: 30px;
+    padding: 10px;
+}
+
+.preço-antes{
+    display: inline-block;
+    color:hsl(228, 12%, 48%);
+    font-size: 15px;
+    padding: 20px;
+}
+
+.btn-compras{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: hsl(158, 36%, 37%);
+    border-radius: 8px;
+    margin-top: 10px;
+    padding: 10px;
+    padding-left: 10px;
+}
+
+.btn-compras:hover{
+    background-color:hsl(158, 94%, 35%); 
+    cursor: pointer;
+    transition: 1s ease;
+    
+}
+
+.txt-compras{
+   
+    color: white;
+    font-family:'Montserrat', sem serifa;
+    font-weight: 600;
+    
+}
+
+.icon{
+    padding-right: 10px; 
+}
