@@ -9,7 +9,7 @@ Aqui, o foco não é apenas "fazer funcionar", mas construir código limpo, sem�
 ## 🚀 Portfólio Live
 Para visualizar todos os projetos listados abaixo em uma interface única e interativa, acesse o meu portfólio oficial:
 
-👉 **[VISUALIZAR MEU PORTFÓLIO AQUI](https://pamellamoraes.github.io/Desenvolvimento-Web/)**
+[![Portfólio Frontend (https://pamellamoraes.github.io/Desenvolvimento-Web/)**
 
 ---
 
