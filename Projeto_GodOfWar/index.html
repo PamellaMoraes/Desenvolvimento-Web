@@ -1,0 +1,740 @@
+<!DOCTYPE html>
+<html lang="pt-BR" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>God of War - A Saga Completa</title>
+
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;500;700;900&family=Roboto:wght@300;400;500&display=swap" rel="stylesheet">
+
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        'gow-red': '#C21919',       /* Vermelho Sangue */
+                        'gow-dark': '#000000',      /* Preto Absoluto */
+                        'gow-card': '#121212',      /* Cards Background */
+                        'gow-border': '#262626',    /* Bordas */
+                        'gow-gold': '#C4A669',      /* Dourado Base */
+                    },
+                    fontFamily: {
+                        'serif': ['Cinzel', 'serif'],
+                        'sans': ['Roboto', 'sans-serif'],
+                    },
+                    screens: {
+                        'xs': '475px',
+                        '3xl': '1920px', // Suporte para Telas Full HD+ e TVs 4K
+                    }
+                }
+            }
+        }
+    </script>
+
+    <style>
+        /* --- RESET & BASICS --- */
+        body {
+            background-color: #000000;
+            color: white;
+            overflow-x: hidden;
+            background-image: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 100 100' xmlns='http://www.w3.org/2000/svg'%3E%3Ctext x='50' y='70' font-size='40' text-anchor='middle' font-family='serif' fill='%23333333' fill-opacity='0.15'%3E%CE%A9%3C/text%3E%3C/svg%3E");
+            background-repeat: repeat;
+        }
+
+        .section-separator {
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        /* --- TEXTO METÁLICO --- */
+        .text-metal-gold {
+            background: linear-gradient(
+                180deg, 
+                #BF953F 0%, 
+                #FCF6BA 40%, 
+                #B38728 60%, 
+                #FBF5B7 80%, 
+                #AA771C 100%
+            );
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            text-shadow: 0px 2px 4px rgba(0,0,0,0.5);
+            filter: drop-shadow(0 0 5px rgba(196, 166, 105, 0.3));
+        }
+
+        /* --- SISTEMA DE BOTÕES --- */
+        .btn-base {
+            padding: 1rem 2rem;
+            font-size: 0.75rem; 
+            font-weight: 700;
+            letter-spacing: 0.2em;
+            text-transform: uppercase;
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            position: relative;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.5rem;
+            cursor: pointer;
+            border-radius: 2px;
+            white-space: nowrap; /* Impede quebra de texto no botão */
+        }
+
+        /* Ajuste responsivo para botões */
+        @media (max-width: 640px) {
+            .btn-base {
+                padding: 0.8rem 1.5rem;
+                font-size: 0.7rem;
+            }
+        }
+
+        .btn-gow-red {
+            background: rgba(194, 25, 25, 0.05);
+            border: 1px solid #C21919;
+            color: #ffcccc;
+            box-shadow: 0 0 10px rgba(194, 25, 25, 0.1);
+        }
+        .btn-gow-red:hover {
+            background: #C21919;
+            color: white;
+            box-shadow: 0 0 30px rgba(194, 25, 25, 0.6), inset 0 0 10px rgba(0,0,0,0.5);
+            border-color: #ff4d4d;
+            transform: translateY(-2px);
+        }
+
+        .btn-gow-gold {
+            background: rgba(255, 255, 255, 0.02);
+            border: 1px solid rgba(196, 166, 105, 0.4);
+            color: #C4A669;
+        }
+        .btn-gow-gold:hover {
+            background: rgba(196, 166, 105, 0.1);
+            border-color: #FCF6BA;
+            color: #FCF6BA;
+            box-shadow: 0 0 20px rgba(196, 166, 105, 0.2);
+            transform: translateY(-2px);
+        }
+
+        .btn-sm {
+            padding: 0.5rem 1rem;
+            font-size: 0.65rem;
+            letter-spacing: 0.1em;
+            width: 100%;
+        }
+
+        /* --- EFEITOS ESPECÍFICOS --- */
+        .era-card {
+            border: 1px solid #262626;
+            transition: all 0.5s ease;
+            position: relative;
+            overflow: hidden;
+            background: #000;
+        }
+        .era-card::after {
+            content: '';
+            position: absolute;
+            inset: 0;
+            border: 1px solid transparent;
+            transition: all 0.5s ease;
+            z-index: 2;
+        }
+        .era-card:hover {
+            border-color: #C21919;
+            box-shadow: 0 0 40px rgba(194, 25, 25, 0.2);
+        }
+        .era-card:hover::after {
+            border: 1px solid rgba(255, 255, 255, 0.3);
+            inset: 5px; 
+        }
+
+        .img-slot {
+            background-color: #0f0f0f;
+            display: block;
+        }
+        
+        .gold-subtitle {
+            color: #C4A669;
+            font-size: 0.75rem;
+            letter-spacing: 0.2em;
+            text-transform: uppercase;
+            font-weight: 700;
+            font-family: 'Cinzel', serif;
+            display: block;
+            margin-bottom: 0.5rem;
+        }
+
+        .red-underline::after {
+            content: '';
+            display: block;
+            width: 60px;
+            height: 3px;
+            background-color: #C21919;
+            margin: 1.5rem auto 0;
+            box-shadow: 0 0 10px #C21919;
+        }
+        
+        .game-card-bg {
+            background-color: #121212; 
+        }
+
+        /* Menu Mobile Transição */
+        #mobile-menu {
+            transition: max-height 0.3s ease-in-out, opacity 0.3s ease-in-out;
+            max-height: 0;
+            opacity: 0;
+            overflow: hidden;
+        }
+        #mobile-menu.active {
+            max-height: 400px; /* Altura suficiente para os links */
+            opacity: 1;
+        }
+    </style>
+</head>
+<body class="antialiased">
+
+    <nav class="fixed w-full z-50 px-4 md:px-8 py-4 md:py-5 transition-all duration-300 bg-black/95 backdrop-blur-md border-b border-white/5">
+        <div class="container mx-auto flex justify-between items-center">
+            <div class="flex items-center gap-3">
+                <span class="text-2xl text-gow-red font-serif font-bold drop-shadow-[0_0_10px_rgba(194,25,25,0.8)]">Ω</span> 
+                <div class="flex flex-col">
+                    <span class="font-serif font-bold text-white tracking-widest text-base md:text-lg leading-none">GOD OF WAR</span>
+                    <span class="text-[8px] md:text-[10px] text-gow-gold tracking-[0.3em] uppercase leading-none mt-1">A Saga Completa</span>
+                </div>
+            </div>
+
+            <button id="mobile-menu-btn" class="md:hidden text-white text-2xl focus:outline-none">
+                <i class="fas fa-bars"></i>
+            </button>
+
+            <div class="hidden md:flex space-x-6 lg:space-x-10 text-xs font-bold tracking-widest text-gray-400 uppercase font-sans items-center">
+                <a href="#saga" class="hover:text-white transition-colors hover:drop-shadow-[0_0_5px_rgba(255,255,255,0.5)]">A Saga</a>
+                <a href="#eras" class="hover:text-white transition-colors hover:drop-shadow-[0_0_5px_rgba(255,255,255,0.5)]">As Eras</a>
+                <a href="#jogos" class="hover:text-gow-gold transition-colors text-white">Jogos</a>
+                <a href="#pc-features" class="hover:text-white transition-colors hover:drop-shadow-[0_0_5px_rgba(255,255,255,0.5)]">PC</a>
+                <a href="#trailer" class="hover:text-white transition-colors hover:drop-shadow-[0_0_5px_rgba(255,255,255,0.5)]">Trailer</a>
+                
+                <a href="#jogos" class="btn-base btn-gow-red py-2 px-6 text-[10px] ml-4">
+                    Comprar
+                </a>
+            </div>
+        </div>
+
+        <div id="mobile-menu" class="absolute top-full left-0 w-full bg-black border-b border-gow-border md:hidden flex flex-col items-center gap-4 py-6 shadow-2xl">
+            <a href="#saga" class="text-sm font-bold tracking-widest text-gray-400 uppercase hover:text-white mobile-link">A Saga</a>
+            <a href="#eras" class="text-sm font-bold tracking-widest text-gray-400 uppercase hover:text-white mobile-link">As Eras</a>
+            <a href="#jogos" class="text-sm font-bold tracking-widest text-gow-gold uppercase mobile-link">Jogos</a>
+            <a href="#pc-features" class="text-sm font-bold tracking-widest text-gray-400 uppercase hover:text-white mobile-link">PC</a>
+            <a href="#trailer" class="text-sm font-bold tracking-widest text-gray-400 uppercase hover:text-white mobile-link">Trailer</a>
+            <a href="#jogos" class="btn-base btn-gow-red py-3 px-8 text-[10px] w-3/4 text-center mobile-link">
+                Comprar
+            </a>
+        </div>
+    </nav>
+
+    <header class="relative w-full h-screen min-h-[600px] flex items-center justify-center text-center overflow-hidden section-separator">
+        <div class="absolute inset-0 z-0">
+            <img src="src/img/bg-header.jpg" alt="Hero Background Kratos" class="w-full h-full object-cover object-top opacity-60 img-slot">
+            <div class="absolute inset-0 bg-gradient-to-b from-black/60 via-transparent to-black"></div>
+        </div>
+
+        <div class="relative z-10 w-full max-w-5xl px-4 md:px-6 pt-20" data-aos="fade-up" data-aos-duration="1500">
+            <p class="gold-subtitle mb-2 md:mb-4 text-xs md:text-sm">Santa Monica Studio Apresenta</p>
+            
+            <h1 class="text-5xl sm:text-7xl md:text-9xl 3xl:text-[10rem] font-serif font-bold text-white mb-2 leading-tight md:leading-none text-nowrap">
+                GOD OF <span class="text-metal-gold">WAR</span>
+            </h1>
+            
+            <div class="text-2xl md:text-3xl text-gow-red font-serif font-bold mb-6 md:mb-8 drop-shadow-[0_0_15px_#C21919]">Ω</div>
+
+            <p class="text-gray-300 text-sm md:text-lg 3xl:text-xl font-light max-w-xl md:max-w-2xl mx-auto mb-8 md:mb-12 leading-relaxed font-sans px-4">
+                Das areias sangrentas da Grécia antiga às terras geladas de Midgard, acompanhe a jornada épica de Kratos em busca de vingança, redenção e propósito.
+            </p>
+
+            <div class="flex flex-col sm:flex-row gap-4 md:gap-5 justify-center px-4">
+                <a href="#jogos" class="btn-base btn-gow-red w-full sm:w-auto">
+                    Explorar a Saga
+                </a>
+                <button class="btn-base btn-gow-gold w-full sm:w-auto">
+                    <i class="fas fa-play text-[10px]"></i> Assistir Trailer
+                </button>
+            </div>
+        </div>
+        
+        <div class="absolute bottom-5 md:bottom-10 left-1/2 -translate-x-1/2 animate-bounce border border-white/20 rounded-full py-2 px-1 hidden sm:block">
+            <div class="w-1 h-2 bg-gow-gold rounded-full shadow-[0_0_10px_#C4A669]"></div>
+        </div>
+    </header>
+
+    <section id="saga" class="py-20 md:py-32 relative section-separator">
+        <div class="container mx-auto px-4 md:px-6 max-w-6xl">
+            <div class="text-center mb-12 md:mb-20" data-aos="fade-up">
+                <span class="gold-subtitle">Uma Lenda Imortal</span>
+                <h2 class="text-3xl md:text-5xl font-serif text-white font-bold mb-6 red-underline">A Saga de Kratos</h2>
+                <p class="text-gow-text text-sm md:text-base max-w-3xl mx-auto leading-relaxed mt-6 md:mt-8 bg-black/50 backdrop-blur-sm p-4 rounded inline-block text-gray-300">
+                    God of War é uma das franquias mais aclamadas da história. Criada pela Santa Monica Studio, a série acompanha Kratos — um guerreiro espartano amaldiçoado — em sua busca por vingança contra os deuses do Olimpo e, posteriormente, sua jornada de redenção.
+                </p>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6 md:gap-8 mb-16 md:mb-24">
+                <div class="game-card-bg border border-gow-border p-6 md:p-10 text-center hover:border-gow-red hover:shadow-[0_0_30px_rgba(194,25,25,0.15)] transition-all duration-500 group rounded-sm" data-aos="fade-up" data-aos-delay="0">
+                    <div class="mb-4 md:mb-6 text-gray-400 text-2xl md:text-3xl group-hover:text-gow-red group-hover:drop-shadow-[0_0_10px_#C21919] group-hover:scale-110 transition-all duration-300">
+                        <i class="fas fa-gavel"></i> 
+                    </div>
+                    <h3 class="text-lg md:text-xl font-serif font-bold text-white mb-3 md:mb-4">Combate Brutal</h3>
+                    <p class="text-xs md:text-sm text-gray-500 leading-relaxed">
+                        Cada jogo traz um sistema de combate visceral e intenso, com armas lendárias como as Lâminas do Caos e o Machado Leviatã.
+                    </p>
+                </div>
+
+                <div class="game-card-bg border border-gow-border p-6 md:p-10 text-center hover:border-gow-gold hover:shadow-[0_0_30px_rgba(196,166,105,0.15)] transition-all duration-500 group rounded-sm" data-aos="fade-up" data-aos-delay="100">
+                    <div class="mb-4 md:mb-6 text-gray-400 text-2xl md:text-3xl group-hover:text-gow-gold group-hover:drop-shadow-[0_0_10px_#C4A669] group-hover:scale-110 transition-all duration-300">
+                        <i class="fas fa-landmark"></i> 
+                    </div>
+                    <h3 class="text-lg md:text-xl font-serif font-bold text-white mb-3 md:mb-4">Mitologia Épica</h3>
+                    <p class="text-xs md:text-sm text-gray-500 leading-relaxed">
+                        A série explora os panteões grego e nórdico com profundidade, trazendo deuses, titãs e criaturas míticas à vida.
+                    </p>
+                </div>
+
+                <div class="game-card-bg border border-gow-border p-6 md:p-10 text-center hover:border-red-500 hover:shadow-[0_0_30px_rgba(239,68,68,0.15)] transition-all duration-500 group rounded-sm" data-aos="fade-up" data-aos-delay="200">
+                    <div class="mb-4 md:mb-6 text-gray-400 text-2xl md:text-3xl group-hover:text-red-500 group-hover:drop-shadow-[0_0_10px_#ef4444] group-hover:scale-110 transition-all duration-300">
+                        <i class="fas fa-heart"></i>
+                    </div>
+                    <h3 class="text-lg md:text-xl font-serif font-bold text-white mb-3 md:mb-4">História Emocional</h3>
+                    <p class="text-xs md:text-sm text-gray-500 leading-relaxed">
+                        De uma tragédia de vingança à relação pai e filho com Atreus, a narrativa evolui de pura fúria para uma das histórias mais emocionantes.
+                    </p>
+                </div>
+            </div>
+
+            <div class="grid grid-cols-2 md:grid-cols-4 gap-8 md:gap-8 border-t border-gow-border pt-12 md:pt-16" data-aos="fade-in">
+                <div class="text-center">
+                    <span class="block text-3xl md:text-4xl font-serif text-gow-gold font-bold mb-2">8</span>
+                    <span class="text-[8px] md:text-[10px] uppercase tracking-widest text-gray-500 font-bold">Jogos Principais</span>
+                </div>
+                <div class="text-center">
+                    <span class="block text-3xl md:text-4xl font-serif text-gow-gold font-bold mb-2">20+</span>
+                    <span class="text-[8px] md:text-[10px] uppercase tracking-widest text-gray-500 font-bold">Anos de Saga</span>
+                </div>
+                <div class="text-center">
+                    <span class="block text-3xl md:text-4xl font-serif text-gow-gold font-bold mb-2">60M+</span>
+                    <span class="text-[8px] md:text-[10px] uppercase tracking-widest text-gray-500 font-bold">Cópias Vendidas</span>
+                </div>
+                <div class="text-center">
+                    <span class="block text-3xl md:text-4xl font-serif text-gow-gold font-bold mb-2">200+</span>
+                    <span class="text-[8px] md:text-[10px] uppercase tracking-widest text-gray-500 font-bold">Prêmios</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="eras" class="py-20 md:py-32 relative overflow-hidden section-separator">
+        <div class="absolute top-0 left-0 w-1/2 h-full bg-red-900/5 blur-[150px]"></div>
+
+        <div class="container mx-auto px-4 md:px-6 max-w-6xl relative z-10">
+            <div class="text-center mb-16 md:mb-24">
+                <span class="gold-subtitle">Duas Mitologias</span>
+                <h2 class="text-3xl md:text-5xl font-serif text-white font-bold red-underline">As Eras de Kratos</h2>
+            </div>
+
+            <div class="flex flex-col md:flex-row items-center gap-10 md:gap-16 mb-24 md:mb-40">
+                <div class="w-full md:w-1/2 px-4 md:px-0" data-aos="fade-right">
+                    <div class="era-card aspect-square rounded-lg shadow-2xl group cursor-pointer max-w-sm mx-auto md:max-w-none">
+                        <img src="src/img/era_grega.jpg" alt="Era Grega Poster" class="w-full h-full object-cover img-slot transition-transform duration-700 group-hover:scale-110 grayscale group-hover:grayscale-0">
+                        
+                        <div class="absolute bottom-5 right-5 w-16 h-16 md:w-24 md:h-24 border border-white/20 bg-black/60 backdrop-blur rounded-md flex items-center justify-center group-hover:border-gow-red group-hover:shadow-[0_0_15px_rgba(194,25,25,0.5)] transition-all">
+                            <img src="src/img/Lamina_do_Caos.jpg" alt="Lâminas" class="w-12 h-12 md:w-20 md:h-20 object-contain drop-shadow-lg"> 
+                        </div>
+                    </div>
+                </div>
+
+                <div class="w-full md:w-1/2 text-center md:text-left" data-aos="fade-left">
+                    <span class="inline-block px-3 py-1 border border-red-900/50 bg-red-900/10 text-red-500 text-[10px] font-bold tracking-widest rounded-full mb-4 md:mb-6">2005 — 2013</span>
+                    <h3 class="text-3xl md:text-4xl font-serif font-bold text-gow-red mb-4 md:mb-6 drop-shadow-[0_0_10px_rgba(194,25,25,0.4)]">Era Grega</h3>
+                    <p class="text-sm md:text-base text-gray-400 leading-relaxed mb-6 md:mb-8 font-light bg-black/50 p-4 rounded">
+                        A saga original que definiu uma geração. Kratos, o Fantasma de Esparta, declara guerra aos deuses do Olimpo após ser traído e manipulado. Armado com as Lâminas do Caos, ele destrói o panteão grego inteiro em sua busca implacável por vingança.
+                    </p>
+                    
+                    <div class="flex flex-wrap gap-2 justify-center md:justify-start">
+                        <span class="px-3 py-2 bg-gow-card border border-gow-border text-[10px] md:text-xs text-gray-500 uppercase font-bold hover:text-white hover:border-gow-red transition-all cursor-default">God of War (2005)</span>
+                        <span class="px-3 py-2 bg-gow-card border border-gow-border text-[10px] md:text-xs text-gray-500 uppercase font-bold hover:text-white hover:border-gow-red transition-all cursor-default">God of War II</span>
+                        <span class="px-3 py-2 bg-gow-card border border-gow-border text-[10px] md:text-xs text-gray-500 uppercase font-bold hover:text-white hover:border-gow-red transition-all cursor-default">God of War III</span>
+                        <span class="px-3 py-2 bg-gow-card border border-gow-border text-[10px] md:text-xs text-gray-500 uppercase font-bold hover:text-white hover:border-gow-red transition-all cursor-default">Ascension</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="flex flex-col md:flex-row-reverse items-center gap-10 md:gap-16">
+                 <div class="w-full md:w-1/2 px-4 md:px-0" data-aos="fade-left">
+                    <div class="era-card aspect-square rounded-lg shadow-2xl group cursor-pointer border-gow-gold/20 max-w-sm mx-auto md:max-w-none">
+                        <img src="src/img/era_nordic.jpg" alt="Era Nórdica Poster" class="w-full h-full object-cover img-slot transition-transform duration-700 group-hover:scale-110 grayscale group-hover:grayscale-0">
+                        
+                         <div class="absolute bottom-5 left-5 w-16 h-16 md:w-24 md:h-24 border border-white/20 bg-black/60 backdrop-blur rounded-md flex items-center justify-center group-hover:border-cyan-500 group-hover:shadow-[0_0_15px_rgba(6,182,212,0.5)] transition-all">
+                           <img src="src/img/leviatã.jpg" alt="Machado" class="w-12 h-12 md:w-20 md:h-20 object-contain drop-shadow-lg">
+                        </div>
+                    </div>
+                </div>
+
+                <div class="w-full md:w-1/2 text-center md:text-right" data-aos="fade-right">
+                    <span class="inline-block px-3 py-1 border border-yellow-900/50 bg-yellow-900/10 text-gow-gold text-[10px] font-bold tracking-widest rounded-full mb-4 md:mb-6">2018 — 2022</span>
+                    <h3 class="text-3xl md:text-4xl font-serif font-bold text-gow-gold mb-4 md:mb-6 drop-shadow-[0_0_10px_rgba(196,166,105,0.4)]">Era Nórdica</h3>
+                    <p class="text-sm md:text-base text-gray-400 leading-relaxed mb-6 md:mb-8 font-light bg-black/50 p-4 rounded">
+                        Um recomeço emocional e narrativo. Kratos, agora exilado nas terras nórdicas, tenta deixar seu passado violento para trás enquanto cria seu filho Atreus. Juntos, eles enfrentam deuses como Baldur, Thor e Odin numa jornada que culmina no Ragnarök.
+                    </p>
+                    
+                    <div class="flex flex-wrap gap-2 justify-center md:justify-end">
+                        <span class="px-3 py-2 bg-gow-card border border-gow-border text-[10px] md:text-xs text-gray-500 uppercase font-bold hover:text-white hover:border-cyan-500 transition-all cursor-default">God of War (2018)</span>
+                        <span class="px-3 py-2 bg-gow-card border border-gow-border text-[10px] md:text-xs text-gray-500 uppercase font-bold hover:text-white hover:border-cyan-500 transition-all cursor-default">God of War Ragnarök</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="jogos" class="py-20 md:py-32 relative section-separator">
+        <div class="container mx-auto px-4 md:px-6 max-w-7xl relative">
+            <div class="text-center mb-16 md:mb-24">
+                <span class="gold-subtitle">Catálogo Completo</span>
+                <h2 class="text-3xl md:text-5xl font-serif text-white font-bold red-underline">Todos os Jogos</h2>
+                <p class="text-gray-500 mt-6 max-w-2xl mx-auto bg-black/50 p-2 rounded text-sm md:text-base">Explore todos os títulos principais lançados na história da franquia.</p>
+            </div>
+
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6 md:gap-8">
+                
+                <div class="game-card-bg border border-gow-border rounded-lg overflow-hidden group hover:border-gow-red transition-all duration-300 flex flex-col hover:shadow-2xl hover:shadow-red-900/20" data-aos="fade-up">
+                    <div class="relative h-48 md:h-64 w-full img-slot overflow-hidden">
+                        <img src="src/img/Capa2005.webp" alt="Gow 2005" class="w-full h-full object-cover object-top group-hover:scale-110 transition-transform duration-700">
+                        <div class="absolute inset-0 bg-gradient-to-t from-gow-card to-transparent opacity-60"></div>
+                    </div>
+                    <div class="p-5 md:p-6 flex flex-col flex-grow">
+                        <div class="flex justify-between items-start mb-3">
+                            <span class="text-gow-gold text-[10px] font-bold uppercase tracking-widest border border-gow-gold/30 px-2 py-1 rounded">2005</span>
+                            <span class="text-gray-600 text-[10px] font-bold uppercase">PS2</span>
+                        </div>
+                        <h3 class="text-lg md:text-xl font-serif text-white font-bold mb-3 group-hover:text-gow-red transition-colors">God of War</h3>
+                        <p class="text-gray-500 text-xs leading-relaxed mb-6 flex-grow">
+                            O início da lenda. Kratos, servo dos Deuses, busca a Caixa de Pandora para derrotar Ares.
+                        </p>
+                        <div class="flex gap-3 mt-auto">
+                            <button class="btn-base btn-sm btn-gow-red">Comprar</button>
+                            <button class="btn-base btn-sm btn-gow-gold">Ver Mais</button>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="game-card-bg border border-gow-border rounded-lg overflow-hidden group hover:border-gow-red transition-all duration-300 flex flex-col hover:shadow-2xl hover:shadow-red-900/20" data-aos="fade-up" data-aos-delay="100">
+                    <div class="relative h-48 md:h-64 w-full img-slot overflow-hidden">
+                      <img src="src/img/capa2007.webp" alt="Gow 2" class="w-full h-full object-cover object-top group-hover:scale-110 transition-transform duration-700">
+                      <div class="absolute inset-0 bg-gradient-to-t from-gow-card to-transparent opacity-60"></div>
+                    </div>
+                    <div class="p-5 md:p-6 flex flex-col flex-grow">
+                        <div class="flex justify-between items-start mb-3">
+                            <span class="text-gow-gold text-[10px] font-bold uppercase tracking-widest border border-gow-gold/30 px-2 py-1 rounded">2007</span>
+                            <span class="text-gray-600 text-[10px] font-bold uppercase">PS2</span>
+                        </div>
+                        <h3 class="text-lg md:text-xl font-serif text-white font-bold mb-3 group-hover:text-gow-red transition-colors">God of War II</h3>
+                        <p class="text-gray-500 text-xs leading-relaxed mb-6 flex-grow">
+                            Traído por Zeus, Kratos deve viajar até os confins da terra para encontrar as Irmãs do Destino.
+                        </p>
+                        <div class="flex gap-3 mt-auto">
+                            <button class="btn-base btn-sm btn-gow-red">Comprar</button>
+                            <button class="btn-base btn-sm btn-gow-gold">Ver Mais</button>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="game-card-bg border border-gow-border rounded-lg overflow-hidden group hover:border-gow-red transition-all duration-300 flex flex-col hover:shadow-2xl hover:shadow-red-900/20" data-aos="fade-up" data-aos-delay="200">
+                    <div class="relative h-48 md:h-64 w-full img-slot overflow-hidden">
+                       <img src="src/img/capa2008.webp" alt="Chains" class="w-full h-full object-cover object-top group-hover:scale-110 transition-transform duration-700">
+                       <div class="absolute inset-0 bg-gradient-to-t from-gow-card to-transparent opacity-60"></div>
+                    </div>
+                    <div class="p-5 md:p-6 flex flex-col flex-grow">
+                        <div class="flex justify-between items-start mb-3">
+                            <span class="text-gow-gold text-[10px] font-bold uppercase tracking-widest border border-gow-gold/30 px-2 py-1 rounded">2008</span>
+                            <span class="text-gray-600 text-[10px] font-bold uppercase">PSP</span>
+                        </div>
+                        <h3 class="text-lg md:text-xl font-serif text-white font-bold mb-3 group-hover:text-gow-red transition-colors">Chains of Olympus</h3>
+                        <p class="text-gray-500 text-xs leading-relaxed mb-6 flex-grow">
+                            Antes da vingança, Kratos serve os deuses para impedir que o mundo caia na escuridão.
+                        </p>
+                        <div class="flex gap-3 mt-auto">
+                            <button class="btn-base btn-sm btn-gow-red">Comprar</button>
+                            <button class="btn-base btn-sm btn-gow-gold">Ver Mais</button>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="game-card-bg border border-gow-border rounded-lg overflow-hidden group hover:border-gow-red transition-all duration-300 flex flex-col hover:shadow-2xl hover:shadow-red-900/20" data-aos="fade-up" data-aos-delay="300">
+                    <div class="relative h-48 md:h-64 w-full img-slot overflow-hidden">
+                        <img src="src/img/capa2010.webp" alt="Gow 3" class="w-full h-full object-cover object-top group-hover:scale-110 transition-transform duration-700">
+                        <div class="absolute inset-0 bg-gradient-to-t from-gow-card to-transparent opacity-60"></div>
+                    </div>
+                    <div class="p-5 md:p-6 flex flex-col flex-grow">
+                        <div class="flex justify-between items-start mb-3">
+                            <span class="text-gow-gold text-[10px] font-bold uppercase tracking-widest border border-gow-gold/30 px-2 py-1 rounded">2010</span>
+                            <span class="text-gray-600 text-[10px] font-bold uppercase">PS3</span>
+                        </div>
+                        <h3 class="text-lg md:text-xl font-serif text-white font-bold mb-3 group-hover:text-gow-red transition-colors">God of War III</h3>
+                        <p class="text-gray-500 text-xs leading-relaxed mb-6 flex-grow">
+                            "No final, haverá apenas Caos." Kratos escala o Monte Olimpo para sua vingança final.
+                        </p>
+                        <div class="flex gap-3 mt-auto">
+                            <button class="btn-base btn-sm btn-gow-red">Comprar</button>
+                            <button class="btn-base btn-sm btn-gow-gold">Ver Mais</button>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="game-card-bg border border-gow-border rounded-lg overflow-hidden group hover:border-gow-red transition-all duration-300 flex flex-col hover:shadow-2xl hover:shadow-red-900/20" data-aos="fade-up">
+                    <div class="relative h-48 md:h-64 w-full img-slot overflow-hidden">
+                        <img src="src/img/capa2010.1.webp" alt="Ghost" class="w-full h-full object-cover object-top group-hover:scale-110 transition-transform duration-700">
+                        <div class="absolute inset-0 bg-gradient-to-t from-gow-card to-transparent opacity-60"></div>
+                    </div>
+                    <div class="p-5 md:p-6 flex flex-col flex-grow">
+                        <div class="flex justify-between items-start mb-3">
+                            <span class="text-gow-gold text-[10px] font-bold uppercase tracking-widest border border-gow-gold/30 px-2 py-1 rounded">2010</span>
+                            <span class="text-gray-600 text-[10px] font-bold uppercase">PSP</span>
+                        </div>
+                        <h3 class="text-lg md:text-xl font-serif text-white font-bold mb-3 group-hover:text-gow-red transition-colors">Ghost of Sparta</h3>
+                        <p class="text-gray-500 text-xs leading-relaxed mb-6 flex-grow">
+                            Kratos busca respostas sobre seu irmão Deimos e sua linhagem mortal.
+                        </p>
+                        <div class="flex gap-3 mt-auto">
+                            <button class="btn-base btn-sm btn-gow-red">Comprar</button>
+                            <button class="btn-base btn-sm btn-gow-gold">Ver Mais</button>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="game-card-bg border border-gow-border rounded-lg overflow-hidden group hover:border-gow-red transition-all duration-300 flex flex-col hover:shadow-2xl hover:shadow-red-900/20" data-aos="fade-up" data-aos-delay="100">
+                    <div class="relative h-48 md:h-64 w-full img-slot overflow-hidden">
+                        <img src="src/img/capa2013.webp" alt="Ascension" class="w-full h-full object-cover object-top group-hover:scale-110 transition-transform duration-700">
+                        <div class="absolute inset-0 bg-gradient-to-t from-gow-card to-transparent opacity-60"></div>
+                    </div>
+                    <div class="p-5 md:p-6 flex flex-col flex-grow">
+                        <div class="flex justify-between items-start mb-3">
+                            <span class="text-gow-gold text-[10px] font-bold uppercase tracking-widest border border-gow-gold/30 px-2 py-1 rounded">2013</span>
+                            <span class="text-gray-600 text-[10px] font-bold uppercase">PS3</span>
+                        </div>
+                        <h3 class="text-lg md:text-xl font-serif text-white font-bold mb-3 group-hover:text-gow-red transition-colors">Ascension</h3>
+                        <p class="text-gray-500 text-xs leading-relaxed mb-6 flex-grow">
+                            Seis meses após matar sua família, Kratos quebra seu juramento e enfrenta as Fúrias.
+                        </p>
+                        <div class="flex gap-3 mt-auto">
+                            <button class="btn-base btn-sm btn-gow-red">Comprar</button>
+                            <button class="btn-base btn-sm btn-gow-gold">Ver Mais</button>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="game-card-bg border border-cyan-900/30 rounded-lg overflow-hidden group hover:border-cyan-500 transition-all duration-300 flex flex-col hover:shadow-2xl hover:shadow-cyan-900/20" data-aos="fade-up" data-aos-delay="200">
+                    <div class="relative h-48 md:h-64 w-full img-slot overflow-hidden">
+                         <img src="src/img/capa2018.webp" alt="Gow 2018" class="w-full h-full object-cover object-top group-hover:scale-110 transition-transform duration-700">
+                         <div class="absolute inset-0 bg-gradient-to-t from-cyan-900/40 to-transparent opacity-50"></div>
+                    </div>
+                    <div class="p-5 md:p-6 flex flex-col flex-grow relative">
+                        <div class="absolute top-0 right-0 p-2 opacity-10"><i class="fas fa-snowflake text-4xl"></i></div>
+
+                        <div class="flex justify-between items-start mb-3">
+                            <span class="text-cyan-500 text-[10px] font-bold uppercase tracking-widest border border-cyan-500/30 px-2 py-1 rounded">2018</span>
+                            <span class="text-gray-500 text-[10px] font-bold uppercase">PS4 / PC</span>
+                        </div>
+                        <h3 class="text-lg md:text-xl font-serif text-white font-bold mb-3 group-hover:text-cyan-400 transition-colors">God of War</h3>
+                        <p class="text-gray-400 text-xs leading-relaxed mb-6 flex-grow">
+                            Vivendo fora da sombra dos deuses, Kratos deve se adaptar a terras desconhecidas e ser pai de Atreus.
+                        </p>
+                        <div class="flex gap-3 mt-auto">
+                            <button class="btn-base btn-sm bg-cyan-900/20 border border-cyan-900/50 text-cyan-400 hover:bg-cyan-600 hover:text-white hover:shadow-[0_0_15px_#0891b2]">Comprar</button>
+                            <button class="btn-base btn-sm btn-gow-gold">Ver Mais</button>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="game-card-bg border border-cyan-900/30 rounded-lg overflow-hidden group hover:border-cyan-500 transition-all duration-300 flex flex-col hover:shadow-2xl hover:shadow-cyan-900/20" data-aos="fade-up" data-aos-delay="300">
+                    <div class="relative h-48 md:h-64 w-full img-slot overflow-hidden">
+                          <img src="src/img/capa2022.webp" alt="Ragnarok" class="w-full h-full object-cover object-top group-hover:scale-110 transition-transform duration-700">
+                          <div class="absolute inset-0 bg-gradient-to-t from-cyan-900/40 to-transparent opacity-50"></div>
+                    </div>
+                    <div class="p-5 md:p-6 flex flex-col flex-grow relative">
+                        <div class="absolute top-0 right-0 p-2 opacity-10"><i class="fas fa-wind text-4xl"></i></div>
+
+                        <div class="flex justify-between items-start mb-3">
+                            <span class="text-cyan-500 text-[10px] font-bold uppercase tracking-widest border border-cyan-500/30 px-2 py-1 rounded">2022</span>
+                            <span class="text-gray-500 text-[10px] font-bold uppercase">PS4 / PS5</span>
+                        </div>
+                        <h3 class="text-lg md:text-xl font-serif text-white font-bold mb-3 group-hover:text-cyan-400 transition-colors">Ragnarök</h3>
+                        <p class="text-gray-400 text-xs leading-relaxed mb-6 flex-grow">
+                            Kratos e Atreus devem decidir se serão acorrentados pelo destino ou se escreverão sua própria história.
+                        </p>
+                        <div class="flex gap-3 mt-auto">
+                            <button class="btn-base btn-sm bg-cyan-900/20 border border-cyan-900/50 text-cyan-400 hover:bg-cyan-600 hover:text-white hover:shadow-[0_0_15px_#0891b2]">Comprar</button>
+                            <button class="btn-base btn-sm btn-gow-gold">Ver Mais</button>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <section class="py-20 md:py-32 text-center flex items-center justify-center relative section-separator">
+        <div class="container px-4 md:px-6" data-aos="zoom-in">
+            <h3 class="text-2xl md:text-5xl font-serif text-white mb-6">"Não peça desculpa. Seja <span class="text-gow-gold italic text-metal-gold">melhor</span>."</h3>
+            <div class="h-px w-20 bg-gow-red mx-auto mb-4 shadow-[0_0_10px_#C21919]"></div>
+            <p class="text-gow-gold text-[10px] md:text-xs font-bold tracking-[0.3em] uppercase">— Kratos, para Atreus</p>
+        </div>
+    </section>
+
+    <section class="relative w-full min-h-[400px] md:min-h-[500px] h-auto overflow-hidden z-10 py-10 flex items-center justify-center section-separator">
+        <img src="src/img/img_pc.png" class="w-full h-full max-h-[800px] object-contain img-slot px-4" alt="Arte God of War PC">
+        
+        <div class="absolute inset-0 bg-gradient-to-t from-black via-transparent to-transparent flex items-end justify-center pb-10 md:pb-16 z-20 pointer-events-none">
+            <div class="flex flex-col md:flex-row gap-4 pointer-events-auto w-full max-w-md md:max-w-none px-6">
+                <button class="btn-base btn-gow-gold bg-black/50 backdrop-blur w-full md:w-auto">
+                    Saiba mais sobre God of War (2018)
+                </button>
+                <button class="btn-base btn-gow-gold bg-black/50 backdrop-blur w-full md:w-auto">
+                    Saiba mais sobre God of War Ragnarök
+                </button>
+            </div>
+        </div>
+    </section>
+
+    <section id="pc-features" class="py-20 md:py-32 relative overflow-hidden z-0 -mt-1 section-separator">
+        <div class="absolute top-0 right-0 w-full md:w-2/3 h-full bg-red-900/20 blur-[120px] -skew-x-12 translate-x-1/4 pointer-events-none"></div>
+         
+         <div class="container mx-auto px-4 md:px-6 max-w-6xl relative z-10 flex flex-col md:flex-row items-center gap-10 md:gap-16">
+             <div class="w-full md:w-1/2" data-aos="fade-right">
+                 <span class="gold-subtitle mb-2">Disponível Agora</span>
+                 <h2 class="text-3xl md:text-5xl font-serif text-white font-bold mb-6 md:mb-8 uppercase">GOD OF WAR RAGNARÖK NO PC</h2>
+                 
+                 <p class="text-gray-300 text-sm md:text-lg leading-relaxed mb-8 md:mb-10 bg-black/50 p-4 rounded">
+                    O jogo multipremiado de 2022 está disponível no Steam e na Epic Games Store, com recursos e opções de personalização exclusivos para PC.
+                 </p>
+
+                 <h4 class="text-white font-bold mb-4 uppercase text-sm tracking-wider">Recursos para PC:</h4>
+                 <ul class="text-gray-400 space-y-3 mb-10 md:mb-12 list-disc list-inside marker:text-gow-gold text-sm md:text-base">
+                     <li>Gráficos de alta fidelidade e taxas de quadros destravadas;</li>
+                     <li>Tecnologia de ajuste de resolução com integração do NVIDIA DLSS, AMD FSR e Intel XeSS;</li>
+                     <li>Personalização total de controles para mouse e teclado;</li>
+                     <li>Suporte à tecnologia ultrawide (21:9) e super ultrawide (32:9).</li>
+                 </ul>
+
+                 <div class="flex flex-col sm:flex-row gap-4">
+                     <button class="btn-base btn-gow-gold w-full sm:w-auto">
+                        Saiba mais
+                    </button>
+                     <button class="btn-base btn-gow-red w-full sm:w-auto">
+                        <i class="fab fa-steam"></i> Compre no Steam
+                    </button>
+                      <button class="btn-base btn-gow-red w-full sm:w-auto">
+                        <i class="fas fa-gamepad"></i> Epic Games
+                    </button>
+                 </div>
+             </div>
+
+             <div class="w-full md:w-1/2" data-aos="fade-left">
+                <div class="aspect-video bg-black border border-gow-border relative rounded-xl overflow-hidden shadow-2xl">
+                    <iframe 
+                        class="w-full h-full" 
+                        src="https://www.youtube.com/embed/RkxuHxXfA4c" 
+                        title="God of War Ragnarök PC Trailer" 
+                        frameborder="0" 
+                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
+                        allowfullscreen>
+                    </iframe>
+                </div>
+             </div>
+         </div>
+    </section>
+
+    <section id="trailer" class="py-20 md:py-24 relative z-10 section-separator">
+        <div class="container mx-auto px-4 md:px-6 text-center max-w-5xl">
+            <span class="gold-subtitle mb-2">Assista</span>
+            <h2 class="text-3xl md:text-4xl font-serif text-white font-bold mb-6 red-underline">Trailer Oficial</h2>
+            <p class="text-gray-400 mb-8 md:mb-12 text-xs md:text-sm bg-black/50 inline-block p-2 rounded">Reviva os momentos mais épicos da franquia com o trailer de God of War Ragnarök.</p>
+            
+            <div class="aspect-video w-full bg-black border border-gow-border shadow-2xl relative rounded-sm overflow-hidden">
+                <iframe 
+                    class="w-full h-full" 
+                    src="https://www.youtube.com/embed/cAF_vuOHyg4" 
+                    title="God of War Ragnarök Trailer" 
+                    frameborder="0" 
+                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
+                    allowfullscreen>
+                </iframe>
+            </div>
+        </div>
+    </section>
+
+    <footer class="py-12 md:py-16 text-center relative z-20 bg-black/80 border-t border-gow-border">
+        <div class="container mx-auto px-6">
+            <div class="text-gow-red text-3xl font-serif font-bold mb-4 drop-shadow-[0_0_10px_#C21919]">Ω</div>
+            <h4 class="text-2xl font-serif text-white font-bold tracking-widest mb-2">GOD OF WAR</h4>
+            <span class="text-[10px] text-gow-gold tracking-[0.3em] uppercase block mb-8">A Saga Completa</span>
+
+            <p class="text-gray-400 text-sm max-w-md mx-auto mb-10 leading-relaxed font-medium">
+                Página tributo à maior saga de ação e aventura dos videogames. Feita com paixão por fãs, para fãs.
+            </p>
+
+            <div class="flex flex-wrap justify-center gap-4 md:gap-8 text-[10px] font-bold tracking-widest text-gray-500 uppercase mb-12">
+                <a href="#" class="hover:text-white transition-colors">Início</a>
+                <a href="#saga" class="hover:text-white transition-colors">A Saga</a>
+                <a href="#jogos" class="hover:text-white transition-colors">Jogos</a>
+                <a href="#eras" class="hover:text-white transition-colors">As Eras</a>
+                <a href="#trailer" class="hover:text-white transition-colors">Trailer</a>
+            </div>
+
+            <div class="h-px w-full bg-gow-border mb-8 max-w-4xl mx-auto opacity-30"></div>
+
+            <p class="text-xs text-gray-400 leading-loose">
+                © 2026 — Página Tributo. God of War é marca registrada da Santa Monica Studio / Sony Interactive Entertainment.<br>
+                Este site é um projeto não-oficial feito por <i class="italic text-gray-400">@ Pamella de Moraes</i>, sem fins lucrativos.
+            </p>
+        </div>
+    </footer>
+
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script>
+        AOS.init({
+            once: true,
+            offset: 50,
+            duration: 1000,
+            easing: 'ease-out-quart',
+        });
+
+        // Script simples para o Menu Mobile
+        const btn = document.getElementById('mobile-menu-btn');
+        const menu = document.getElementById('mobile-menu');
+        const links = document.querySelectorAll('.mobile-link');
+
+        btn.addEventListener('click', () => {
+            menu.classList.toggle('active');
+            const icon = btn.querySelector('i');
+            if (menu.classList.contains('active')) {
+                icon.classList.remove('fa-bars');
+                icon.classList.add('fa-times');
+            } else {
+                icon.classList.remove('fa-times');
+                icon.classList.add('fa-bars');
+            }
+        });
+
+        // Fechar o menu ao clicar em um link
+        links.forEach(link => {
+            link.addEventListener('click', () => {
+                menu.classList.remove('active');
+                const icon = btn.querySelector('i');
+                icon.classList.remove('fa-times');
+                icon.classList.add('fa-bars');
+            });
+        });
+    </script>
+</body>
+</html>
