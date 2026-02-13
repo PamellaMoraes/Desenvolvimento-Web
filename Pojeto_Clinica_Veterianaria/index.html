@@ -1,0 +1,1341 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>VetCare Premium - Clínica Veterinária</title>
+    
+    <!-- Google Fonts: Poppins e Inter -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    
+    <!-- Tailwind CSS via CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- Font Awesome CDN -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    
+    <!-- GSAP para animações -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+    
+    <style>
+        /* ===== VARIÁVEIS DE CORES - PALETA ESCANDINAVA ===== */
+        :root {
+            --cor-primaria-verde-floresta: #2D5A3D;
+            --cor-secundaria-verde-menta: #A8D5BA;
+            --cor-acento-terra: #D4A574;
+            --cor-branco-puro: #FFFFFF;
+            --cor-cinza-claro: #F5F5F5;
+            --cor-cinza-medio: #E8E8E8;
+            --cor-cinza-escuro: #2D3436;
+            --cor-texto-principal: #1F1F1F;
+            --cor-texto-secundario: #666666;
+        }
+        
+        /* ===== TIPOGRAFIA GLOBAL ===== */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        html {
+            scroll-behavior: smooth;
+        }
+        
+        body {
+            font-family: 'Inter', sans-serif;
+            color: var(--cor-texto-principal);
+            background-color: var(--cor-branco-puro);
+            line-height: 1.6;
+        }
+        
+        h1, h2, h3, h4, h5, h6 {
+            font-family: 'Poppins', sans-serif;
+            font-weight: 700;
+            letter-spacing: -0.02em;
+            line-height: 1.2;
+        }
+        
+        h1 {
+            font-size: clamp(2rem, 5vw, 3.5rem);
+        }
+        
+        h2 {
+            font-size: clamp(1.75rem, 4vw, 2.5rem);
+        }
+        
+        h3 {
+            font-size: clamp(1.25rem, 3vw, 1.875rem);
+        }
+        
+        p {
+            font-size: 1rem;
+            color: var(--cor-texto-secundario);
+        }
+        
+        /* ===== BOTÕES PREMIUM ===== */
+        .btn-primario {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 0.75rem 2rem;
+            background-color: var(--cor-primaria-verde-floresta);
+            color: var(--cor-branco-puro);
+            border: none;
+            border-radius: 0.5rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            box-shadow: 0 4px 12px rgba(45, 90, 61, 0.15);
+        }
+        
+        .btn-primario:hover {
+            background-color: #1F4D3D;
+            transform: translateY(-2px);
+            box-shadow: 0 8px 20px rgba(45, 90, 61, 0.25);
+        }
+        
+        .btn-primario:active {
+            transform: translateY(0);
+        }
+        
+        .btn-secundario {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 0.75rem 2rem;
+            background-color: transparent;
+            color: var(--cor-primaria-verde-floresta);
+            border: 2px solid var(--cor-primaria-verde-floresta);
+            border-radius: 0.5rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        
+        .btn-secundario:hover {
+            background-color: var(--cor-cinza-claro);
+            transform: translateY(-2px);
+        }
+        
+        /* ===== CONTAINER RESPONSIVO ===== */
+        .container {
+            width: 100%;
+            max-width: 1280px;
+            margin: 0 auto;
+            padding: 0 1rem;
+        }
+        
+        @media (min-width: 640px) {
+            .container {
+                padding: 0 1.5rem;
+            }
+        }
+        
+        @media (min-width: 1024px) {
+            .container {
+                padding: 0 2rem;
+            }
+        }
+        
+        /* ===== HEADER/NAVEGAÇÃO ===== */
+        header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 50;
+            background-color: var(--cor-branco-puro);
+            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.08);
+        }
+        
+        nav {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 1rem 0;
+        }
+        
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            font-size: 1.25rem;
+            font-weight: 700;
+            color: var(--cor-primaria-verde-floresta);
+            font-family: 'Poppins', sans-serif;
+        }
+        
+        .logo-icon {
+            width: 2.5rem;
+            height: 2.5rem;
+            background: linear-gradient(135deg, var(--cor-primaria-verde-floresta), #1F4D3D);
+            border-radius: 0.5rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--cor-branco-puro);
+            font-size: 1.25rem;
+        }
+        
+        .nav-menu {
+            display: none;
+            gap: 2rem;
+            align-items: center;
+        }
+        
+        .nav-menu a {
+            color: var(--cor-texto-principal);
+            text-decoration: none;
+            font-weight: 500;
+            transition: color 0.3s ease;
+        }
+        
+        .nav-menu a:hover {
+            color: var(--cor-primaria-verde-floresta);
+        }
+        
+        @media (min-width: 768px) {
+            .nav-menu {
+                display: flex;
+            }
+        }
+        
+        .hamburger {
+            display: flex;
+            flex-direction: column;
+            gap: 0.35rem;
+            cursor: pointer;
+            background: none;
+            border: none;
+        }
+        
+        .hamburger span {
+            width: 1.5rem;
+            height: 0.2rem;
+            background-color: var(--cor-texto-principal);
+            border-radius: 0.1rem;
+            transition: all 0.3s ease;
+        }
+        
+        @media (min-width: 768px) {
+            .hamburger {
+                display: none;
+            }
+        }
+        
+        /* ===== HERO SECTION ===== */
+        .hero {
+            margin-top: 5rem;
+            padding: 3rem 0;
+            background-color: var(--cor-branco-puro);
+        }
+        
+        @media (min-width: 768px) {
+            .hero {
+                padding: 5rem 0;
+            }
+        }
+        
+        .hero-grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 2rem;
+            align-items: center;
+        }
+        
+        @media (min-width: 768px) {
+            .hero-grid {
+                grid-template-columns: 1fr 1fr;
+                gap: 3rem;
+            }
+        }
+        
+        .hero-content {
+            display: flex;
+            flex-direction: column;
+            gap: 1.5rem;
+        }
+        
+        .hero-title {
+            color: var(--cor-texto-principal);
+        }
+        
+        .hero-description {
+            font-size: 1.125rem;
+            line-height: 1.8;
+        }
+        
+        .hero-buttons {
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+            margin-top: 1rem;
+        }
+        
+        @media (min-width: 640px) {
+            .hero-buttons {
+                flex-direction: row;
+            }
+        }
+        
+        .hero-image {
+            position: relative;
+            border-radius: 1rem;
+            overflow: hidden;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+        }
+        
+        .hero-image img {
+            width: 100%;
+            height: auto;
+            display: block;
+        }
+        
+        .hero-decoration {
+            position: absolute;
+            bottom: -1rem;
+            right: -1rem;
+            width: 8rem;
+            height: 8rem;
+            background-color: var(--cor-secundaria-verde-menta);
+            border-radius: 50%;
+            opacity: 0.3;
+            z-index: -1;
+        }
+        
+        /* ===== SEÇÃO DE ESTATÍSTICAS ===== */
+        .stats {
+            background: linear-gradient(135deg, var(--cor-cinza-claro), #F0F8F5);
+            padding: 3rem 0;
+        }
+        
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+            gap: 2rem;
+        }
+        
+        @media (min-width: 768px) {
+            .stats-grid {
+                grid-template-columns: repeat(4, 1fr);
+            }
+        }
+        
+        .stat-item {
+            text-align: center;
+        }
+        
+        .stat-number {
+            font-size: clamp(2rem, 5vw, 2.5rem);
+            font-weight: 800;
+            color: var(--cor-primaria-verde-floresta);
+            font-family: 'Poppins', sans-serif;
+        }
+        
+        .stat-label {
+            font-size: 0.875rem;
+            color: var(--cor-texto-secundario);
+            margin-top: 0.5rem;
+        }
+        
+        /* ===== SEÇÃO DE SERVIÇOS ===== */
+        .servicos {
+            padding: 4rem 0;
+        }
+        
+        .section-header {
+            text-align: center;
+            margin-bottom: 3rem;
+        }
+        
+        .section-title {
+            color: var(--cor-texto-principal);
+            margin-bottom: 1rem;
+        }
+        
+        .section-subtitle {
+            font-size: 1.125rem;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+        
+        .servicos-grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 2rem;
+        }
+        
+        @media (min-width: 640px) {
+            .servicos-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+        
+        @media (min-width: 1024px) {
+            .servicos-grid {
+                grid-template-columns: repeat(3, 1fr);
+            }
+        }
+        
+        .card-servico {
+            background-color: var(--cor-branco-puro);
+            border: 1px solid var(--cor-cinza-medio);
+            border-radius: 0.75rem;
+            padding: 2rem;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+        }
+        
+        .card-servico:hover {
+            transform: translateY(-0.5rem);
+            box-shadow: 0 20px 40px rgba(45, 90, 61, 0.12);
+        }
+        
+        .card-icon {
+            width: 4rem;
+            height: 4rem;
+            background: linear-gradient(135deg, #E8F5E9, #C8E6C9);
+            border-radius: 0.5rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 1.5rem;
+            font-size: 1.75rem;
+            color: var(--cor-primaria-verde-floresta);
+        }
+        
+        .card-title {
+            font-size: 1.25rem;
+            margin-bottom: 0.75rem;
+            color: var(--cor-texto-principal);
+        }
+        
+        .card-description {
+            font-size: 0.95rem;
+            line-height: 1.6;
+            margin-bottom: 1.5rem;
+        }
+        
+        .card-link {
+            color: var(--cor-primaria-verde-floresta);
+            text-decoration: none;
+            font-weight: 600;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            transition: all 0.3s ease;
+        }
+        
+        .card-link:hover {
+            color: #1F4D3D;
+            transform: translateX(0.25rem);
+        }
+        
+        /* ===== SEÇÃO SOBRE ===== */
+        .sobre {
+            background: linear-gradient(135deg, #F0F8F5, var(--cor-branco-puro));
+            padding: 4rem 0;
+        }
+        
+        .sobre-grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 3rem;
+            align-items: center;
+        }
+        
+        @media (min-width: 768px) {
+            .sobre-grid {
+                grid-template-columns: 1fr 1fr;
+            }
+        }
+        
+        .sobre-image {
+            border-radius: 1rem;
+            overflow: hidden;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+        }
+        
+        .sobre-image img {
+            width: 100%;
+            height: auto;
+            display: block;
+        }
+        
+        .sobre-content {
+            display: flex;
+            flex-direction: column;
+            gap: 1.5rem;
+        }
+        
+        .sobre-title {
+            color: var(--cor-texto-principal);
+        }
+        
+        .beneficio {
+            display: flex;
+            gap: 1rem;
+            align-items: flex-start;
+        }
+        
+        .beneficio-icon {
+            width: 1.5rem;
+            height: 1.5rem;
+            background-color: var(--cor-primaria-verde-floresta);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--cor-branco-puro);
+            font-size: 0.75rem;
+            flex-shrink: 0;
+            margin-top: 0.25rem;
+        }
+        
+        .beneficio-content h4 {
+            font-size: 1rem;
+            margin-bottom: 0.25rem;
+            color: var(--cor-texto-principal);
+        }
+        
+        .beneficio-content p {
+            font-size: 0.875rem;
+        }
+        
+        /* ===== SEÇÃO DE DEPOIMENTOS ===== */
+        .depoimentos {
+            padding: 4rem 0;
+        }
+        
+        .depoimentos-grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 2rem;
+        }
+        
+        @media (min-width: 768px) {
+            .depoimentos-grid {
+                grid-template-columns: repeat(3, 1fr);
+            }
+        }
+        
+        .card-depoimento {
+            background: linear-gradient(135deg, #F0F8F5, var(--cor-branco-puro));
+            border: 1px solid var(--cor-secundaria-verde-menta);
+            border-radius: 0.75rem;
+            padding: 2rem;
+            transition: all 0.3s ease;
+        }
+        
+        .card-depoimento:hover {
+            transform: translateY(-0.25rem);
+            box-shadow: 0 12px 24px rgba(45, 90, 61, 0.1);
+        }
+        
+        .stars {
+            display: flex;
+            gap: 0.25rem;
+            margin-bottom: 1rem;
+            color: #FFD700;
+        }
+        
+        .depoimento-text {
+            font-size: 0.95rem;
+            line-height: 1.6;
+            margin-bottom: 1.5rem;
+            font-style: italic;
+        }
+        
+        .depoimento-autor {
+            display: flex;
+            gap: 1rem;
+            align-items: center;
+        }
+        
+        .autor-avatar {
+            width: 3rem;
+            height: 3rem;
+            background-color: var(--cor-primaria-verde-floresta);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--cor-branco-puro);
+            font-weight: 700;
+            font-size: 0.875rem;
+        }
+        
+        .autor-info h4 {
+            font-size: 0.95rem;
+            margin-bottom: 0.25rem;
+        }
+        
+        .autor-info p {
+            font-size: 0.8rem;
+        }
+        
+        /* ===== SEÇÃO DE CONTATO/CTA ===== */
+        .contato {
+            background: linear-gradient(135deg, var(--cor-primaria-verde-floresta), #1F4D3D);
+            color: var(--cor-branco-puro);
+            padding: 4rem 0;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .contato::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            right: 0;
+            width: 24rem;
+            height: 24rem;
+            background-color: rgba(168, 213, 186, 0.1);
+            border-radius: 50%;
+            margin-top: -12rem;
+            margin-right: -12rem;
+        }
+        
+        .contato::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 24rem;
+            height: 24rem;
+            background-color: rgba(168, 213, 186, 0.1);
+            border-radius: 50%;
+            margin-bottom: -12rem;
+            margin-left: -12rem;
+        }
+        
+        .contato-content {
+            position: relative;
+            z-index: 10;
+            text-align: center;
+            max-width: 48rem;
+            margin: 0 auto;
+        }
+        
+        .contato-title {
+            color: var(--cor-branco-puro);
+            margin-bottom: 1rem;
+        }
+        
+        .contato-subtitle {
+            font-size: 1.125rem;
+            margin-bottom: 2rem;
+            color: rgba(255, 255, 255, 0.9);
+        }
+        
+        .contato-buttons {
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+            justify-content: center;
+        }
+        
+        @media (min-width: 640px) {
+            .contato-buttons {
+                flex-direction: row;
+            }
+        }
+        
+        .btn-contato-branco {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.5rem;
+            padding: 0.75rem 2rem;
+            background-color: var(--cor-branco-puro);
+            color: var(--cor-primaria-verde-floresta);
+            border: none;
+            border-radius: 0.5rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+        }
+        
+        .btn-contato-branco:hover {
+            background-color: var(--cor-cinza-claro);
+            transform: translateY(-2px);
+        }
+        
+        .btn-contato-verde {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.5rem;
+            padding: 0.75rem 2rem;
+            background-color: rgba(255, 255, 255, 0.2);
+            color: var(--cor-branco-puro);
+            border: 2px solid var(--cor-branco-puro);
+            border-radius: 0.5rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        
+        .btn-contato-verde:hover {
+            background-color: rgba(255, 255, 255, 0.3);
+            transform: translateY(-2px);
+        }
+        
+        /* ===== FOOTER ===== */
+        footer {
+            background-color: #1A1A1A;
+            color: #999999;
+            padding: 3rem 0 1rem;
+        }
+        
+        .footer-grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 2rem;
+            margin-bottom: 2rem;
+        }
+        
+        @media (min-width: 768px) {
+            .footer-grid {
+                grid-template-columns: repeat(4, 1fr);
+            }
+        }
+        
+        .footer-section h4 {
+            color: var(--cor-branco-puro);
+            margin-bottom: 1rem;
+            font-size: 0.95rem;
+        }
+        
+        .footer-section ul {
+            list-style: none;
+        }
+        
+        .footer-section ul li {
+            margin-bottom: 0.5rem;
+        }
+        
+        .footer-section a {
+            color: #999999;
+            text-decoration: none;
+            font-size: 0.875rem;
+            transition: color 0.3s ease;
+        }
+        
+        .footer-section a:hover {
+            color: var(--cor-secundaria-verde-menta);
+        }
+        
+        .footer-logo {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            margin-bottom: 1rem;
+        }
+        
+        .footer-logo-icon {
+            width: 2rem;
+            height: 2rem;
+            background-color: var(--cor-primaria-verde-floresta);
+            border-radius: 0.375rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--cor-branco-puro);
+            font-size: 1rem;
+        }
+        
+        .footer-logo-text {
+            color: var(--cor-branco-puro);
+            font-weight: 700;
+            font-family: 'Poppins', sans-serif;
+        }
+        
+        .social-links {
+            display: flex;
+            gap: 1rem;
+            margin-top: 1rem;
+        }
+        
+        .social-link {
+            width: 2.5rem;
+            height: 2.5rem;
+            background-color: var(--cor-primaria-verde-floresta);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--cor-branco-puro);
+            text-decoration: none;
+            transition: all 0.3s ease;
+        }
+        
+        .social-link:hover {
+            background-color: var(--cor-secundaria-verde-menta);
+            color: var(--cor-primaria-verde-floresta);
+            transform: translateY(-2px);
+        }
+        
+        .footer-divider {
+            border-top: 1px solid #333333;
+            padding-top: 2rem;
+            text-align: center;
+            font-size: 0.8rem;
+            color: #666666;
+        }
+        
+        /* ===== CLASSES DE ANIMAÇÃO ===== */
+        .fade-in {
+            opacity: 0;
+            animation: fadeIn 0.8s ease-out forwards;
+        }
+        
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        .slide-in-left {
+            opacity: 0;
+            animation: slideInLeft 0.8s ease-out forwards;
+        }
+        
+        @keyframes slideInLeft {
+            from {
+                opacity: 0;
+                transform: translateX(-30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+        
+        .slide-in-right {
+            opacity: 0;
+            animation: slideInRight 0.8s ease-out forwards;
+        }
+        
+        @keyframes slideInRight {
+            from {
+                opacity: 0;
+                transform: translateX(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+        
+        /* ===== RESPONSIVIDADE MOBILE FIRST ===== */
+        @media (max-width: 640px) {
+            .hero {
+                padding: 2rem 0;
+            }
+            
+            .servicos,
+            .sobre,
+            .depoimentos,
+            .contato {
+                padding: 2.5rem 0;
+            }
+            
+            .stats {
+                padding: 2rem 0;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- ===== HEADER/NAVEGAÇÃO ===== -->
+    <header>
+        <div class="container">
+            <nav>
+                <div class="logo">
+                    <div class="logo-icon">
+                        <i class="fas fa-paw"></i>
+                    </div>
+                    <span>VetCare</span>
+                </div>
+                
+                <div class="nav-menu" id="navMenu">
+                    <a href="#inicio">Início</a>
+                    <a href="#servicos">Serviços</a>
+                    <a href="#sobre">Sobre</a>
+                    <a href="#depoimentos">Depoimentos</a>
+                    <a href="#contato">Contato</a>
+                </div>
+                
+                <button class="btn-primario" style="display: none;" id="btnAgendar">
+                    <i class="fas fa-calendar-check"></i>
+                    Agendar
+                </button>
+                
+                <button class="hamburger" id="hamburger">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </button>
+            </nav>
+        </div>
+    </header>
+
+    <!-- ===== HERO SECTION ===== -->
+    <section id="inicio" class="hero">
+        <div class="container">
+            <div class="hero-grid">
+                <div class="hero-content fade-in">
+                    <h1 class="hero-title">Cuidado Premium para seus Animais de Estimação</h1>
+                    <p class="hero-description">Bem-vindo à VetCare Premium, onde o bem-estar do seu pet é nossa prioridade. Com profissionais experientes e tecnologia de ponta, oferecemos atendimento de excelência para cães, gatos e outros animais.</p>
+                    <div class="hero-buttons">
+                        <button class="btn-primario">
+                            <i class="fas fa-calendar-check"></i>
+                            Agendar Consulta
+                        </button>
+                        <button class="btn-secundario">
+                            <i class="fas fa-phone"></i>
+                            Ligar
+                        </button>
+                    </div>
+                </div>
+                
+                <div class="hero-image slide-in-right">
+                    <img src="https://private-us-east-1.manuscdn.com/sessionFile/JJX0jdobi5uEGm4S16m0kk/sandbox/bTS47614wYSFz0L2YC3Zy6-img-1_1770919042000_na1fn_aGVyby12ZXRlcmluYXJpYQ.png?x-oss-process=image/resize,w_1920,h_1920/format,webp/quality,q_80&Expires=1798761600&Policy=eyJTdGF0ZW1lbnQiOlt7IlJlc291cmNlIjoiaHR0cHM6Ly9wcml2YXRlLXVzLWVhc3QtMS5tYW51c2Nkbi5jb20vc2Vzc2lvbkZpbGUvSkpYMGpkb2JpNXVFR200UzE2bTBray9zYW5kYm94L2JUUzQ3NjE0d1lTRnowTDJZQzNaeTYtaW1nLTFfMTc3MDkxOTA0MjAwMF9uYTFmbl9hR1Z5YnkxMlpYUmxjbWx1WVhKcFlRLnBuZz94LW9zcy1wcm9jZXNzPWltYWdlL3Jlc2l6ZSx3XzE5MjAsaF8xOTIwL2Zvcm1hdCx3ZWJwL3F1YWxpdHkscV84MCIsIkNvbmRpdGlvbiI6eyJEYXRlTGVzc1RoYW4iOnsiQVdTOkVwb2NoVGltZSI6MTc5ODc2MTYwMH19fV19&Key-Pair-Id=K2HSFNDJXOU9YS&Signature=CEk22qmEN94r8SzmFjVYXgWaZuooRMaqRZ7sphwl02L3QVmnpw-lou2rjybXPzxvXTWIYfJUCTwNa0Ro4Fb8M8QlcucBM2UXu1wJ3MBkiQf8OTicT6653H-vxGZ-oCVU~lzJhEyW06y2x8Qiag5T6vsuVNH3CrI-thGeixYt2j-tUm8W150-vRQpdl6qG8-oUVyTeJacVkOJQ-5CTfPPnqcKy9SeE21asLJDpk63ZZGv33JHsdPewkx0Ttof-aLccUcWd0RZzNwLdzR0Jar-9XZyZ7LlOeHTmqiaKRMNNGiZhSNJwIsRG6ulllogIpBMun2uQ15OP4efguKUX6C3~A__" alt="Veterinária examinando cachorro">
+                    <div class="hero-decoration"></div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ===== SEÇÃO DE ESTATÍSTICAS ===== -->
+    <section class="stats">
+        <div class="container">
+            <div class="stats-grid">
+                <div class="stat-item fade-in">
+                    <div class="stat-number">15</div>
+                    <div class="stat-label">Anos de Experiência</div>
+                </div>
+                <div class="stat-item fade-in" style="animation-delay: 0.1s;">
+                    <div class="stat-number">5000</div>
+                    <div class="stat-label">Pets Atendidos</div>
+                </div>
+                <div class="stat-item fade-in" style="animation-delay: 0.2s;">
+                    <div class="stat-number">98%</div>
+                    <div class="stat-label">Satisfação</div>
+                </div>
+                <div class="stat-item fade-in" style="animation-delay: 0.3s;">
+                    <div class="stat-number">24h</div>
+                    <div class="stat-label">Atendimento</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ===== SEÇÃO DE SERVIÇOS ===== -->
+    <section id="servicos" class="servicos">
+        <div class="container">
+            <div class="section-header fade-in">
+                <h2 class="section-title">Nossos Serviços</h2>
+                <p class="section-subtitle">Oferecemos uma ampla gama de serviços veterinários para garantir a saúde e bem-estar do seu pet</p>
+            </div>
+            
+            <div class="servicos-grid">
+                <div class="card-servico fade-in">
+                    <div class="card-icon">
+                        <i class="fas fa-stethoscope"></i>
+                    </div>
+                    <h3 class="card-title">Consulta Geral</h3>
+                    <p class="card-description">Avaliação completa da saúde do seu pet, diagnóstico e prescrição de tratamentos adequados.</p>
+                    <a href="#" class="card-link">Saiba mais <i class="fas fa-arrow-right"></i></a>
+                </div>
+                
+                <div class="card-servico fade-in" style="animation-delay: 0.1s;">
+                    <div class="card-icon">
+                        <i class="fas fa-tooth"></i>
+                    </div>
+                    <h3 class="card-title">Odontologia</h3>
+                    <p class="card-description">Limpeza, tratamento e prevenção de problemas dentários em cães e gatos.</p>
+                    <a href="#" class="card-link">Saiba mais <i class="fas fa-arrow-right"></i></a>
+                </div>
+                
+                <div class="card-servico fade-in" style="animation-delay: 0.2s;">
+                    <div class="card-icon">
+                        <i class="fas fa-scissors"></i>
+                    </div>
+                    <h3 class="card-title">Banho e Tosa</h3>
+                    <p class="card-description">Serviço profissional de higiene e estética para deixar seu pet sempre bonito.</p>
+                    <a href="#" class="card-link">Saiba mais <i class="fas fa-arrow-right"></i></a>
+                </div>
+                
+                <div class="card-servico fade-in" style="animation-delay: 0.3s;">
+                    <div class="card-icon">
+                        <i class="fas fa-syringe"></i>
+                    </div>
+                    <h3 class="card-title">Vacinação</h3>
+                    <p class="card-description">Programa completo de vacinação e imunização para proteger seu pet.</p>
+                    <a href="#" class="card-link">Saiba mais <i class="fas fa-arrow-right"></i></a>
+                </div>
+                
+                <div class="card-servico fade-in" style="animation-delay: 0.4s;">
+                    <div class="card-icon">
+                        <i class="fas fa-heart"></i>
+                    </div>
+                    <h3 class="card-title">Cirurgia</h3>
+                    <p class="card-description">Procedimentos cirúrgicos com equipamento moderno e anestesia segura.</p>
+                    <a href="#" class="card-link">Saiba mais <i class="fas fa-arrow-right"></i></a>
+                </div>
+                
+                <div class="card-servico fade-in" style="animation-delay: 0.5s;">
+                    <div class="card-icon">
+                        <i class="fas fa-image"></i>
+                    </div>
+                    <h3 class="card-title">Radiografia</h3>
+                    <p class="card-description">Diagnóstico por imagem com tecnologia digital de alta precisão.</p>
+                    <a href="#" class="card-link">Saiba mais <i class="fas fa-arrow-right"></i></a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ===== SEÇÃO SOBRE ===== -->
+    <section id="sobre" class="sobre">
+        <div class="container">
+            <div class="sobre-grid">
+                <div class="sobre-image slide-in-left">
+                    <img src="https://private-us-east-1.manuscdn.com/sessionFile/JJX0jdobi5uEGm4S16m0kk/sandbox/bTS47614wYSFz0L2YC3Zy6-img-4_1770919037000_na1fn_Y29udGFjdC1iYWNrZ3JvdW5k.png?x-oss-process=image/resize,w_1920,h_1920/format,webp/quality,q_80&Expires=1798761600&Policy=eyJTdGF0ZW1lbnQiOlt7IlJlc291cmNlIjoiaHR0cHM6Ly9wcml2YXRlLXVzLWVhc3QtMS5tYW51c2Nkbi5jb20vc2Vzc2lvbkZpbGUvSkpYMGpkb2JpNXVFR200UzE2bTBray9zYW5kYm94L2JUUzQ3NjE0d1lTRnowTDJZQzNaeTYtaW1nLTRfMTc3MDkxOTAzNzAwMF9uYTFmbl9ZMjl1ZEdGamRDMWlZV05yWjNKdmRXNWsucG5nP3gtb3NzLXByb2Nlc3M9aW1hZ2UvcmVzaXplLHdfMTkyMCxoXzE5MjAvZm9ybWF0LHdlYnAvcXVhbGl0eSxxXzgwIiwiQ29uZGl0aW9uIjp7IkRhdGVMZXNzVGhhbiI6eyJBV1M6RXBvY2hUaW1lIjoxNzk4NzYxNjAwfX19XX0_&Key-Pair-Id=K2HSFNDJXOU9YS&Signature=C8eE5ErAgFDIvGjH2sUmqe5g69WbbhNyDcB7hIdxAGEKoSshzQAYSquv7QjAyS6qHpKhmYiJsn3kKxODgN-Q58jgNdBma2vEMsC7rNsvzzbCm7SPUfm2IpJqMdT8jZc5zniHaP7-QY8B7obowKC~ZH0WYX4j707EpNyWy5pDIL9xXrLQoQ-SdyBJTc6g65aSIervQ3oFAT4oO4Ee6CnuL7QbBr24fppcVMv8FMO1KcHwWflfjQR0O3sAEdN3Sq0yVmlchneR4ryl1jjHxb2G49Vyl7PtPOEmz8czwuejUWfOH0~vWFjjIAUNawXLB0HrdtS5FkxvfgfY7fcJrecCOg__" alt="Clínica Veterinária">
+                </div>
+                
+                <div class="sobre-content slide-in-right">
+                    <h2 class="sobre-title">Sobre a VetCare Premium</h2>
+                    <p>Há mais de 15 anos, a VetCare Premium é referência em atendimento veterinário de excelência. Nossa missão é proporcionar cuidados de qualidade superior para seus animais de estimação, combinando experiência profissional com tecnologia de ponta.</p>
+                    <p>Contamos com uma equipe de veterinários especializados, instalações modernas e equipamentos de última geração. Cada pet é tratado como membro da família, recebendo atenção personalizada e cuidado genuíno.</p>
+                    
+                    <div style="margin-top: 1.5rem;">
+                        <div class="beneficio">
+                            <div class="beneficio-icon">
+                                <i class="fas fa-check"></i>
+                            </div>
+                            <div class="beneficio-content">
+                                <h4>Profissionais Qualificados</h4>
+                                <p>Equipe com certificações internacionais</p>
+                            </div>
+                        </div>
+                        
+                        <div class="beneficio">
+                            <div class="beneficio-icon">
+                                <i class="fas fa-check"></i>
+                            </div>
+                            <div class="beneficio-content">
+                                <h4>Tecnologia Moderna</h4>
+                                <p>Equipamentos de diagnóstico de ponta</p>
+                            </div>
+                        </div>
+                        
+                        <div class="beneficio">
+                            <div class="beneficio-icon">
+                                <i class="fas fa-check"></i>
+                            </div>
+                            <div class="beneficio-content">
+                                <h4>Atendimento 24h</h4>
+                                <p>Sempre disponível para emergências</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ===== SEÇÃO DE DEPOIMENTOS ===== -->
+    <section id="depoimentos" class="depoimentos">
+        <div class="container">
+            <div class="section-header fade-in">
+                <h2 class="section-title">Depoimentos de Clientes</h2>
+                <p class="section-subtitle">Veja o que nossos clientes dizem sobre a VetCare Premium</p>
+            </div>
+            
+            <div class="depoimentos-grid">
+                <div class="card-depoimento fade-in">
+                    <div class="stars">
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                    </div>
+                    <p class="depoimento-text">"A VetCare é simplesmente excelente! Meu cachorro Max recebeu atendimento de primeira qualidade. Os profissionais são muito atenciosos e competentes."</p>
+                    <div class="depoimento-autor">
+                        <div class="autor-avatar">MJ</div>
+                        <div class="autor-info">
+                            <h4>Maria João</h4>
+                            <p>Dona do Max</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="card-depoimento fade-in" style="animation-delay: 0.1s;">
+                    <div class="stars">
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                    </div>
+                    <p class="depoimento-text">"Encontrei a clínica perfeita para minha gata Luna. O ambiente é aconchegante e a equipe realmente se importa com os animais."</p>
+                    <div class="depoimento-autor">
+                        <div class="autor-avatar">CS</div>
+                        <div class="autor-info">
+                            <h4>Carlos Silva</h4>
+                            <p>Dono da Luna</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="card-depoimento fade-in" style="animation-delay: 0.2s;">
+                    <div class="stars">
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                    </div>
+                    <p class="depoimento-text">"Recomendo muito! O Dr. Pedro foi extremamente profissional e explicou tudo com paciência. Meu pet saiu feliz!"</p>
+                    <div class="depoimento-autor">
+                        <div class="autor-avatar">AF</div>
+                        <div class="autor-info">
+                            <h4>Ana Ferreira</h4>
+                            <p>Dona do Bilu</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ===== SEÇÃO DE CONTATO/CTA ===== -->
+    <section id="contato" class="contato">
+        <div class="container">
+            <div class="contato-content fade-in">
+                <h2 class="contato-title">Pronto para Cuidar do seu Pet?</h2>
+                <p class="contato-subtitle">Entre em contato conosco e agende uma consulta. Estamos aqui para ajudar!</p>
+                <div class="contato-buttons">
+                    <button class="btn-contato-branco">
+                        <i class="fas fa-phone"></i>
+                       (00) 99999-9999
+                    </button>
+                    <button class="btn-contato-verde">
+                        <i class="fas fa-envelope"></i>
+                        contato@vetcare.com.br
+                    </button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ===== FOOTER ===== -->
+    <footer>
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-section">
+                    <div class="footer-logo">
+                        <div class="footer-logo-icon">
+                            <i class="fas fa-paw"></i>
+                        </div>
+                        <span class="footer-logo-text">VetCare</span>
+                    </div>
+                    <p>Cuidado premium para seus animais de estimação.</p>
+                    <div class="social-links">
+                        <a href="#" class="social-link">
+                            <i class="fab fa-facebook-f"></i>
+                        </a>
+                        <a href="#" class="social-link">
+                            <i class="fab fa-instagram"></i>
+                        </a>
+                        <a href="#" class="social-link">
+                            <i class="fab fa-whatsapp"></i>
+                        </a>
+                    </div>
+                </div>
+                
+                <div class="footer-section">
+                    <h4>Navegação</h4>
+                    <ul>
+                        <li><a href="#inicio">Início</a></li>
+                        <li><a href="#servicos">Serviços</a></li>
+                        <li><a href="#sobre">Sobre</a></li>
+                        <li><a href="#depoimentos">Depoimentos</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-section">
+                    <h4>Contato</h4>
+                    <ul>
+                        <li><a href="tel:1198765432">(00) 99999-9999</a></li>
+                        <li><a href="mailto:contato@vetcare.com.br">contato@vetcare.com.br</a></li>
+                        <li>Rua das laranjas, 0 - São Paulo, SP</li>
+                    </ul>
+                </div>
+                
+                <div class="footer-section">
+                    <h4>Informações</h4>
+                    <ul>
+                        <li><a href="#">Política de Privacidade</a></li>
+                        <li><a href="#">Termos de Serviço</a></li>
+                        <li><a href="#">FAQ</a></li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="footer-divider">
+                <p>© 2026 VetCare. Todos os direitos reservados. | Desenvolvido com <i class="fas fa-heart" style="color: #FF6B6B;"></i> para seus pets.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // ===== REGISTRAR SCROLL TRIGGER ===== 
+        gsap.registerPlugin(ScrollTrigger);
+
+        // ===== ANIMAÇÕES INICIAIS ===== 
+        window.addEventListener('load', () => {
+            // Animar hero section
+            gsap.fromTo('.hero-content', 
+                { opacity: 0, y: 30 },
+                { opacity: 1, y: 0, duration: 0.8, ease: 'power2.out' }
+            );
+
+            gsap.fromTo('.hero-image', 
+                { opacity: 0, x: 50 },
+                { opacity: 1, x: 0, duration: 0.8, delay: 0.2, ease: 'power2.out' }
+            );
+        });
+
+        // ===== ANIMAÇÕES AO FAZER SCROLL ===== 
+        const cards = document.querySelectorAll('.card-servico');
+        cards.forEach((card, index) => {
+            gsap.fromTo(card,
+                { opacity: 0, y: 40 },
+                {
+                    opacity: 1,
+                    y: 0,
+                    duration: 0.6,
+                    ease: 'power2.out',
+                    scrollTrigger: {
+                        trigger: card,
+                        start: 'top 80%',
+                        toggleActions: 'play none none none'
+                    }
+                }
+            );
+        });
+
+        // ===== HOVER EFFECTS NOS CARDS ===== 
+        cards.forEach(card => {
+            card.addEventListener('mouseenter', () => {
+                gsap.to(card, {
+                    y: -8,
+                    boxShadow: '0 20px 40px rgba(45, 90, 61, 0.12)',
+                    duration: 0.3,
+                    ease: 'power2.out'
+                });
+            });
+
+            card.addEventListener('mouseleave', () => {
+                gsap.to(card, {
+                    y: 0,
+                    boxShadow: '0 4px 12px rgba(0, 0, 0, 0.08)',
+                    duration: 0.3,
+                    ease: 'power2.out'
+                });
+            });
+        });
+
+        // ===== MENU MOBILE ===== 
+        const hamburger = document.getElementById('hamburger');
+        const navMenu = document.getElementById('navMenu');
+
+        hamburger.addEventListener('click', () => {
+            navMenu.style.display = navMenu.style.display === 'flex' ? 'none' : 'flex';
+            hamburger.style.transform = navMenu.style.display === 'flex' ? 'rotate(90deg)' : 'rotate(0)';
+        });
+
+        // Fechar menu ao clicar em um link
+        const navLinks = navMenu.querySelectorAll('a');
+        navLinks.forEach(link => {
+            link.addEventListener('click', () => {
+                navMenu.style.display = 'none';
+                hamburger.style.transform = 'rotate(0)';
+            });
+        });
+
+        // ===== ANIMAÇÃO DE NÚMEROS ===== 
+        const statNumbers = document.querySelectorAll('.stat-number');
+        let hasAnimated = false;
+
+        const animateNumbers = () => {
+            if (hasAnimated) return;
+            hasAnimated = true;
+
+            statNumbers.forEach((element, index) => {
+                const finalValue = parseInt(element.textContent);
+                const isPercentage = element.textContent.includes('%');
+                const isHours = element.textContent.includes('h');
+                
+                gsap.fromTo(element,
+                    { textContent: 0 },
+                    {
+                        textContent: finalValue,
+                        duration: 2,
+                        ease: 'power2.out',
+                        snap: { textContent: 1 },
+                        onUpdate: function() {
+                            let value = Math.floor(this.targets()[0].textContent);
+                            if (isPercentage) {
+                                element.textContent = value + '%';
+                            } else if (isHours) {
+                                element.textContent = value + 'h';
+                            } else {
+                                element.textContent = value;
+                            }
+                        }
+                    }
+                );
+            });
+        };
+
+        // Trigger animação quando seção de stats entra em view
+        const statsSection = document.querySelector('.stats');
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    animateNumbers();
+                }
+            });
+        }, { threshold: 0.5 });
+
+        observer.observe(statsSection);
+
+        // ===== SMOOTH SCROLL PARA LINKS ===== 
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({ behavior: 'smooth' });
+                }
+            });
+        });
+    </script>
+</body>
+</html>

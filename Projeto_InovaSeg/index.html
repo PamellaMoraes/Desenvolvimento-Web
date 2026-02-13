@@ -1,256 +1,670 @@
 <!DOCTYPE html>
-<html lang="pt-br">
-
+<html lang="pt-BR" class="scroll-smooth">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Soluções de Segurança</title>
-    <link rel="stylesheet"
-        href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0" />
+    <title>InovaSeg | Segurança Inteligente Premium</title>
+    <meta name="description" content="Soluções de segurança de última geração com tecnologia avançada e monitoramento inteligente.">
+    
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+    
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 
-    <link rel="stylesheet" href="assets/CSS/styles.css">
-    <link rel="stylesheet" href="assets/CSS/responsive.css">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                    },
+                    colors: {
+                        brand: {
+                            cyan: '#00ffff', // Azul Ciano Metálico Vibrante
+                            cyan_hover: '#33ffff',
+                            dark_blue: '#0a0f1d', // Fundo Azul Marinho Profundo
+                            darker_blue: '#050810', // Fundo Mais Escuro
+                            card_bg: 'rgba(10, 15, 29, 0.7)', // Fundo Translúcido para Cards
+                            border_glow: 'rgba(0, 255, 255, 0.5)', // Brilho da Borda
+                        }
+                    },
+                    boxShadow: {
+                        'neon': '0 0 20px rgba(0, 255, 255, 0.3), 0 0 40px rgba(0, 255, 255, 0.1)',
+                        'neon-hover': '0 0 30px rgba(0, 255, 255, 0.5), 0 0 60px rgba(0, 255, 255, 0.2)',
+                        'card-glow': '0 0 15px rgba(0, 255, 255, 0.2), inset 0 0 15px rgba(0, 255, 255, 0.05)',
+                    },
+                    backgroundImage: {
+                        'hero-pattern': "url('image_0.png')", // Imagem do Centro de Comando
+                        'gradient-radial': 'radial-gradient(var(--tw-gradient-stops))',
+                    },
+                    animation: {
+                        'pulse-slow': 'pulse 4s cubic-bezier(0.4, 0, 0.6, 1) infinite',
+                    }
+                }
+            }
+        }
+    </script>
 
+    <style>
+        /* Efeitos Visuais Premium */
+        body {
+            background-color: #050810;
+            color: #e2e8f0;
+        }
 
+        .glass-effect {
+            background: rgba(10, 15, 29, 0.8);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border-bottom: 1px solid rgba(0, 255, 255, 0.2);
+        }
+        
+        .text-gradient-cyan {
+            background: linear-gradient(to right, #00ffff, #3399ff);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .btn-premium {
+            background: linear-gradient(135deg, #00ffff 0%, #00cccc 100%);
+            color: #0a0f1d;
+            font-weight: 700;
+            padding: 0.75rem 1.5rem;
+            border-radius: 0.5rem;
+            transition: all 0.3s ease;
+            box-shadow: 0 0 15px rgba(0, 255, 255, 0.3);
+            border: 1px solid rgba(0, 255, 255, 0.5);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .btn-premium::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.4), transparent);
+            transition: 0.5s;
+        }
+
+        .btn-premium:hover::before {
+            left: 100%;
+        }
+
+        .btn-premium:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 0 25px rgba(0, 255, 255, 0.5);
+        }
+
+        .btn-outline-premium {
+            background: transparent;
+            color: #00ffff;
+            font-weight: 700;
+            padding: 0.75rem 1.5rem;
+            border-radius: 0.5rem;
+            transition: all 0.3s ease;
+            border: 2px solid #00ffff;
+            box-shadow: 0 0 10px rgba(0, 255, 255, 0.1);
+        }
+
+        .btn-outline-premium:hover {
+            background: rgba(0, 255, 255, 0.1);
+            box-shadow: 0 0 20px rgba(0, 255, 255, 0.3);
+            transform: translateY(-2px);
+        }
+
+        .card-premium {
+            background: rgba(10, 15, 29, 0.6);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(0, 255, 255, 0.2);
+            border-radius: 1rem;
+            padding: 2rem;
+            transition: all 0.3s ease;
+            box-shadow: 0 0 15px rgba(0, 255, 255, 0.1);
+        }
+
+        .card-premium:hover {
+            border-color: rgba(0, 255, 255, 0.6);
+            box-shadow: 0 0 30px rgba(0, 255, 255, 0.3), inset 0 0 10px rgba(0, 255, 255, 0.1);
+            transform: translateY(-5px);
+        }
+
+        .section-title {
+            font-size: 2.25rem;
+            font-weight: 800;
+            margin-bottom: 1rem;
+        }
+
+        .section-subtitle {
+            color: #00ffff;
+            font-weight: 700;
+            letter-spacing: 0.05em;
+            text-transform: uppercase;
+            margin-bottom: 0.5rem;
+            display: block;
+        }
+
+        /* Ajustes para imagens */
+        .img-glow {
+            box-shadow: 0 0 30px rgba(0, 255, 255, 0.3);
+            border: 1px solid rgba(0, 255, 255, 0.3);
+        }
+
+    </style>
 </head>
+<body class="font-sans antialiased overflow-x-hidden">
 
-<body>
-    <header>
-        <div class="logo">
-            <img src="assets/img/1.Logo/Logo_negative.png" alt="Logo">
+    <nav id="navbar" class="fixed w-full z-50 transition-all duration-300 py-4 bg-brand-dark_blue/80 backdrop-blur-md border-b border-brand-cyan/20">
+        <div class="container mx-auto px-6 flex justify-between items-center">
+            <a href="#" class="text-2xl font-black text-white tracking-tighter flex items-center gap-2 group">
+                <div class="w-10 h-10 rounded-lg flex items-center justify-center text-brand-dark_blue bg-gradient-to-br from-brand-cyan to-blue-500 shadow-neon group-hover:shadow-neon-hover transition-shadow">
+                    <i class="fas fa-shield-alt"></i>
+                </div>
+                <span class="text-white">INOVA</span><span class="text-brand-cyan">SEG</span>
+            </a>
+            
+            <div class="hidden md:flex items-center space-x-8">
+                <a href="#features" class="text-sm font-semibold text-gray-300 hover:text-brand-cyan transition-colors">Funcionalidades</a>
+                <a href="#how-it-works" class="text-sm font-semibold text-gray-300 hover:text-brand-cyan transition-colors">Como Funciona</a>
+                <a href="#pricing" class="text-sm font-semibold text-gray-300 hover:text-brand-cyan transition-colors">Planos</a>
+                <a href="#faq" class="text-sm font-semibold text-gray-300 hover:text-brand-cyan transition-colors">FAQ</a>
+                <a href="#contact" class="btn-premium text-sm">
+                    Solicitar Orçamento
+                </a>
+            </div>
+
+            <button id="mobile-menu-btn" class="md:hidden text-brand-cyan text-2xl focus:outline-none">
+                <i class="fas fa-bars"></i>
+            </button>
         </div>
-        <h1>Soluções de Segurança</h1>
 
-        <span id="bur" class=" burguer material-symbols-outlined" aria-label="Menu">
-            menu
-        </span>
+        </nav>
 
-        <section id="services" class="services-hidden">
-            <ul>
-                <li><a href="#">Instalação de câmeras de segurança</a></li>
-                <li><a href="#">Monitoramento 24 horas</a></li>
-                <li><a href="#">Rondas noturnas</a></li>
-                <li><a href="#">Cercas elétricas e alarmes</a></li>
-            </ul>
-        </section>
+    <header class="relative min-h-screen flex items-center justify-center overflow-hidden pt-20">
+        <div class="absolute inset-0 z-0">
+            <img src="src/hero-bg.jpg" alt="Centro de Comando de Segurança" class="w-full h-full object-cover opacity-40">
+            <div class="absolute inset-0 bg-gradient-to-b from-brand-dark_blue/80 via-brand-dark_blue/90 to-brand-darker_blue"></div>
+        </div>
+
+        <div class="container mx-auto px-6 relative z-10 grid md:grid-cols-2 gap-12 items-center">
+            <div class="text-left">
+                <div class="inline-block px-4 py-2 mb-6 border border-brand-cyan/30 rounded-full bg-brand-cyan/10 backdrop-blur-sm shadow-neon">
+                    <span class="text-brand-cyan text-xs font-bold uppercase tracking-widest flex items-center gap-2">
+                        <i class="fas fa-circle text-[0.5rem] animate-pulse-slow"></i> Tecnologia de Ponta
+                    </span>
+                </div>
+                <h1 class="text-5xl md:text-6xl lg:text-7xl font-black text-white leading-tight mb-6">
+                    Segurança <br>
+                    <span class="text-gradient-cyan">Inteligente</span> & <br>
+                    Conectada.
+                </h1>
+                <p class="text-lg text-gray-300 mb-10 max-w-lg leading-relaxed">
+                    Proteja o que é mais importante com soluções de segurança avançadas, monitoramento 24/7 e controle total na palma da sua mão.
+                </p>
+                <div class="flex flex-col sm:flex-row gap-6">
+                    <a href="#contact" class="btn-premium flex items-center justify-center gap-3 group">
+                        Começar Agora
+                        <i class="fas fa-arrow-right group-hover:translate-x-1 transition-transform"></i>
+                    </a>
+                    <a href="#features" class="btn-outline-premium flex items-center justify-center gap-3">
+                        <i class="fas fa-play text-xs"></i>
+                        Ver Funcionalidades
+                    </a>
+                </div>
+            </div>
+
+            <div class="relative hidden md:block">
+                <div class="relative z-10 transform hover:scale-105 transition-transform duration-500">
+                    <img src="src/app-mockup.png" alt="Aplicativo de Segurança InovaSeg" class="w-full max-w-md mx-auto img-glow rounded-3xl">
+                    <div class="absolute inset-0 -z-10 bg-brand-cyan/30 blur-3xl rounded-full opacity-50 animate-pulse-slow"></div>
+                </div>
+            </div>
+        </div>
     </header>
 
+    <section id="features" class="py-24 bg-brand-darker_blue relative overflow-hidden">
+        <div class="absolute top-0 right-0 w-1/2 h-1/2 bg-brand-cyan/5 blur-[100px] rounded-full pointer-events-none"></div>
+        <div class="absolute bottom-0 left-0 w-1/2 h-1/2 bg-blue-600/5 blur-[100px] rounded-full pointer-events-none"></div>
 
-    <section id="carrossel">
-        <div class="carrossel">
-            <div class="carrossel-item">
-                <img src="assets/img/2.Carrossel/img_camera.jpg" alt="Imagem 1 - Vigilância">
+        <div class="container mx-auto px-6 relative z-10">
+            <div class="text-center max-w-3xl mx-auto mb-20">
+                <span class="section-subtitle">Funcionalidades Principais</span>
+                <h2 class="section-title text-white">Tecnologia que Define o Futuro da Segurança.</h2>
+                <p class="text-gray-400 text-lg">Nossas soluções integram o que há de mais moderno em hardware e software para uma proteção sem falhas.</p>
             </div>
-            <div class="carrossel-item">
-                <img src="assets/img/2.Carrossel/img_segurança.jpg" alt="Imagem 2 - Segurança">
+
+            <div class="grid md:grid-cols-3 gap-10">
+                <div class="card-premium group">
+                    <div class="mb-8 relative">
+                        <div class="w-16 h-16 bg-gradient-to-br from-brand-cyan to-blue-500 rounded-2xl flex items-center justify-center text-brand-dark_blue text-2xl shadow-neon group-hover:shadow-neon-hover transition-shadow z-10 relative">
+                            <i class="fas fa-video"></i>
+                        </div>
+                        <div class="absolute inset-0 bg-brand-cyan/20 blur-xl rounded-2xl opacity-0 group-hover:opacity-100 transition-opacity z-0"></div>
+                    </div>
+                    <h3 class="text-2xl font-bold text-white mb-4">Monitoramento IA</h3>
+                    <p class="text-gray-400 leading-relaxed">
+                        Câmeras com inteligência artificial que detectam comportamentos suspeitos e enviam alertas em tempo real, reduzindo falsos alarmes.
+                    </p>
+                    <div class="mt-6">
+                        <img src="src/about-monitoring.jpg" alt="Câmeras de Segurança com IA" class="w-full h-48 object-cover rounded-xl img-glow opacity-80 group-hover:opacity-100 transition-opacity">
+                    </div>
+                </div>
+
+                <div class="card-premium group">
+                    <div class="mb-8 relative">
+                        <div class="w-16 h-16 bg-gradient-to-br from-brand-cyan to-blue-500 rounded-2xl flex items-center justify-center text-brand-dark_blue text-2xl shadow-neon group-hover:shadow-neon-hover transition-shadow z-10 relative">
+                            <i class="fas fa-fingerprint"></i>
+                        </div>
+                        <div class="absolute inset-0 bg-brand-cyan/20 blur-xl rounded-2xl opacity-0 group-hover:opacity-100 transition-opacity z-0"></div>
+                    </div>
+                    <h3 class="text-2xl font-bold text-white mb-4">Acesso Biométrico</h3>
+                    <p class="text-gray-400 leading-relaxed">
+                        Sistemas de controle de acesso por reconhecimento facial e biometria, garantindo que apenas pessoas autorizadas entrem.
+                    </p>
+                    <div class="mt-6">
+                        <img src="src/service-biometria.jpg"Reconhecimento Facial" class="w-full h-48 object-cover rounded-xl img-glow opacity-80 group-hover:opacity-100 transition-opacity">
+                    </div>
+                </div>
+
+                <div class="card-premium group">
+                    <div class="mb-8 relative">
+                        <div class="w-16 h-16 bg-gradient-to-br from-brand-cyan to-blue-500 rounded-2xl flex items-center justify-center text-brand-dark_blue text-2xl shadow-neon group-hover:shadow-neon-hover transition-shadow z-10 relative">
+                            <i class="fas fa-shield-virus"></i>
+                        </div>
+                        <div class="absolute inset-0 bg-brand-cyan/20 blur-xl rounded-2xl opacity-0 group-hover:opacity-100 transition-opacity z-0"></div>
+                    </div>
+                    <h3 class="text-2xl font-bold text-white mb-4">Alarme Conectado</h3>
+                    <p class="text-gray-400 leading-relaxed">
+                        Painéis de alarme modernos e sensores de alta precisão, totalmente integrados ao aplicativo para gestão remota e notificações instantâneas.
+                    </p>
+                    <div class="mt-6">
+                        <img src="src/service-alarme.jpg" alt="Painel de Alarme Moderno" class="w-full h-48 object-cover rounded-xl img-glow opacity-80 group-hover:opacity-100 transition-opacity">
+                    </div>
+                </div>
             </div>
-            <div class="carrossel-item">
-                <img src="assets/img/2.Carrossel/img_monitoramento.jpg" alt="Imagem 3 - Monitoramento">
+        </div>
+    </section>
+
+    <section id="how-it-works" class="py-24 bg-brand-dark_blue relative">
+        <div class="container mx-auto px-6">
+            <div class="grid md:grid-cols-2 gap-16 items-center">
+                <div class="relative">
+                    <img src="src/service-vigilancia.jpg" alt="Escudo de Segurança Digital" class="w-full max-w-md mx-auto img-glow rounded-3xl relative z-10">
+                    <div class="absolute inset-0 -z-10 bg-brand-cyan/20 blur-[80px] rounded-full"></div>
+                </div>
+
+                <div>
+                    <span class="section-subtitle">Como Funciona</span>
+                    <h2 class="section-title text-white mb-10">Processo Simples, Proteção Robusta.</h2>
+                    
+                    <div class="space-y-8">
+                        <div class="flex items-start gap-6 group">
+                            <div class="w-12 h-12 bg-brand-darker_blue border border-brand-cyan/50 rounded-full flex items-center justify-center text-brand-cyan font-bold text-xl shadow-neon group-hover:bg-brand-cyan group-hover:text-brand-dark_blue transition-all shrink-0">
+                                1
+                            </div>
+                            <div>
+                                <h4 class="text-xl font-bold text-white mb-2 group-hover:text-brand-cyan transition-colors">Consultoria & Análise</h4>
+                                <p class="text-gray-400">Nossos especialistas avaliam suas necessidades e identificam vulnerabilidades para criar um projeto personalizado.</p>
+                            </div>
+                        </div>
+                        <div class="flex items-start gap-6 group">
+                            <div class="w-12 h-12 bg-brand-darker_blue border border-brand-cyan/50 rounded-full flex items-center justify-center text-brand-cyan font-bold text-xl shadow-neon group-hover:bg-brand-cyan group-hover:text-brand-dark_blue transition-all shrink-0">
+                                2
+                            </div>
+                            <div>
+                                <h4 class="text-xl font-bold text-white mb-2 group-hover:text-brand-cyan transition-colors">Instalação Profissional</h4>
+                                <p class="text-gray-400">Equipe técnica certificada realiza a instalação dos equipamentos com acabamento impecável e configuração completa.</p>
+                            </div>
+                        </div>
+                        <div class="flex items-start gap-6 group">
+                            <div class="w-12 h-12 bg-brand-darker_blue border border-brand-cyan/50 rounded-full flex items-center justify-center text-brand-cyan font-bold text-xl shadow-neon group-hover:bg-brand-cyan group-hover:text-brand-dark_blue transition-all shrink-0">
+                                3
+                            </div>
+                            <div>
+                                <h4 class="text-xl font-bold text-white mb-2 group-hover:text-brand-cyan transition-colors">Monitoramento & Suporte</h4>
+                                <p class="text-gray-400">Sua propriedade passa a ser monitorada 24/7 pela nossa central, com suporte técnico sempre disponível.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
     </section>
 
-    <section class="tecnologia">
-        <h1>TECNOLOGIA A SEU FAVOR</h1>
-
-        <p>Tenha tudo em um só lugar: faça chamadas, agende reservas, envie documentos, controle o acesso e muito mais,
-            direto do seu celular. Organização e praticidade ao seu alcance.</p>
-    </section>
-
-    <section id="content">
-        <div id="botao">
-            <a href="#">Baixar</a>
-
+    <section class="py-32 relative overflow-hidden flex items-center justify-center">
+        <div class="absolute inset-0 z-0">
+            <img src="image_5.png" alt="Controle de Acesso Moderno" class="w-full h-full object-cover opacity-30">
+            <div class="absolute inset-0 bg-gradient-to-t from-brand-darker_blue via-brand-dark_blue/80 to-brand-darker_blue"></div>
         </div>
 
-        <div class="image-block">
-            <img src="assets/img/4.RedesScocias/APP.png" alt="Aplicativo Segurança SJC APP">
-        </div>
-        <div class="app-mobile">
-            <img src="assets/img/4.RedesScocias/App_mobile.png" alt="Aplicativo">
-        </div>
-        <div class="text-block">
-            <h1>Foco na Tranquilidade e Proteção</h1>
-            <p>Sua segurança, nossa prioridade. Garanta a tranquilidade do seu bairro, prédio ou condomínio com nossos
-                serviços de segurança personalizados. Contamos com monitoramento 24 horas por câmeras de alta resolução
-                e resposta rápida em caso de emergência. Em menos de 10 minutos, uma viatura policial estará no local,
-                garantindo a sua proteção.</p>
-        </div>
-
-        <div class="text-block2">
-            <h1>Mais segurança, mais tranquilidade</h1>
-            <p>Segurança de ponta com nossos sistemas de monitoramento 24 horas e reconhecimento facial. Tenha acesso
-                remoto às imagens das câmeras e receba alertas instantâneos em seu celular. Conte com a nossa equipe
-                especializada para garantir a sua proteção e a de sua família.</p>
-        </div>
-    </section>
-
-    <section id="slogans">
-        <div class="slogan">
-            <h2>Solução</h2>
-        </div>
-        <div class="slogan">
-            <h2>Proteção</h2>
-        </div>
-        <div class="slogan">
-            <h2>Qualidade</h2>
-        </div>
-    </section>
-
-    <section id="cards">
-        <div class="card">
-            <h2>Biometria e Reconhecimento Facial</h2>
-            <img src="assets/img/3.Cards/Biometria e Reconhecimento Facial.jpg" alt="Biometria">
-            <p>Segurança personalizada com sistemas biométricos e reconhecimento facial.</p>
-        </div>
-        <div class="card">
-            <h2>Vigilância</h2>
-            <img src="assets/img/3.Cards/Vigilância.jpg" alt="Vigilância">
-            <p>Proteção humana com rondas e monitoramento de áreas comuns.</p>
-        </div>
-        <div class="card">
-            <h2>Sistemas de Alarme</h2>
-            <img src="assets/img/3.Cards/Sistemas de Alarme.jpg" alt="Alarmes">
-            <p>Alarmes modernos com sensores de movimento, quebra de vidro e intrusão.</p>
-        </div>
-        <div class="card">
-            <h2>Recepção e Portaria</h2>
-            <img src="assets/img/3.Cards/Recepção e Portaria.jpg" alt="Portaria">
-            <p>Controle de acesso eficiente com recepcionistas e porteiros treinados.</p>
-        </div>
-    </section>
-
-    <section class="text-base">
-        <h1>Segurança no Seu Condomínio: A Importância e os Benefícios dos Serviços de Segurança</h1>
-        <p>
-            A terceirização de serviços de segurança é uma solução eficaz para garantir a proteção e tranquilidade em
-            empresas, condomínios, residências e demais propriedades. Entre os serviços essenciais, destaca-se a
-            segurança patrimonial, fundamental para manter a ordem e proteger o ambiente contra riscos e ameaças.
-        </p>
-        <p>
-            Mas você sabe quais são as atribuições de um serviço de segurança terceirizado?
-        </p>
-        <p>
-            É essencial que gestores, síndicos e moradores compreendam a importância da presença de profissionais
-            qualificados para monitorar e atuar em situações de risco, assegurando a proteção do patrimônio e das
-            pessoas envolvidas.
-        </p>
-        <h2>O que é o serviço de segurança e por que ele é importante?</h2>
-        <p>
-            Garantir a segurança em um ambiente residencial ou empresarial não é uma tarefa simples. Esses locais
-            geralmente possuem grande circulação de pessoas e o uso comum de várias áreas, o que demanda medidas de
-            proteção eficientes para evitar incidentes e manter o bem-estar de todos.
-        </p>
-        <p>
-            A segurança é responsável por zelar pela integridade das instalações, prevenindo e reagindo a situações de
-            risco como invasões, roubos e vandalismo. Além disso, a presença de uma equipe treinada e equipamentos
-            adequados assegura que todas as medidas de prevenção estejam em pleno funcionamento.
-        </p>
-        <p>
-            Na prática, o serviço de segurança é uma peça essencial para a proteção do patrimônio e das pessoas. Os
-            profissionais são responsáveis por monitorar áreas internas e externas, identificar situações suspeitas e
-            agir prontamente para evitar incidentes, além de garantir a operação eficiente de sistemas como portões
-            eletrônicos, câmeras e alarmes.
-        </p>
-        <h2>Quais são as atribuições dos profissionais de segurança?</h2>
-        <p>
-            Muitas pessoas podem não conhecer a amplitude das atribuições de uma equipe de segurança, e às vezes, essas
-            responsabilidades são confundidas com outras atividades. Confira algumas das principais funções dos
-            profissionais de segurança:
-        </p>
-        <ul>
-            <li>Monitorar e garantir o cumprimento das normas de segurança do condomínio ou empresa.</li>
-            <li>Inspecionar áreas comuns, como estacionamentos, corredores e espaços de lazer, verificando a necessidade
-                de melhorias ou reparos.</li>
-            <li>Operar e manter em funcionamento sistemas de segurança, como câmeras, alarmes, portões automáticos e
-                iluminação.</li>
-            <li>Agir em situações de emergência, acionar autoridades competentes e realizar primeiros socorros, quando
-                necessário.</li>
-            <li>Auxiliar na identificação e no controle de entrada e saída de pessoas e veículos.</li>
-            <li>Realizar rondas regulares para prevenir e detectar possíveis ameaças.</li>
-            <li>Orientar moradores e colaboradores sobre as melhores práticas de segurança.</li>
-        </ul>
-        <h2>Benefícios de contar com um serviço de segurança</h2>
-        <p>
-            Empresas e condomínios de todos os tamanhos encontram na terceirização da segurança uma forma de aprimorar a
-            proteção de suas instalações. A presença de uma equipe especializada oferece várias vantagens, como:
-        </p>
-        <h3>Melhoria no desempenho geral dos serviços prestados</h3>
-        <p>
-            A segurança qualificada contribui para o funcionamento eficiente de todo o ambiente, indicando áreas de
-            vulnerabilidade e assegurando que todos os serviços de segurança operem corretamente.
-        </p>
-        <h3>Suporte à administração</h3>
-        <p>
-            A equipe de segurança permite que os gestores e síndicos possam se concentrar em questões estratégicas e
-            administrativas, enquanto a proteção do local fica a cargo de profissionais especializados.
-        </p>
-        <h3>Redução de riscos e erros</h3>
-        <p>
-            Profissionais de segurança treinados são capazes de identificar e agir de forma preventiva, evitando
-            situações perigosas antes que elas ocorram, além de minimizar erros operacionais.
-        </p>
-        <h3>Prevenção de ameaças</h3>
-        <p>
-            Com inspeções regulares e manutenção preventiva dos sistemas de segurança, a equipe terceirizada pode
-            antecipar problemas, garantindo a proteção contínua e evitando despesas com reparos emergenciais.
-        </p>
-        <h2>Terceirize a segurança da sua empresa ou condomínio com a Segurança SJC</h2>
-        <p>
-            A terceirização do serviço de segurança permite uma maior qualificação e eficiência das atividades,
-            otimizando a gestão e reduzindo custos com pessoal e treinamentos. Para garantir um serviço de alta
-            qualidade, é essencial contar com uma empresa de confiança, que trabalhe em conformidade com a legislação,
-            tenha processos eficientes e profissionais capacitados.
-        </p>
-        <p>
-            A <strong>Segurança SJC</strong> está há mais de 10 anos no mercado, oferecendo soluções personalizadas em
-            segurança e tecnologia para proteger o seu patrimônio. Com foco na excelência e na tranquilidade dos nossos
-            clientes, nossa equipe está preparada para atuar de forma preventiva e emergencial, assegurando a segurança
-            do seu condomínio ou empresa.
-        </p>
-        <p><strong>Quer saber mais sobre nossos serviços de segurança? Entre em contato conosco!</strong></p>
-    </section>
-
-
-
-    <section id="contact">
-        <h2>Entre em Contato</h2>
-        <form id="contactForm" onsubmit="return validateForm()">
-            <label for="name">Nome:</label>
-            <input type="text" id="name" name="name" required>
-
-            <label for="email">E-mail:</label>
-            <input type="email" id="email" name="email" required>
-
-            <label for="message">Mensagem:</label>
-            <textarea id="message" name="message" rows="4" required></textarea>
-
-            <button type="submit">Enviar</button>
-        </form>
-    </section>
-    <section>
-        <div class="contact-info">
-            <p>Email: <a href="mailto:contato@seguranca.com">contato@seguranca.com</a></p>
-            <div class="social-media">
-                <a href="https://www.instagram.com/seuPerfilInstagram" target="_blank">
-                    <img src="assets/img/4.RedesScocias/instagram.png" alt="Instagram">
+        <div class="container mx-auto px-6 relative z-10 text-center">
+            <h2 class="text-4xl md:text-5xl font-black text-white mb-8 leading-tight">
+                Pronto para elevar o nível <br> da sua segurança?
+            </h2>
+            <p class="text-xl text-gray-300 mb-12 max-w-2xl mx-auto">
+                Não espere o inesperado acontecer. Fale com nossos consultores e blinde seu patrimônio com a melhor tecnologia do mercado.
+            </p>
+            <div class="flex flex-col sm:flex-row justify-center gap-6">
+                <a href="#contact" class="btn-premium text-lg px-10 py-4">
+                    Solicitar Proposta Gratuita
                 </a>
-                <a href="https://www.youtube.com/seuCanalYouTube" target="_blank">
-                    <img src="assets/img/4.RedesScocias/youtube.png" alt="YouTube">
-                </a>
-                <a href="https://wa.me/" target="_blank">
-                    <img src="assets/img/4.RedesScocias/whatsapp.png" alt="WhatsApp">
+                <a href="#" class="btn-outline-premium text-lg px-10 py-4 flex items-center gap-3">
+                    <i class="fab fa-whatsapp text-2xl"></i> Falar no WhatsApp
                 </a>
             </div>
         </div>
     </section>
 
-    <footer>
-        <p>&copy; 2024 Soluções de Segurança. Todos os direitos reservados.</p>
-        <p class="meuSite">Site feito por <i>Pamella Moraes</i></p>
+    <section id="pricing" class="py-24 bg-brand-dark_blue relative">
+        <div class="container mx-auto px-6">
+             <div class="text-center max-w-3xl mx-auto mb-20">
+                <span class="section-subtitle">Nossos Planos</span>
+                <h2 class="section-title text-white">Investimento Flexível para sua Tranquilidade.</h2>
+                <p class="text-gray-400 text-lg">Escolha o plano ideal para sua casa ou negócio. Transparência total, sem taxas ocultas.</p>
+            </div>
+
+            <div class="grid md:grid-cols-3 gap-8 items-center">
+                <div class="card-premium border-brand-cyan/20 hover:border-brand-cyan/50">
+                    <div class="text-center mb-8">
+                        <h3 class="text-2xl font-bold text-white mb-2">Residencial Básico</h3>
+                        <div class="text-gray-400 text-sm mb-6">Proteção essencial para sua casa</div>
+                        <div class="flex justify-center items-baseline mb-6">
+                            <span class="text-gray-400 text-2xl font-semibold">R$</span>
+                            <span class="text-5xl font-black text-white tracking-tight">149</span>
+                            <span class="text-gray-400 text-xl font-semibold">/mês</span>
+                        </div>
+                        <a href="#contact" class="btn-outline-premium w-full block py-3">Escolher Plano</a>
+                    </div>
+                    <ul class="space-y-4 text-left text-gray-300">
+                        <li class="flex items-center gap-3"><i class="fas fa-check text-brand-cyan"></i> Monitoramento 24h</li>
+                        <li class="flex items-center gap-3"><i class="fas fa-check text-brand-cyan"></i> App Móvel (Básico)</li>
+                        <li class="flex items-center gap-3"><i class="fas fa-check text-brand-cyan"></i> 4 Sensores de Presença</li>
+                        <li class="flex items-center gap-3"><i class="fas fa-check text-brand-cyan"></i> 1 Câmera Interna Wi-Fi</li>
+                        <li class="flex items-center gap-3 text-gray-500"><i class="fas fa-times"></i> Armazenamento em Nuvem</li>
+                    </ul>
+                </div>
+
+                <div class="card-premium border-brand-cyan shadow-neon transform md:scale-110 z-10 bg-brand-dark_blue/90">
+                     <div class="absolute top-0 left-1/2 transform -translate-x-1/2 -translate-y-1/2">
+                        <span class="bg-brand-cyan text-brand-dark_blue text-sm font-bold uppercase py-1 px-4 rounded-full shadow-neon">Mais Popular</span>
+                    </div>
+                    <div class="text-center mb-8 pt-6">
+                        <h3 class="text-2xl font-bold text-white mb-2">Residencial Premium</h3>
+                         <div class="text-gray-400 text-sm mb-6">Segurança completa e inteligente</div>
+                        <div class="flex justify-center items-baseline mb-6">
+                            <span class="text-gray-400 text-2xl font-semibold">R$</span>
+                            <span class="text-5xl font-black text-brand-cyan tracking-tight">249</span>
+                            <span class="text-gray-400 text-xl font-semibold">/mês</span>
+                        </div>
+                        <a href="#contact" class="btn-premium w-full block py-3 shadow-neon">Escolher Plano</a>
+                    </div>
+                    <ul class="space-y-4 text-left text-gray-300">
+                        <li class="flex items-center gap-3"><i class="fas fa-check text-brand-cyan"></i> Monitoramento 24h Prioritário</li>
+                        <li class="flex items-center gap-3"><i class="fas fa-check text-brand-cyan"></i> App Móvel Completo + IA</li>
+                        <li class="flex items-center gap-3"><i class="fas fa-check text-brand-cyan"></i> 8 Sensores + 2 Câmeras IA</li>
+                        <li class="flex items-center gap-3"><i class="fas fa-check text-brand-cyan"></i> Gravação em Nuvem (7 dias)</li>
+                        <li class="flex items-center gap-3"><i class="fas fa-check text-brand-cyan"></i> Integração com Smart Home</li>
+                    </ul>
+                </div>
+
+                <div class="card-premium border-brand-cyan/20 hover:border-brand-cyan/50">
+                    <div class="text-center mb-8">
+                        <h3 class="text-2xl font-bold text-white mb-2">Empresarial Pro</h3>
+                         <div class="text-gray-400 text-sm mb-6">Soluções robustas para negócios</div>
+                        <div class="flex justify-center items-baseline mb-6">
+                            <span class="text-gray-400 text-2xl font-semibold">R$</span>
+                            <span class="text-5xl font-black text-white tracking-tight">Sob Consulta</span>
+                        </div>
+                        <a href="#contact" class="btn-outline-premium w-full block py-3">Solicitar Orçamento</a>
+                    </div>
+                    <ul class="space-y-4 text-left text-gray-300">
+                        <li class="flex items-center gap-3"><i class="fas fa-check text-brand-cyan"></i> Projeto Personalizado</li>
+                        <li class="flex items-center gap-3"><i class="fas fa-check text-brand-cyan"></i> CFTV IP de Alta Definição</li>
+                        <li class="flex items-center gap-3"><i class="fas fa-check text-brand-cyan"></i> Controle de Acesso (Biometria/Facial)</li>
+                        <li class="flex items-center gap-3"><i class="fas fa-check text-brand-cyan"></i> Analytics de Vídeo Avançado</li>
+                        <li class="flex items-center gap-3"><i class="fas fa-check text-brand-cyan"></i> Suporte Técnico VIP</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="faq" class="py-24 bg-brand-darker_blue">
+        <div class="container mx-auto px-6">
+            <div class="text-center max-w-3xl mx-auto mb-16">
+                <span class="section-subtitle">Dúvidas Frequentes</span>
+                <h2 class="section-title text-white">Perguntas & Respostas</h2>
+            </div>
+
+            <div class="max-w-3xl mx-auto space-y-6">
+                <div class="card-premium p-0 overflow-hidden cursor-pointer group">
+                    <div class="p-6 flex justify-between items-center bg-brand-dark_blue/50 hover:bg-brand-dark_blue/80 transition-colors">
+                        <h4 class="text-lg font-bold text-white group-hover:text-brand-cyan transition-colors">Como funciona o monitoramento 24h?</h4>
+                        <i class="fas fa-chevron-down text-brand-cyan transition-transform group-hover:rotate-180"></i>
+                    </div>
+                    <div class="p-6 bg-brand-dark_blue/30 text-gray-400 border-t border-brand-cyan/10 hidden">
+                        <p>Nossa Central de Operações funciona 24 horas por dia, 7 dias por semana. Quando um alarme é disparado ou uma atividade suspeita é detectada pelas câmeras, nossos operadores recebem um alerta imediato, verificam a situação e tomam as medidas necessárias, como acionar as autoridades ou contatar você.</p>
+                    </div>
+                </div>
+                 <div class="card-premium p-0 overflow-hidden cursor-pointer group">
+                    <div class="p-6 flex justify-between items-center bg-brand-dark_blue/50 hover:bg-brand-dark_blue/80 transition-colors">
+                        <h4 class="text-lg font-bold text-white group-hover:text-brand-cyan transition-colors">Os equipamentos possuem garantia?</h4>
+                        <i class="fas fa-chevron-down text-brand-cyan transition-transform group-hover:rotate-180"></i>
+                    </div>
+                    <div class="p-6 bg-brand-dark_blue/30 text-gray-400 border-t border-brand-cyan/10 hidden">
+                        <p>Sim, todos os equipamentos instalados pela InovaSeg possuem garantia contra defeitos de fabricação. O período de garantia varia de acordo com o fabricante e o modelo do equipamento, mas geralmente é de 1 ano. Oferecemos também planos de manutenção preventiva.</p>
+                    </div>
+                </div>
+                 <div class="card-premium p-0 overflow-hidden cursor-pointer group">
+                    <div class="p-6 flex justify-between items-center bg-brand-dark_blue/50 hover:bg-brand-dark_blue/80 transition-colors">
+                        <h4 class="text-lg font-bold text-white group-hover:text-brand-cyan transition-colors">É necessário ter internet no local?</h4>
+                        <i class="fas fa-chevron-down text-brand-cyan transition-transform group-hover:rotate-180"></i>
+                    </div>
+                    <div class="p-6 bg-brand-dark_blue/30 text-gray-400 border-t border-brand-cyan/10 hidden">
+                        <p>Para a maioria das funcionalidades, como acesso remoto via aplicativo e câmeras IP, é necessário uma conexão de internet estável. No entanto, nossos painéis de alarme possuem comunicação via GPRS/4G como backup, garantindo que o monitoramento continue ativo mesmo em caso de queda da internet ou linha telefônica.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="contact" class="py-24 bg-brand-dark_blue relative overflow-hidden">
+        <div class="absolute inset-y-0 right-0 w-1/3 hidden lg:block">
+            <img src="image_6.png" alt="Operador em Central de Monitoramento" class="w-full h-full object-cover opacity-30 img-glow">
+            <div class="absolute inset-0 bg-gradient-to-l from-brand-dark_blue/90 to-transparent"></div>
+        </div>
+
+        <div class="container mx-auto px-6 relative z-10">
+            <div class="grid lg:grid-cols-2 gap-16 items-center">
+                <div>
+                    <span class="section-subtitle">Fale Conosco</span>
+                    <h2 class="section-title text-white mb-6">Vamos criar seu projeto de segurança.</h2>
+                    <p class="text-gray-400 mb-12 text-lg">Preencha o formulário ao lado e um de nossos consultores entrará em contato para agendar uma visita técnica gratuita e sem compromisso.</p>
+                    
+                    <div class="space-y-8">
+                        <div class="flex items-start gap-6">
+                            <div class="w-14 h-14 bg-brand-darker_blue border border-brand-cyan/30 rounded-xl flex items-center justify-center text-brand-cyan text-2xl shadow-neon shrink-0">
+                                <i class="fas fa-map-marker-alt"></i>
+                            </div>
+                            <div>
+                                <h4 class="text-xl font-bold text-white mb-2">Nossa Sede</h4>
+                                <p class="text-gray-400 leading-relaxed">Av. Paulista, 1000 - Bela Vista<br>São Paulo - SP, 01310-100</p>
+                            </div>
+                        </div>
+                        <div class="flex items-start gap-6">
+                            <div class="w-14 h-14 bg-brand-darker_blue border border-brand-cyan/30 rounded-xl flex items-center justify-center text-brand-cyan text-2xl shadow-neon shrink-0">
+                                <i class="fas fa-phone-alt"></i>
+                            </div>
+                            <div>
+                                <h4 class="text-xl font-bold text-white mb-2">Contatos</h4>
+                                <p class="text-gray-400 leading-relaxed">Comercial: (11) 4004-0000<br>Suporte: (11) 0800-123-456</p>
+                            </div>
+                        </div>
+                        <div class="flex items-start gap-6">
+                            <div class="w-14 h-14 bg-brand-darker_blue border border-brand-cyan/30 rounded-xl flex items-center justify-center text-brand-cyan text-2xl shadow-neon shrink-0">
+                                <i class="fas fa-envelope"></i>
+                            </div>
+                            <div>
+                                <h4 class="text-xl font-bold text-white mb-2">E-mail</h4>
+                                <p class="text-gray-400 leading-relaxed">contato@inovaseg.com.br<br>comercial@inovaseg.com.br</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="card-premium shadow-neon">
+                    <h3 class="text-2xl font-bold text-white mb-8">Solicite seu Orçamento</h3>
+                    <form class="space-y-6">
+                        <div class="grid md:grid-cols-2 gap-6">
+                            <div>
+                                <label class="block text-brand-cyan text-sm font-bold uppercase mb-2 tracking-wider">Nome Completo</label>
+                                <input type="text" class="w-full bg-brand-darker_blue/50 border border-brand-cyan/30 rounded-lg px-4 py-3 text-white focus:outline-none focus:border-brand-cyan focus:shadow-neon transition-all" placeholder="Seu nome">
+                            </div>
+                             <div>
+                                <label class="block text-brand-cyan text-sm font-bold uppercase mb-2 tracking-wider">Telefone / WhatsApp</label>
+                                <input type="tel" class="w-full bg-brand-darker_blue/50 border border-brand-cyan/30 rounded-lg px-4 py-3 text-white focus:outline-none focus:border-brand-cyan focus:shadow-neon transition-all" placeholder="(DD) 99999-9999">
+                            </div>
+                        </div>
+                        <div>
+                            <label class="block text-brand-cyan text-sm font-bold uppercase mb-2 tracking-wider">E-mail Corporativo</label>
+                            <input type="email" class="w-full bg-brand-darker_blue/50 border border-brand-cyan/30 rounded-lg px-4 py-3 text-white focus:outline-none focus:border-brand-cyan focus:shadow-neon transition-all" placeholder="seu.email@empresa.com.br">
+                        </div>
+                         <div>
+                            <label class="block text-brand-cyan text-sm font-bold uppercase mb-2 tracking-wider">Tipo de Projeto</label>
+                            <select class="w-full bg-brand-darker_blue/50 border border-brand-cyan/30 rounded-lg px-4 py-3 text-white focus:outline-none focus:border-brand-cyan focus:shadow-neon transition-all appearance-none">
+                                <option>Selecione uma opção</option>
+                                <option>Residencial</option>
+                                <option>Comercial / Empresarial</option>
+                                <option>Condomínio</option>
+                                <option>Industrial</option>
+                            </select>
+                        </div>
+                        <div>
+                            <label class="block text-brand-cyan text-sm font-bold uppercase mb-2 tracking-wider">Mensagem (Opcional)</label>
+                            <textarea class="w-full bg-brand-darker_blue/50 border border-brand-cyan/30 rounded-lg px-4 py-3 text-white focus:outline-none focus:border-brand-cyan focus:shadow-neon transition-all h-32 resize-none" placeholder="Descreva brevemente sua necessidade..."></textarea>
+                        </div>
+                        <button type="submit" class="btn-premium w-full py-4 text-lg shadow-neon flex items-center justify-center gap-3">
+                            Enviar Solicitação <i class="fas fa-paper-plane"></i>
+                        </button>
+                        <p class="text-xs text-gray-500 text-center mt-4">Ao enviar, você concorda com nossa Política de Privacidade.</p>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer class="bg-brand-darker_blue pt-20 pb-10 border-t border-brand-cyan/10 relative overflow-hidden">
+         <div class="absolute bottom-0 left-0 w-full h-1/2 bg-brand-cyan/5 blur-[150px] rounded-t-full pointer-events-none"></div>
+
+        <div class="container mx-auto px-6 relative z-10">
+            <div class="grid md:grid-cols-4 gap-12 mb-16">
+                <div class="md:col-span-2">
+                    <a href="#" class="text-3xl font-black text-white tracking-tighter flex items-center gap-3 mb-6">
+                        <div class="w-10 h-10 rounded-lg flex items-center justify-center text-brand-dark_blue bg-gradient-to-br from-brand-cyan to-blue-500 shadow-neon">
+                            <i class="fas fa-shield-alt"></i>
+                        </div>
+                        <span class="text-white">INOVA</span><span class="text-brand-cyan">SEG</span>
+                    </a>
+                    <p class="text-gray-400 leading-relaxed mb-8 max-w-sm">
+                        Líder em soluções de segurança eletrônica e monitoramento inteligente. Protegendo o seu presente e garantindo o seu futuro com tecnologia de ponta.
+                    </p>
+                    <div class="flex gap-4">
+                        <a href="#" class="w-10 h-10 rounded-full bg-brand-dark_blue border border-brand-cyan/30 flex items-center justify-center text-brand-cyan hover:bg-brand-cyan hover:text-brand-dark_blue hover:shadow-neon transition-all">
+                            <i class="fab fa-linkedin-in"></i>
+                        </a>
+                        <a href="#" class="w-10 h-10 rounded-full bg-brand-dark_blue border border-brand-cyan/30 flex items-center justify-center text-brand-cyan hover:bg-brand-cyan hover:text-brand-dark_blue hover:shadow-neon transition-all">
+                            <i class="fab fa-instagram"></i>
+                        </a>
+                        <a href="#" class="w-10 h-10 rounded-full bg-brand-dark_blue border border-brand-cyan/30 flex items-center justify-center text-brand-cyan hover:bg-brand-cyan hover:text-brand-dark_blue hover:shadow-neon transition-all">
+                            <i class="fab fa-facebook-f"></i>
+                        </a>
+                        <a href="#" class="w-10 h-10 rounded-full bg-brand-dark_blue border border-brand-cyan/30 flex items-center justify-center text-brand-cyan hover:bg-brand-cyan hover:text-brand-dark_blue hover:shadow-neon transition-all">
+                            <i class="fab fa-youtube"></i>
+                        </a>
+                    </div>
+                </div>
+
+                <div>
+                    <h4 class="text-white font-bold text-lg mb-8 uppercase tracking-wider">Soluções</h4>
+                    <ul class="space-y-4">
+                        <li><a href="#" class="text-gray-400 hover:text-brand-cyan transition-colors flex items-center gap-2"><i class="fas fa-chevron-right text-xs text-brand-cyan"></i> CFTV Inteligente</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-brand-cyan transition-colors flex items-center gap-2"><i class="fas fa-chevron-right text-xs text-brand-cyan"></i> Alarmes Monitorados</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-brand-cyan transition-colors flex items-center gap-2"><i class="fas fa-chevron-right text-xs text-brand-cyan"></i> Controle de Acesso</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-brand-cyan transition-colors flex items-center gap-2"><i class="fas fa-chevron-right text-xs text-brand-cyan"></i> Portaria Virtual</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-brand-cyan transition-colors flex items-center gap-2"><i class="fas fa-chevron-right text-xs text-brand-cyan"></i> Automação Predial</a></li>
+                    </ul>
+                </div>
+
+                <div>
+                    <h4 class="text-white font-bold text-lg mb-8 uppercase tracking-wider">Institucional</h4>
+                    <ul class="space-y-4">
+                        <li><a href="#" class="text-gray-400 hover:text-brand-cyan transition-colors flex items-center gap-2"><i class="fas fa-chevron-right text-xs text-brand-cyan"></i> Sobre Nós</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-brand-cyan transition-colors flex items-center gap-2"><i class="fas fa-chevron-right text-xs text-brand-cyan"></i> Blog de Segurança</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-brand-cyan transition-colors flex items-center gap-2"><i class="fas fa-chevron-right text-xs text-brand-cyan"></i> Trabalhe Conosco</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-brand-cyan transition-colors flex items-center gap-2"><i class="fas fa-chevron-right text-xs text-brand-cyan"></i> Política de Privacidade</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-brand-cyan transition-colors flex items-center gap-2"><i class="fas fa-chevron-right text-xs text-brand-cyan"></i> Termos de Uso</a></li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="border-t border-brand-cyan/10 pt-10 flex flex-col md:flex-row justify-between items-center gap-6">
+                <p class="text-gray-500 text-sm text-center md:text-left">
+                    © 2024 InovaSeg Tecnologia em Segurança Ltda. Todos os direitos reservados. CNPJ: 00.000.000/0001-00
+                </p>
+                <div class="flex items-center gap-2 text-gray-500 text-sm">
+                    <span>Desenvolvido com <i class="fas fa-heart text-brand-cyan mx-1"></i> e Tecnologia por</span>
+                    <a href="#" class="text-brand-cyan font-bold hover:underline">TechStudios</a>
+                </div>
+            </div>
+        </div>
     </footer>
 
-    <script src="assets/js/script.js"></script>
-</body>
+    <script>
+        // Navbar Glass Effect on Scroll
+        const navbar = document.getElementById('navbar');
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 50) {
+                navbar.classList.add('glass-effect', 'shadow-lg', 'py-2');
+                navbar.classList.remove('py-4', 'bg-brand-dark_blue/80');
+            } else {
+                navbar.classList.remove('glass-effect', 'shadow-lg', 'py-2');
+                navbar.classList.add('py-4', 'bg-brand-dark_blue/80');
+            }
+        });
 
+        // Mobile Menu Logic (Simplificado para o exemplo, idealmente teria um painel lateral como no anterior)
+        const mobileMenuBtn = document.getElementById('mobile-menu-btn');
+        mobileMenuBtn.addEventListener('click', () => {
+            alert('Menu mobile seria aberto aqui. Implementação similar ao código anterior.');
+        });
+
+        // FAQ Accordion Logic
+        const faqItems = document.querySelectorAll('#faq .group');
+        faqItems.forEach(item => {
+            item.addEventListener('click', () => {
+                const content = item.querySelector('div.hidden, div.block');
+                const icon = item.querySelector('.fa-chevron-down');
+                
+                // Fecha outros itens abertos
+                faqItems.forEach(otherItem => {
+                    if (otherItem !== item) {
+                        otherItem.querySelector('div:last-child').classList.add('hidden');
+                        otherItem.querySelector('div:last-child').classList.remove('block');
+                        otherItem.querySelector('.fa-chevron-down').classList.remove('rotate-180');
+                        otherItem.querySelector('h4').classList.remove('text-brand-cyan');
+                    }
+                });
+
+                // Alterna o item atual
+                content.classList.toggle('hidden');
+                content.classList.toggle('block');
+                icon.classList.toggle('rotate-180');
+                item.querySelector('h4').classList.toggle('text-brand-cyan');
+            });
+        });
+    </script>
+</body>
 </html>

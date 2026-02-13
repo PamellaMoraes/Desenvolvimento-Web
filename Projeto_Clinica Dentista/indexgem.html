@@ -1,0 +1,419 @@
+<!DOCTYPE html>
+<html lang="pt-BR" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Clínica Elite | Excelência em Odontologia Estética</title>
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700&family=Playfair+Display:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
+    
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        'cor-primaria': '#14b8a6', // Teal 500
+                        'cor-secundaria': '#0f172a', // Slate 900
+                        'cor-fundo': '#ffffff',
+                        'cor-detalhe': '#f8fafc',
+                    },
+                    fontFamily: {
+                        serifa: ['"Playfair Display"', 'serif'],
+                        sans: ['"Plus Jakarta Sans"', 'sans-serif'],
+                    }
+                }
+            }
+        }
+    </script>
+
+    <style>
+        /* Estilos Globais e Efeitos Visuais */
+        body { font-family: 'Plus Jakarta Sans', sans-serif; overflow-x: hidden; }
+        
+        .fonte-serifa { font-family: 'Playfair Display', serif; }
+
+        /* Efeito de Vidro (Glassmorphism) */
+        .efeito-vidro {
+            background: rgba(255, 255, 255, 0.8);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+        }
+
+        /* Máscara de Fade para o Hero */
+        .mascara-hero {
+            background: linear-gradient(to right, #ffffff 20%, rgba(255,255,255,0.7) 50%, transparent 100%);
+        }
+
+        /* Animação de Reveal */
+        .revelar { opacity: 0; transform: translateY(30px); }
+
+        /* Estilização da Scrollbar */
+        ::-webkit-scrollbar { width: 6px; }
+        ::-webkit-scrollbar-track { background: #f1f1f1; }
+        ::-webkit-scrollbar-thumb { background: #14b8a6; border-radius: 10px; }
+
+        /* Accordion Custom */
+        .pergunta-faq:checked ~ .resposta-faq { max-height: 200px; padding-top: 1rem; }
+    </style>
+</head>
+<body class="bg-cor-fundo text-cor-secundaria selection:bg-cor-primaria selection:text-white">
+
+    <nav id="menu-principal" class="fixed w-full z-50 top-0 py-6 transition-all duration-500">
+        <div class="container mx-auto px-6 lg:px-12 flex justify-between items-center">
+            <a href="#" class="text-2xl font-bold tracking-tighter text-cor-primaria fonte-serifa">
+                Clinica<span class="text-cor-secundaria italic">Elite</span>
+            </a>
+            
+            <div class="hidden md:flex items-center gap-10 text-[11px] font-bold uppercase tracking-[0.2em] text-slate-500">
+                <a href="#inicio" class="hover:text-cor-primaria transition-colors">Início</a>
+                <a href="#sobre" class="hover:text-cor-primaria transition-colors">Sobre</a>
+                <a href="#servicos" class="hover:text-cor-primaria transition-colors">Serviços</a>
+                <a href="#produtos" class="hover:text-cor-primaria transition-colors">Produtos</a>
+                <a href="#contato" class="hover:text-cor-primaria transition-colors">Contato</a>
+            </div>
+
+            <a href="#agendamento" class="bg-cor-secundaria text-white px-8 py-3 rounded-full text-[10px] font-bold uppercase tracking-widest hover:bg-cor-primaria hover:shadow-xl hover:shadow-cor-primaria/30 transition-all transform hover:-translate-y-1">
+                Agendar Consulta
+            </a>
+        </div>
+    </nav>
+
+    <section id="inicio" class="relative min-h-screen flex items-center pt-20 overflow-hidden">
+        <div class="absolute inset-0 z-0 bg-parallax">
+            <img src="https://images.unsplash.com/photo-1629909613654-28e377c37b09?q=80&w=2068" 
+                 class="w-full h-full object-cover object-center" alt="Clínica Elite Interior">
+            <div class="absolute inset-0 mascara-hero"></div>
+        </div>
+
+        <div class="container mx-auto px-6 lg:px-12 relative z-10">
+            <div class="max-w-3xl">
+                <span class="text-cor-primaria font-bold tracking-[0.3em] uppercase text-xs block mb-4 revelar">Tecnologia & Arte</span>
+                <h1 class="fonte-serifa text-6xl md:text-8xl leading-none mb-8 revelar">
+                    O Sorriso que <br> define sua <br> <span class="italic text-cor-primaria">Essência.</span>
+                </h1>
+                <p class="text-slate-500 text-lg max-w-lg mb-10 revelar font-light leading-relaxed">
+                    Unimos a precisão da inteligência artificial ao toque artístico da odontologia estética para criar resultados únicos.
+                </p>
+                <div class="flex gap-4 revelar">
+                    <button class="bg-cor-primaria text-white px-10 py-4 rounded-full font-bold shadow-lg shadow-cor-primaria/20 hover:scale-105 transition-transform">Ver Tratamentos</button>
+                    <button class="border border-slate-200 px-10 py-4 rounded-full font-bold hover:bg-slate-50 transition-all">Conheça a Clínica</button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="relative z-20 -mt-20">
+        <div class="container mx-auto px-6 lg:px-12">
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <div class="bg-white p-10 rounded-2xl shadow-xl shadow-slate-200/50 revelar">
+                    <i class="fa-solid fa-microscope text-3xl text-cor-primaria mb-6"></i>
+                    <h3 class="fonte-serifa text-2xl mb-4">Diagnóstico 3D</h3>
+                    <p class="text-slate-500 text-sm leading-relaxed">Planejamento digital completo com escaneamento intraoral de alta definição.</p>
+                </div>
+                <div class="bg-white p-10 rounded-2xl shadow-xl shadow-slate-200/50 revelar md:translate-y-6">
+                    <i class="fa-solid fa-leaf text-3xl text-cor-primaria mb-6"></i>
+                    <h3 class="fonte-serifa text-2xl mb-4">Conforto SPA</h3>
+                    <p class="text-slate-500 text-sm leading-relaxed">Ambientes projetados com neuroarquitetura para eliminar a ansiedade e o medo.</p>
+                </div>
+                <div class="bg-white p-10 rounded-2xl shadow-xl shadow-slate-200/50 revelar">
+                    <i class="fa-solid fa-star text-3xl text-cor-primaria mb-6"></i>
+                    <h3 class="fonte-serifa text-2xl mb-4">Padrão VIP</h3>
+                    <p class="text-slate-500 text-sm leading-relaxed">Atendimento exclusivo com concierge e privacidade total para nossos pacientes.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="sobre" class="py-32 bg-cor-fundo">
+        <div class="container mx-auto px-6 lg:px-12">
+            <div class="flex flex-col lg:flex-row items-center gap-20">
+                <div class="w-full lg:w-1/2">
+                    <div class="relative">
+                        <img src="https://images.unsplash.com/photo-1588776814546-1ffcf47267a5?q=80&w=1000" class="rounded-3xl shadow-2xl relative z-10" alt="Dra. Responsável">
+                        <div class="absolute -bottom-10 -right-10 w-64 h-64 bg-cor-primaria/10 rounded-full -z-0"></div>
+                    </div>
+                </div>
+                <div class="w-full lg:w-1/2">
+                    <h2 class="fonte-serifa text-4xl md:text-5xl mb-8">Excelência que atravessa gerações.</h2>
+                    <p class="text-slate-500 mb-8 leading-relaxed">Há mais de 15 anos, a Clínica Elite é referência em transformar vidas através da saúde bucal. Nossa missão é oferecer o que há de mais avançado no mundo para que você não precise sair do Brasil para ter um sorriso digno de Hollywood.</p>
+                    
+                    <div class="grid grid-cols-2 gap-8 mb-10">
+                        <div>
+                            <span class="block text-4xl font-bold text-cor-primaria mb-2 contador" data-alvo="15">0</span>
+                            <span class="text-xs uppercase tracking-widest font-bold text-slate-400">Anos de História</span>
+                        </div>
+                        <div>
+                            <span class="block text-4xl font-bold text-cor-primaria mb-2 contador" data-alvo="5000">0</span>
+                            <span class="text-xs uppercase tracking-widest font-bold text-slate-400">Pacientes Felizes</span>
+                        </div>
+                    </div>
+                    <button class="bg-cor-secundaria text-white px-8 py-4 rounded-full font-bold hover:bg-cor-primaria transition-colors">Saiba mais sobre nós</button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="servicos" class="py-32 bg-slate-50">
+        <div class="container mx-auto px-6 lg:px-12">
+            <div class="text-center mb-20">
+                <span class="text-cor-primaria font-bold uppercase text-xs tracking-[.3em]">O que fazemos</span>
+                <h2 class="fonte-serifa text-4xl md:text-5xl mt-4">Nossas Especialidades</h2>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+                <div class="group bg-white p-8 rounded-2xl hover:bg-cor-primaria transition-all duration-500 border border-slate-100 hover:border-cor-primaria">
+                    <div class="w-14 h-14 bg-slate-50 rounded-xl flex items-center justify-center text-cor-primaria mb-6 group-hover:bg-white/20 group-hover:text-white transition-colors">
+                        <i class="fa-solid fa-tooth text-2xl"></i>
+                    </div>
+                    <h4 class="fonte-serifa text-xl font-bold mb-4 group-hover:text-white transition-colors">Lentes de Contato</h4>
+                    <p class="text-slate-500 text-sm leading-relaxed group-hover:text-white/80 transition-colors">Transformação estética rápida e definitiva com porcelanas ultrafinas.</p>
+                </div>
+                <div class="group bg-white p-8 rounded-2xl hover:bg-cor-primaria transition-all duration-500 border border-slate-100">
+                    <div class="w-14 h-14 bg-slate-50 rounded-xl flex items-center justify-center text-cor-primaria mb-6 group-hover:bg-white/20 group-hover:text-white transition-colors">
+                        <i class="fa-solid fa-vial text-2xl"></i>
+                    </div>
+                    <h4 class="fonte-serifa text-xl font-bold mb-4 group-hover:text-white transition-colors">Implantes Digitais</h4>
+                    <p class="text-slate-500 text-sm leading-relaxed group-hover:text-white/80 transition-colors">Carga imediata e cirurgias guiadas sem cortes traumáticos.</p>
+                </div>
+                <div class="group bg-white p-8 rounded-2xl hover:bg-cor-primaria transition-all duration-500 border border-slate-100">
+                    <div class="w-14 h-14 bg-slate-50 rounded-xl flex items-center justify-center text-cor-primaria mb-6 group-hover:bg-white/20 group-hover:text-white transition-colors">
+                        <i class="fa-solid fa-wand-magic-sparkles text-2xl"></i>
+                    </div>
+                    <h4 class="fonte-serifa text-xl font-bold mb-4 group-hover:text-white transition-colors">Clareamento Laser</h4>
+                    <p class="text-slate-500 text-sm leading-relaxed group-hover:text-white/80 transition-colors">Protocolos exclusivos para dentes brancos sem sensibilidade.</p>
+                </div>
+                <div class="group bg-white p-8 rounded-2xl hover:bg-cor-primaria transition-all duration-500 border border-slate-100">
+                    <div class="w-14 h-14 bg-slate-50 rounded-xl flex items-center justify-center text-cor-primaria mb-6 group-hover:bg-white/20 group-hover:text-white transition-colors">
+                        <i class="fa-solid fa-face-smile text-2xl"></i>
+                    </div>
+                    <h4 class="fonte-serifa text-xl font-bold mb-4 group-hover:text-white transition-colors">Invisalign</h4>
+                    <p class="text-slate-500 text-sm leading-relaxed group-hover:text-white/80 transition-colors">Ortodontia invisível para alinhar seu sorriso com total discrição.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="produtos" class="py-32 bg-cor-fundo">
+        <div class="container mx-auto px-6 lg:px-12">
+            <div class="flex justify-between items-end mb-16">
+                <div>
+                    <span class="text-cor-primaria font-bold uppercase text-xs tracking-[.3em]">Home Care</span>
+                    <h2 class="fonte-serifa text-4xl md:text-5xl mt-4">Linha Elite Profissional</h2>
+                </div>
+                <a href="#" class="text-cor-primaria font-bold text-sm underline underline-offset-8">Ver todos os produtos</a>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-10">
+                <div class="group">
+                    <div class="relative aspect-square bg-slate-100 rounded-3xl overflow-hidden mb-6">
+                        <img src="https://images.unsplash.com/photo-1559591937-e35416040186?q=80&w=800" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700">
+                        <span class="absolute top-4 left-4 bg-white px-4 py-1 rounded-full text-[10px] font-bold uppercase shadow-sm">Premium</span>
+                    </div>
+                    <h4 class="font-bold text-lg mb-2">Escova Sônica Elite S1</h4>
+                    <p class="text-slate-400 text-sm mb-4">40.000 vibrações por minuto para uma limpeza profissional.</p>
+                    <span class="text-cor-primaria font-bold text-xl">R$ 890,00</span>
+                </div>
+                <div class="group">
+                    <div class="relative aspect-square bg-slate-100 rounded-3xl overflow-hidden mb-6">
+                        <img src="https://images.unsplash.com/photo-1549462980-6a02df9d8549?q=80&w=800" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700">
+                    </div>
+                    <h4 class="font-bold text-lg mb-2">Kit Clareamento Home</h4>
+                    <p class="text-slate-400 text-sm mb-4">Manutenção da cor com peróxido de alta pureza.</p>
+                    <span class="text-cor-primaria font-bold text-xl">R$ 450,00</span>
+                </div>
+                <div class="group">
+                    <div class="relative aspect-square bg-slate-100 rounded-3xl overflow-hidden mb-6">
+                        <img src="https://images.unsplash.com/photo-1628153341147-380d603a113a?q=80&w=800" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700">
+                    </div>
+                    <h4 class="font-bold text-lg mb-2">Enxaguante Sem Álcool</h4>
+                    <p class="text-slate-400 text-sm mb-4">Fórmula botânica para proteção prolongada das gengivas.</p>
+                    <span class="text-cor-primaria font-bold text-xl">R$ 85,00</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="py-32 bg-slate-50">
+        <div class="container mx-auto px-6 lg:px-12 max-w-4xl">
+            <div class="text-center mb-16">
+                <h2 class="fonte-serifa text-4xl">Dúvidas Frequentes</h2>
+            </div>
+            
+            <div class="space-y-4">
+                <div class="bg-white rounded-xl border border-slate-100 overflow-hidden">
+                    <input type="checkbox" id="faq1" class="hidden pergunta-faq">
+                    <label for="faq1" class="flex justify-between items-center p-6 cursor-pointer font-bold hover:text-cor-primaria">
+                        O clareamento estraga o esmalte dos dentes?
+                        <i class="fa-solid fa-chevron-down text-xs"></i>
+                    </label>
+                    <div class="resposta-faq max-h-0 overflow-hidden px-6 transition-all duration-300 text-slate-500 text-sm">
+                        <p class="pb-6">Não, quando realizado sob supervisão profissional e com produtos de qualidade, o clareamento apenas remove os pigmentos internos, sem alterar a estrutura física do dente.</p>
+                    </div>
+                </div>
+                </div>
+        </div>
+    </section>
+
+    <section id="contato" class="py-32 bg-cor-fundo">
+        <div class="container mx-auto px-6 lg:px-12">
+            <div class="bg-cor-secundaria rounded-[3rem] p-12 lg:p-20 text-white flex flex-col lg:flex-row gap-20">
+                <div class="w-full lg:w-1/2">
+                    <h2 class="fonte-serifa text-4xl md:text-5xl mb-10 italic">Pronto para o seu <br> novo capítulo?</h2>
+                    
+                    <form action="#" class="space-y-6">
+                        <input type="text" placeholder="Nome Completo" class="w-full bg-white/5 border border-white/10 rounded-xl p-4 focus:outline-none focus:border-cor-primaria transition-colors">
+                        <div class="grid grid-cols-2 gap-4">
+                            <input type="email" placeholder="E-mail" class="bg-white/5 border border-white/10 rounded-xl p-4 focus:outline-none focus:border-cor-primaria transition-colors">
+                            <input type="tel" placeholder="WhatsApp" class="bg-white/5 border border-white/10 rounded-xl p-4 focus:outline-none focus:border-cor-primaria transition-colors">
+                        </div>
+                        <select class="w-full bg-white/5 border border-white/10 rounded-xl p-4 focus:outline-none focus:border-cor-primaria transition-colors text-slate-400">
+                            <option>Assunto de interesse</option>
+                            <option>Lentes de Contato</option>
+                            <option>Implantes</option>
+                            <option>Outros</option>
+                        </select>
+                        <button class="w-full bg-cor-primaria text-white py-5 rounded-xl font-bold hover:bg-teal-600 transition-colors uppercase tracking-widest text-xs">Solicitar Atendimento VIP</button>
+                    </form>
+                </div>
+
+                <div class="w-full lg:w-1/2 flex flex-col justify-between">
+                    <div>
+                        <h4 class="font-bold text-xl mb-6">Onde estamos</h4>
+                        <p class="text-slate-400 mb-8 leading-relaxed">Av. Brigadeiro Faria Lima, 4500 - Itaim Bibi<br>São Paulo - SP, 04538-132</p>
+                        
+                        <div class="h-64 bg-white/5 rounded-3xl mb-10 flex items-center justify-center">
+                            <span class="text-white/20 uppercase tracking-[.3em] font-bold italic">Mapa Interativo</span>
+                        </div>
+                    </div>
+
+                    <div class="flex gap-10">
+                        <div>
+                            <span class="block text-slate-500 text-[10px] uppercase font-bold mb-2">Telefone</span>
+                            <span class="text-xl font-bold">(11) 99999-9999</span>
+                        </div>
+                        <div>
+                            <span class="block text-slate-500 text-[10px] uppercase font-bold mb-2">E-mail</span>
+                            <span class="text-xl font-bold">contato@clinicaelite.com</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer class="bg-slate-50 pt-20 pb-10">
+        <div class="container mx-auto px-6 lg:px-12">
+            <div class="grid grid-cols-1 md:grid-cols-4 gap-12 mb-20">
+                <div class="col-span-1 md:col-span-1">
+                    <a href="#" class="text-2xl font-bold text-cor-primaria fonte-serifa mb-6 block">
+                        ClinicaElite
+                    </a>
+                    <p class="text-slate-400 text-sm">Elevando a odontologia ao nível de arte. Atendimento humanizado com tecnologia de ponta em São Paulo.</p>
+                </div>
+                <div>
+                    <h5 class="font-bold text-xs uppercase tracking-widest mb-6">Navegação</h5>
+                    <ul class="text-slate-500 text-sm space-y-4">
+                        <li><a href="#" class="hover:text-cor-primaria">Início</a></li>
+                        <li><a href="#" class="hover:text-cor-primaria">Tratamentos</a></li>
+                        <li><a href="#" class="hover:text-cor-primaria">Diferenciais</a></li>
+                        <li><a href="#" class="hover:text-cor-primaria">Agendamento</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h5 class="font-bold text-xs uppercase tracking-widest mb-6">Especialidades</h5>
+                    <ul class="text-slate-500 text-sm space-y-4">
+                        <li><a href="#" class="hover:text-cor-primaria">Lentes de Porcelana</a></li>
+                        <li><a href="#" class="hover:text-cor-primaria">Implante Unitário</a></li>
+                        <li><a href="#" class="hover:text-cor-primaria">Harmonização</a></li>
+                        <li><a href="#" class="hover:text-cor-primaria">Ortodontia Digital</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h5 class="font-bold text-xs uppercase tracking-widest mb-6">Social</h5>
+                    <div class="flex gap-4">
+                        <a href="#" class="w-10 h-10 bg-white rounded-full flex items-center justify-center text-slate-400 hover:text-cor-primaria shadow-sm transition-colors"><i class="fa-brands fa-instagram"></i></a>
+                        <a href="#" class="w-10 h-10 bg-white rounded-full flex items-center justify-center text-slate-400 hover:text-cor-primaria shadow-sm transition-colors"><i class="fa-brands fa-linkedin"></i></a>
+                        <a href="#" class="w-10 h-10 bg-white rounded-full flex items-center justify-center text-slate-400 hover:text-cor-primaria shadow-sm transition-colors"><i class="fa-brands fa-youtube"></i></a>
+                    </div>
+                </div>
+            </div>
+            <div class="border-t border-slate-200 pt-10 flex flex-col md:flex-row justify-between items-center text-[10px] text-slate-400 font-bold uppercase tracking-widest">
+                <span>© 2026 Clínica Elite Odontologia de Alta Performance</span>
+                <span>Desenvolvido com Rigor Técnico</span>
+            </div>
+        </div>
+    </footer>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+
+    <script>
+        gsap.registerPlugin(ScrollTrigger);
+
+        // 1. Mudança de Estilo do Menu no Scroll
+        window.addEventListener('scroll', () => {
+            const nav = document.getElementById('menu-principal');
+            if (window.scrollY > 50) {
+                nav.classList.add('efeito-vidro', 'py-4');
+                nav.classList.remove('py-6');
+            } else {
+                nav.classList.remove('efeito-vidro', 'py-4');
+                nav.classList.add('py-6');
+            }
+        });
+
+        // 2. Animação de Entrada dos Elementos (.revelar)
+        gsap.utils.toArray('.revelar').forEach(el => {
+            gsap.to(el, {
+                scrollTrigger: {
+                    trigger: el,
+                    start: "top 85%",
+                    toggleActions: "play none none reverse"
+                },
+                opacity: 1,
+                y: 0,
+                duration: 1,
+                ease: "power3.out"
+            });
+        });
+
+        // 3. Efeito Parallax Suave no Hero
+        gsap.to(".bg-parallax img", {
+            yPercent: 20,
+            ease: "none",
+            scrollTrigger: {
+                trigger: "#inicio",
+                start: "top top",
+                end: "bottom top",
+                scrub: true
+            }
+        });
+
+        // 4. Contador de Números Animado
+        const contadores = document.querySelectorAll('.contador');
+        contadores.forEach(cont => {
+            const valorAlvo = parseInt(cont.getAttribute('data-alvo'));
+            ScrollTrigger.create({
+                trigger: cont,
+                start: "top 90%",
+                onEnter: () => {
+                    let obj = { val: 0 };
+                    gsap.to(obj, {
+                        val: valorAlvo,
+                        duration: 2,
+                        ease: "power2.out",
+                        onUpdate: () => cont.innerText = Math.floor(obj.val).toLocaleString()
+                    });
+                }
+            });
+        });
+    </script>
+</body>
+</html>

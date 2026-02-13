@@ -1,0 +1,1567 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Vibe Smile - Clínica Odontológica de Excelência Premium</title>
+    
+    <!-- Tailwind CSS via CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- Google Fonts: Playfair Display e Inter -->
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700;800&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    
+    <!-- Font Awesome 6 para ícones -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <!-- GSAP 3.x com ScrollTrigger -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/Draggable.min.js"></script>
+    
+    <style>
+        /* ===== CONFIGURAÇÕES GLOBAIS ===== */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background: linear-gradient(135deg, #FFFFFF 0%, #F8FAFC 100%);
+            color: #1F2937;
+            overflow-x: hidden;
+        }
+
+        /* ===== TIPOGRAFIA CUSTOMIZADA ===== */
+        h1, h2, h3, h4, h5, h6 {
+            font-family: 'Playfair Display', serif;
+            font-weight: 700;
+            letter-spacing: -0.5px;
+        }
+
+        .titulo-hero {
+            font-family: 'Playfair Display', serif;
+            font-size: clamp(2rem, 5vw, 4rem);
+            font-weight: 800;
+            line-height: 1.1;
+            letter-spacing: -1px;
+        }
+
+        .titulo-secao {
+            font-family: 'Playfair Display', serif;
+            font-size: clamp(1.75rem, 4vw, 3rem);
+            font-weight: 700;
+        }
+
+        /* ===== GLASSMORPHISM ===== */
+        .glass-effect {
+            background: rgba(255, 255, 255, 0.7);
+            backdrop-filter: blur(12px);
+            border: 1px solid rgba(0, 0, 0, 0.05);
+            border-radius: 12px;
+        }
+
+        .glass-effect-dark {
+            background: rgba(15, 23, 42, 0.6);
+            backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 12px;
+        }
+
+        /* ===== CURSOR CUSTOMIZADO ===== */
+        .cursor-custom {
+            cursor: none;
+        }
+
+        .cursor-dot {
+            position: fixed;
+            width: 8px;
+            height: 8px;
+            background: #14B8A6;
+            border-radius: 50%;
+            pointer-events: none;
+            z-index: 9999;
+            mix-blend-mode: multiply;
+        }
+
+        .cursor-outline {
+            position: fixed;
+            width: 32px;
+            height: 32px;
+            border: 2px solid #0F172A;
+            border-radius: 50%;
+            pointer-events: none;
+            z-index: 9998;
+            mix-blend-mode: multiply;
+        }
+
+        /* ===== PARTÍCULAS FLUTUANTES ===== */
+        .particle {
+            position: fixed;
+            width: 4px;
+            height: 4px;
+            background: #14B8A6;
+            border-radius: 50%;
+            pointer-events: none;
+            opacity: 0.3;
+            z-index: 1;
+        }
+
+        /* ===== ANIMAÇÕES CUSTOMIZADAS ===== */
+        @keyframes text-reveal {
+            0% {
+                opacity: 0;
+                clip-path: inset(0 100% 0 0);
+            }
+            100% {
+                opacity: 1;
+                clip-path: inset(0 0 0 0);
+            }
+        }
+
+        @keyframes fade-in-up {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes slide-in-left {
+            from {
+                opacity: 0;
+                transform: translateX(-50px);
+            }
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+
+        @keyframes slide-in-right {
+            from {
+                opacity: 0;
+                transform: translateX(50px);
+            }
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+
+        @keyframes float {
+            0%, 100% {
+                transform: translateY(0px);
+            }
+            50% {
+                transform: translateY(-10px);
+            }
+        }
+
+        @keyframes glow-pulse {
+            0%, 100% {
+                box-shadow: 0 0 20px rgba(20, 184, 166, 0.3);
+            }
+            50% {
+                box-shadow: 0 0 40px rgba(20, 184, 166, 0.6);
+            }
+        }
+
+        @keyframes rotate-slow {
+            from {
+                transform: rotate(0deg);
+            }
+            to {
+                transform: rotate(360deg);
+            }
+        }
+
+        @keyframes scale-in {
+            from {
+                opacity: 0;
+                transform: scale(0.8);
+            }
+            to {
+                opacity: 1;
+                transform: scale(1);
+            }
+        }
+
+        .text-reveal {
+            animation: text-reveal 0.8s ease-out forwards;
+        }
+
+        .fade-in-up {
+            animation: fade-in-up 0.8s ease-out forwards;
+        }
+
+        .slide-in-left {
+            animation: slide-in-left 0.8s ease-out forwards;
+        }
+
+        .slide-in-right {
+            animation: slide-in-right 0.8s ease-out forwards;
+        }
+
+        .float {
+            animation: float 3s ease-in-out infinite;
+        }
+
+        .glow-pulse {
+            animation: glow-pulse 2s ease-in-out infinite;
+        }
+
+        .rotate-slow {
+            animation: rotate-slow 20s linear infinite;
+        }
+
+        /* ===== CARDS COM HOVER 3D ===== */
+        .card-servico {
+            transition: all 0.4s cubic-bezier(0.23, 1, 0.320, 1);
+            transform-style: preserve-3d;
+        }
+
+        .card-servico:hover {
+            transform: translateY(-8px) rotateX(5deg);
+            box-shadow: 0 20px 40px rgba(15, 23, 42, 0.15);
+        }
+
+        .card-equipe {
+            transition: all 0.4s cubic-bezier(0.23, 1, 0.320, 1);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .card-equipe::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(20, 184, 166, 0.2), transparent);
+            transition: left 0.5s ease;
+            z-index: 1;
+        }
+
+        .card-equipe:hover::before {
+            left: 100%;
+        }
+
+        .card-equipe:hover {
+            transform: translateY(-12px) scale(1.02);
+            box-shadow: 0 25px 50px rgba(20, 184, 166, 0.2);
+        }
+
+        .card-galeria {
+            position: relative;
+            overflow: hidden;
+            border-radius: 12px;
+            aspect-ratio: 1;
+        }
+
+        .card-galeria::after {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(135deg, rgba(20, 184, 166, 0) 0%, rgba(20, 184, 166, 0.3) 100%);
+            opacity: 0;
+            transition: opacity 0.4s ease;
+            z-index: 2;
+        }
+
+        .card-galeria:hover::after {
+            opacity: 1;
+        }
+
+        .card-galeria img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.6s cubic-bezier(0.23, 1, 0.320, 1);
+        }
+
+        .card-galeria:hover img {
+            transform: scale(1.1) rotate(2deg);
+        }
+
+        /* ===== BOTÃO MAGNÉTICO ===== */
+        .botao-magnetico {
+            position: relative;
+            overflow: hidden;
+            padding: 14px 36px;
+            font-weight: 600;
+            letter-spacing: 0.5px;
+            transition: all 0.3s ease;
+            border: none;
+            cursor: pointer;
+            font-size: 1rem;
+        }
+
+        .botao-magnetico::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: #0F172A;
+            transition: left 0.3s ease;
+            z-index: -1;
+        }
+
+        .botao-magnetico:hover::before {
+            left: 0;
+        }
+
+        .botao-magnetico-primario {
+            background: #14B8A6;
+            color: white;
+            border-radius: 8px;
+        }
+
+        .botao-magnetico-primario:hover {
+            color: white;
+            box-shadow: 0 12px 24px rgba(20, 184, 166, 0.3);
+        }
+
+        .botao-magnetico-secundario {
+            background: transparent;
+            color: #0F172A;
+            border: 2px solid #0F172A;
+            border-radius: 8px;
+        }
+
+        .botao-magnetico-secundario:hover {
+            color: white;
+        }
+
+        /* ===== SCROLL HORIZONTAL ===== */
+        .scroll-horizontal {
+            display: flex;
+            overflow-x: auto;
+            scroll-snap-type: x mandatory;
+            gap: 24px;
+            padding: 20px 0;
+        }
+
+        .scroll-horizontal::-webkit-scrollbar {
+            height: 4px;
+        }
+
+        .scroll-horizontal::-webkit-scrollbar-track {
+            background: #F8FAFC;
+            border-radius: 10px;
+        }
+
+        .scroll-horizontal::-webkit-scrollbar-thumb {
+            background: #94A3B8;
+            border-radius: 10px;
+        }
+
+        .scroll-horizontal > * {
+            scroll-snap-align: start;
+            flex-shrink: 0;
+        }
+
+        /* ===== IMAGENS RESPONSIVAS ===== */
+        img {
+            max-width: 100%;
+            height: auto;
+            display: block;
+        }
+
+        /* ===== GRID RESPONSIVO ===== */
+        .grid-diferenciais {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 24px;
+            margin-top: 40px;
+        }
+
+        .grid-equipe {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 32px;
+            margin-top: 40px;
+        }
+
+        .grid-galeria {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 20px;
+            margin-top: 40px;
+        }
+
+        /* ===== TESTIMONIOS ===== */
+        .foto-circular {
+            width: 80px;
+            height: 80px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 3px solid #14B8A6;
+        }
+
+        /* ===== HEADER FLUTUANTE ===== */
+        .header-flutuante {
+            position: fixed;
+            top: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+            z-index: 1000;
+            width: 90%;
+            max-width: 1200px;
+        }
+
+        /* ===== PARALLAX ===== */
+        .parallax {
+            background-attachment: fixed;
+            background-position: center;
+            background-repeat: no-repeat;
+            background-size: cover;
+        }
+
+        /* ===== EFEITOS DE BORDA ===== */
+        .borda-sutil {
+            border: 1px solid rgba(0, 0, 0, 0.05);
+        }
+
+        /* ===== ACCORDION FAQ ===== */
+        .faq-item {
+            border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+            padding: 20px 0;
+            transition: all 0.3s ease;
+        }
+
+        .faq-item:last-child {
+            border-bottom: none;
+        }
+
+        .faq-pergunta {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            cursor: pointer;
+            font-weight: 600;
+            color: #0F172A;
+            transition: color 0.3s ease;
+        }
+
+        .faq-pergunta:hover {
+            color: #14B8A6;
+        }
+
+        .faq-icone {
+            transition: transform 0.3s ease;
+            font-size: 1.5rem;
+            color: #14B8A6;
+        }
+
+        .faq-icone.ativo {
+            transform: rotate(180deg);
+        }
+
+        .faq-resposta {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.3s ease;
+            color: #64748B;
+            margin-top: 0;
+            line-height: 1.6;
+        }
+
+        .faq-resposta.ativo {
+            max-height: 500px;
+            margin-top: 16px;
+        }
+
+        /* ===== BADGE ANIMADO ===== */
+        .badge-premium {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            background: linear-gradient(135deg, #14B8A6, #0F172A);
+            color: white;
+            padding: 8px 16px;
+            border-radius: 20px;
+            font-size: 0.875rem;
+            font-weight: 600;
+            animation: glow-pulse 2s ease-in-out infinite;
+        }
+
+        /* ===== CONTADOR ANIMADO ===== */
+        .contador {
+            font-size: clamp(1.5rem, 3vw, 2.5rem);
+            font-weight: 800;
+            color: #14B8A6;
+            font-family: 'Playfair Display', serif;
+        }
+
+        /* ===== RESPONSIVIDADE ===== */
+        @media (max-width: 768px) {
+            .titulo-hero {
+                font-size: clamp(1.5rem, 4vw, 2.5rem);
+            }
+
+            .titulo-secao {
+                font-size: clamp(1.25rem, 3vw, 2rem);
+            }
+
+            .grid-diferenciais {
+                grid-template-columns: 1fr;
+            }
+
+            .grid-equipe {
+                grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+                gap: 20px;
+            }
+
+            .grid-galeria {
+                grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+                gap: 16px;
+            }
+
+            .header-flutuante {
+                width: 95%;
+                top: 10px;
+            }
+        }
+
+        /* ===== LINHA DECORATIVA ANIMADA ===== */
+        .linha-decorativa {
+            height: 2px;
+            background: linear-gradient(90deg, transparent, #14B8A6, transparent);
+            margin: 30px 0;
+            animation: slide-in-right 1s ease-out;
+        }
+
+        /* ===== EFEITO SHIMMER ===== */
+        @keyframes shimmer {
+            0% {
+                background-position: -1000px 0;
+            }
+            100% {
+                background-position: 1000px 0;
+            }
+        }
+
+        .shimmer {
+            background: linear-gradient(90deg, rgba(255,255,255,0) 0%, rgba(255,255,255,0.3) 50%, rgba(255,255,255,0) 100%);
+            background-size: 1000px 100%;
+            animation: shimmer 2s infinite;
+        }
+    </style>
+</head>
+<body class="cursor-custom">
+    <!-- ===== CANVAS PARA PARTÍCULAS ===== -->
+    <canvas id="particleCanvas" style="position: fixed; top: 0; left: 0; width: 100%; height: 100%; z-index: 0; pointer-events: none;"></canvas>
+
+    <!-- ===== CURSOR CUSTOMIZADO ===== -->
+    <div class="cursor-dot"></div>
+    <div class="cursor-outline"></div>
+
+    <!-- ===== HEADER FLUTUANTE COM GLASSMORPHISM ===== -->
+    <header class="header-flutuante">
+        <nav class="glass-effect px-6 py-4 flex items-center justify-between">
+            <div class="flex items-center gap-2">
+                <i class="fas fa-tooth text-[#14B8A6] text-2xl"></i>
+                <span class="font-bold text-[#0F172A] text-xl" style="font-family: 'Playfair Display', serif;">Vibe Smile</span>
+            </div>
+            
+            <div class="hidden md:flex items-center gap-8">
+                <a href="#servicos" class="text-[#0F172A] hover:text-[#14B8A6] transition text-sm font-medium">Serviços</a>
+                <a href="#diferenciais" class="text-[#0F172A] hover:text-[#14B8A6] transition text-sm font-medium">Diferenciais</a>
+                <a href="#equipe" class="text-[#0F172A] hover:text-[#14B8A6] transition text-sm font-medium">Equipe</a>
+                <a href="#galeria" class="text-[#0F172A] hover:text-[#14B8A6] transition text-sm font-medium">Galeria</a>
+                <a href="#faq" class="text-[#0F172A] hover:text-[#14B8A6] transition text-sm font-medium">FAQ</a>
+            </div>
+
+            <button class="botao-magnetico botao-magnetico-primario text-sm">
+                <i class="fas fa-calendar-check mr-2"></i>Agendar VIP
+            </button>
+        </nav>
+    </header>
+
+    <!-- ===== SEÇÃO HERO ===== -->
+    <section class="secao-hero min-h-screen flex items-center justify-center relative overflow-hidden pt-20">
+        <!-- Imagem de fundo com parallax -->
+        <div class="absolute inset-0 parallax" style="background-image: url('https://images.unsplash.com/photo-1629909613654-2871b74214a9?auto=format&fit=crop&q=80&w=1200'); z-index: -1; opacity: 0.15;"></div>
+        
+        <!-- Gradiente overlay -->
+        <div class="absolute inset-0 bg-gradient-to-b from-white via-transparent to-[#F8FAFC] z-0"></div>
+
+        <div class="container mx-auto px-4 sm:px-6 lg:px-8 relative z-10 text-center">
+            <div class="max-w-3xl mx-auto">
+                <!-- Badge Premium -->
+                <div class="mb-6 flex justify-center">
+                    <span class="badge-premium">
+                        <i class="fas fa-crown"></i>Experiência VIP Premium
+                    </span>
+                </div>
+
+                <!-- Título com Text Reveal Animation -->
+                <h1 class="titulo-hero text-[#0F172A] mb-6 text-reveal">
+                    A arte de esculpir sorrisos que transformam vidas.
+                </h1>
+
+                <!-- Subtítulo -->
+                <p class="text-lg md:text-xl text-[#475569] mb-12 font-light leading-relaxed fade-in-up" style="animation-delay: 0.2s;">
+                    Bem-vindo à Vibe Smile, onde tecnologia de ponta encontra a humanidade clínica. Cada sorriso é uma obra-prima única, cuidadosamente esculpida com precisão e elegância.
+                </p>
+
+                <!-- CTA Principal -->
+                <div class="flex flex-col sm:flex-row gap-4 justify-center fade-in-up" style="animation-delay: 0.4s;">
+                    <button class="botao-magnetico botao-magnetico-primario">
+                        <i class="fas fa-star mr-2"></i>Experiência VIP Completa
+                    </button>
+                    <button class="botao-magnetico botao-magnetico-secundario">
+                        <i class="fas fa-play-circle mr-2"></i>Conheça Nossa Tecnologia
+                    </button>
+                </div>
+
+                <!-- Indicador de scroll -->
+                <div class="absolute bottom-8 left-1/2 transform -translate-x-1/2 animate-bounce">
+                    <i class="fas fa-chevron-down text-[#14B8A6] text-2xl"></i>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ===== SEÇÃO ESTATÍSTICAS ===== -->
+    <section class="secao-stats py-20 bg-gradient-to-r from-[#0F172A] to-[#1E293B]">
+        <div class="container mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid grid-cols-1 md:grid-cols-4 gap-8">
+                <div class="text-center text-white">
+                    <div class="contador">2.500+</div>
+                    <p class="text-[#94A3B8] mt-2">Sorrisos Transformados</p>
+                </div>
+                <div class="text-center text-white">
+                    <div class="contador">18+</div>
+                    <p class="text-[#94A3B8] mt-2">Anos de Excelência</p>
+                </div>
+                <div class="text-center text-white">
+                    <div class="contador">12</div>
+                    <p class="text-[#94A3B8] mt-2">Especialistas Renomados</p>
+                </div>
+                <div class="text-center text-white">
+                    <div class="contador">99%</div>
+                    <p class="text-[#94A3B8] mt-2">Satisfação de Clientes</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ===== SEÇÃO DIFERENCIAIS (GRID COM HOVER 3D) ===== -->
+    <section id="diferenciais" class="secao-diferenciais py-20 bg-white">
+        <div class="container mx-auto px-4 sm:px-6 lg:px-8">
+            <h2 class="titulo-secao text-[#0F172A] text-center mb-4">Nossos Diferenciais de Excelência</h2>
+            <p class="text-center text-[#64748B] max-w-2xl mx-auto mb-16">Combinamos tecnologia de ponta com humanidade clínica para oferecer uma experiência única e transformadora.</p>
+
+            <div class="grid-diferenciais">
+                <!-- Card 1: Tecnologia 3D -->
+                <div class="card-servico glass-effect p-8 rounded-xl borda-sutil hover:shadow-2xl">
+                    <div class="mb-6 text-5xl text-[#14B8A6]">
+                        <i class="fas fa-cube"></i>
+                    </div>
+                    <h3 class="text-xl font-bold text-[#0F172A] mb-4" style="font-family: 'Playfair Display', serif;">Tecnologia 3D Guiada</h3>
+                    <p class="text-[#64748B] leading-relaxed mb-4">Planejamento digital preciso com escaneamento 3D de última geração. Cada procedimento é visualizado antes de ser realizado, garantindo resultados previsíveis e harmoniosos.</p>
+                    <div class="flex items-center gap-2 text-[#14B8A6] font-semibold">
+                        <span>Saiba mais</span>
+                        <i class="fas fa-arrow-right"></i>
+                    </div>
+                </div>
+
+                <!-- Card 2: Conforto Humanizado -->
+                <div class="card-servico glass-effect p-8 rounded-xl borda-sutil hover:shadow-2xl">
+                    <div class="mb-6 text-5xl text-[#14B8A6]">
+                        <i class="fas fa-heart"></i>
+                    </div>
+                    <h3 class="text-xl font-bold text-[#0F172A] mb-4" style="font-family: 'Playfair Display', serif;">Conforto Humanizado</h3>
+                    <p class="text-[#64748B] leading-relaxed mb-4">Ambiente acolhedor com música ambiente, aromaterapia e equipe dedicada ao seu bem-estar. Anestesia avançada para procedimentos indolores e relaxantes.</p>
+                    <div class="flex items-center gap-2 text-[#14B8A6] font-semibold">
+                        <span>Saiba mais</span>
+                        <i class="fas fa-arrow-right"></i>
+                    </div>
+                </div>
+
+                <!-- Card 3: Estética de Precisão -->
+                <div class="card-servico glass-effect p-8 rounded-xl borda-sutil hover:shadow-2xl">
+                    <div class="mb-6 text-5xl text-[#14B8A6]">
+                        <i class="fas fa-wand-magic-sparkles"></i>
+                    </div>
+                    <h3 class="text-xl font-bold text-[#0F172A] mb-4" style="font-family: 'Playfair Display', serif;">Estética de Precisão</h3>
+                    <p class="text-[#64748B] leading-relaxed mb-4">Análise facial completa e harmonia proporcional. Cada detalhe é considerado para criar sorrisos que refletem sua personalidade e elegância natural.</p>
+                    <div class="flex items-center gap-2 text-[#14B8A6] font-semibold">
+                        <span>Saiba mais</span>
+                        <i class="fas fa-arrow-right"></i>
+                    </div>
+                </div>
+
+                <!-- Card 4: Tecnologia Laser -->
+                <div class="card-servico glass-effect p-8 rounded-xl borda-sutil hover:shadow-2xl">
+                    <div class="mb-6 text-5xl text-[#14B8A6]">
+                        <i class="fas fa-bolt"></i>
+                    </div>
+                    <h3 class="text-xl font-bold text-[#0F172A] mb-4" style="font-family: 'Playfair Display', serif;">Tecnologia Laser Avançada</h3>
+                    <p class="text-[#64748B] leading-relaxed mb-4">Equipamentos laser de última geração para tratamentos precisos e minimamente invasivos. Recuperação rápida e resultados extraordinários.</p>
+                    <div class="flex items-center gap-2 text-[#14B8A6] font-semibold">
+                        <span>Saiba mais</span>
+                        <i class="fas fa-arrow-right"></i>
+                    </div>
+                </div>
+
+                <!-- Card 5: Esterilização Premium -->
+                <div class="card-servico glass-effect p-8 rounded-xl borda-sutil hover:shadow-2xl">
+                    <div class="mb-6 text-5xl text-[#14B8A6]">
+                        <i class="fas fa-shield-virus"></i>
+                    </div>
+                    <h3 class="text-xl font-bold text-[#0F172A] mb-4" style="font-family: 'Playfair Display', serif;">Esterilização Premium</h3>
+                    <p class="text-[#64748B] leading-relaxed mb-4">Protocolos de esterilização internacionais com certificação ISO. Segurança máxima e tranquilidade garantida em cada procedimento.</p>
+                    <div class="flex items-center gap-2 text-[#14B8A6] font-semibold">
+                        <span>Saiba mais</span>
+                        <i class="fas fa-arrow-right"></i>
+                    </div>
+                </div>
+
+                <!-- Card 6: Atendimento VIP -->
+                <div class="card-servico glass-effect p-8 rounded-xl borda-sutil hover:shadow-2xl">
+                    <div class="mb-6 text-5xl text-[#14B8A6]">
+                        <i class="fas fa-concierge-bell"></i>
+                    </div>
+                    <h3 class="text-xl font-bold text-[#0F172A] mb-4" style="font-family: 'Playfair Display', serif;">Atendimento VIP Exclusivo</h3>
+                    <p class="text-[#64748B] leading-relaxed mb-4">Agendamentos prioritários, sala privativa e acompanhamento pós-procedimento personalizado. Experiência de luxo em cada detalhe.</p>
+                    <div class="flex items-center gap-2 text-[#14B8A6] font-semibold">
+                        <span>Saiba mais</span>
+                        <i class="fas fa-arrow-right"></i>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ===== SEÇÃO SERVIÇOS ELITE (SCROLL HORIZONTAL) ===== -->
+    <section id="servicos" class="secao-servicos py-20 bg-[#F8FAFC]">
+        <div class="container mx-auto px-4 sm:px-6 lg:px-8">
+            <h2 class="titulo-secao text-[#0F172A] text-center mb-4">Serviços Elite</h2>
+            <p class="text-center text-[#64748B] max-w-2xl mx-auto mb-16">Tratamentos exclusivos desenvolvidos para quem busca excelência e resultados extraordinários.</p>
+
+            <div class="scroll-horizontal px-4">
+                <!-- Serviço 1: Facetas de Porcelana -->
+                <div class="flex-shrink-0 w-full sm:w-96 glass-effect rounded-xl overflow-hidden borda-sutil hover:shadow-2xl transition">
+                    <div class="h-48 bg-gradient-to-br from-[#14B8A6] to-[#0F172A] relative overflow-hidden">
+                        <img src="https://images.unsplash.com/photo-1606811841689-23dfddce3e95?auto=format&fit=crop&q=80&w=600" alt="Facetas de Porcelana" class="w-full h-full object-cover opacity-80">
+                    </div>
+                    <div class="p-8">
+                        <h3 class="text-xl font-bold text-[#0F172A] mb-3" style="font-family: 'Playfair Display', serif;">Facetas de Porcelana Premium</h3>
+                        <p class="text-[#64748B] mb-6 text-sm leading-relaxed">Transformação estética completa com facetas de porcelana de última geração. Resultado natural, durável e que reflete luz como um sorriso verdadeiro.</p>
+                        <div class="flex items-center justify-between">
+                            <span class="text-[#14B8A6] font-semibold">Harmonia Facial Completa</span>
+                            <i class="fas fa-arrow-right text-[#0F172A]"></i>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Serviço 2: Implantes sem Dor -->
+                <div class="flex-shrink-0 w-full sm:w-96 glass-effect rounded-xl overflow-hidden borda-sutil hover:shadow-2xl transition">
+                    <div class="h-48 bg-gradient-to-br from-[#14B8A6] to-[#0F172A] relative overflow-hidden">
+                        <img src="https://images.unsplash.com/photo-1588776814546-1ffcf47267a5?auto=format&fit=crop&q=80&w=600" alt="Implantes Dentários" class="w-full h-full object-cover opacity-80">
+                    </div>
+                    <div class="p-8">
+                        <h3 class="text-xl font-bold text-[#0F172A] mb-3" style="font-family: 'Playfair Display', serif;">Implantes Guiados sem Dor</h3>
+                        <p class="text-[#64748B] mb-6 text-sm leading-relaxed">Implantes de titânio com guia cirúrgica digital. Procedimento minimamente invasivo, rápido e indolor. Recuperação acelerada com resultados naturais.</p>
+                        <div class="flex items-center justify-between">
+                            <span class="text-[#14B8A6] font-semibold">Excelência Clínica</span>
+                            <i class="fas fa-arrow-right text-[#0F172A]"></i>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Serviço 3: Clareamento Profissional -->
+                <div class="flex-shrink-0 w-full sm:w-96 glass-effect rounded-xl overflow-hidden borda-sutil hover:shadow-2xl transition">
+                    <div class="h-48 bg-gradient-to-br from-[#14B8A6] to-[#0F172A] relative overflow-hidden">
+                        <img src="https://images.unsplash.com/photo-1629909613654-2871b74214a9?auto=format&fit=crop&q=80&w=600" alt="Clareamento Dentário" class="w-full h-full object-cover opacity-80">
+                    </div>
+                    <div class="p-8">
+                        <h3 class="text-xl font-bold text-[#0F172A] mb-3" style="font-family: 'Playfair Display', serif;">Clareamento Ultra Premium</h3>
+                        <p class="text-[#64748B] mb-6 text-sm leading-relaxed">Sistema de clareamento de última geração com proteção de gengiva. Resultados visíveis em uma sessão. Sorriso radiante e natural sem sensibilidade.</p>
+                        <div class="flex items-center justify-between">
+                            <span class="text-[#14B8A6] font-semibold">Brilho Radiante</span>
+                            <i class="fas fa-arrow-right text-[#0F172A]"></i>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Serviço 4: Reabilitação Oral -->
+                <div class="flex-shrink-0 w-full sm:w-96 glass-effect rounded-xl overflow-hidden borda-sutil hover:shadow-2xl transition">
+                    <div class="h-48 bg-gradient-to-br from-[#14B8A6] to-[#0F172A] relative overflow-hidden">
+                        <img src="https://images.unsplash.com/photo-1606811841689-23dfddce3e95?auto=format&fit=crop&q=80&w=600" alt="Reabilitação Oral" class="w-full h-full object-cover opacity-80">
+                    </div>
+                    <div class="p-8">
+                        <h3 class="text-xl font-bold text-[#0F172A] mb-3" style="font-family: 'Playfair Display', serif;">Reabilitação Oral Completa</h3>
+                        <p class="text-[#64748B] mb-6 text-sm leading-relaxed">Reconstrução total da função e estética oral. Planejamento integrado com implantes, próteses e tratamentos periodontais para máxima harmonia.</p>
+                        <div class="flex items-center justify-between">
+                            <span class="text-[#14B8A6] font-semibold">Transformação Total</span>
+                            <i class="fas fa-arrow-right text-[#0F172A]"></i>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Serviço 5: Ortodontia Invisível -->
+                <div class="flex-shrink-0 w-full sm:w-96 glass-effect rounded-xl overflow-hidden borda-sutil hover:shadow-2xl transition">
+                    <div class="h-48 bg-gradient-to-br from-[#14B8A6] to-[#0F172A] relative overflow-hidden">
+                        <img src="https://images.unsplash.com/photo-1588776814546-1ffcf47267a5?auto=format&fit=crop&q=80&w=600" alt="Ortodontia" class="w-full h-full object-cover opacity-80">
+                    </div>
+                    <div class="p-8">
+                        <h3 class="text-xl font-bold text-[#0F172A] mb-3" style="font-family: 'Playfair Display', serif;">Ortodontia Invisível Premium</h3>
+                        <p class="text-[#64748B] mb-6 text-sm leading-relaxed">Alinhadores transparentes de última geração. Discreto, confortável e eficaz. Transforme seu sorriso sem comprometer sua estética.</p>
+                        <div class="flex items-center justify-between">
+                            <span class="text-[#14B8A6] font-semibold">Alinhamento Perfeito</span>
+                            <i class="fas fa-arrow-right text-[#0F172A]"></i>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Serviço 6: Periodontia Avançada -->
+                <div class="flex-shrink-0 w-full sm:w-96 glass-effect rounded-xl overflow-hidden borda-sutil hover:shadow-2xl transition">
+                    <div class="h-48 bg-gradient-to-br from-[#14B8A6] to-[#0F172A] relative overflow-hidden">
+                        <img src="https://images.unsplash.com/photo-1606811841689-23dfddce3e95?auto=format&fit=crop&q=80&w=600" alt="Periodontia" class="w-full h-full object-cover opacity-80">
+                    </div>
+                    <div class="p-8">
+                        <h3 class="text-xl font-bold text-[#0F172A] mb-3" style="font-family: 'Playfair Display', serif;">Periodontia Avançada</h3>
+                        <p class="text-[#64748B] mb-6 text-sm leading-relaxed">Tratamento especializado de gengivas com tecnologia regenerativa. Saúde periodontal garantida para um sorriso duradouro.</p>
+                        <div class="flex items-center justify-between">
+                            <span class="text-[#14B8A6] font-semibold">Saúde Gengival</span>
+                            <i class="fas fa-arrow-right text-[#0F172A]"></i>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ===== SEÇÃO EQUIPE DE ESPECIALISTAS ===== -->
+    <section id="equipe" class="secao-equipe py-20 bg-white">
+        <div class="container mx-auto px-4 sm:px-6 lg:px-8">
+            <h2 class="titulo-secao text-[#0F172A] text-center mb-4">Nossa Equipe de Especialistas</h2>
+            <p class="text-center text-[#64748B] max-w-2xl mx-auto mb-16">Profissionais renomados com décadas de experiência e dedicação à excelência odontológica.</p>
+
+            <div class="grid-equipe">
+                <!-- Especialista 1 -->
+                <div class="card-equipe glass-effect rounded-xl overflow-hidden borda-sutil">
+                    <div class="h-64 bg-gradient-to-br from-[#14B8A6] to-[#0F172A] relative overflow-hidden">
+                        <img src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?auto=format&fit=crop&q=80&w=400" alt="Dr. Fernando" class="w-full h-full object-cover">
+                    </div>
+                    <div class="p-6">
+                        <h3 class="text-lg font-bold text-[#0F172A]" style="font-family: 'Playfair Display', serif;">Dr. Fernando Silva</h3>
+                        <p class="text-[#14B8A6] font-semibold text-sm mb-3">Diretor Clínico | Implantodontista</p>
+                        <p class="text-[#64748B] text-sm leading-relaxed mb-4">Especialista em implantes dentários com mais de 20 anos de experiência. Certificado internacionalmente em técnicas avançadas de reabilitação oral.</p>
+                        <div class="flex gap-3">
+                            <a href="#" class="text-[#14B8A6] hover:text-[#0F172A] transition"><i class="fab fa-linkedin"></i></a>
+                            <a href="#" class="text-[#14B8A6] hover:text-[#0F172A] transition"><i class="fas fa-envelope"></i></a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Especialista 2 -->
+                <div class="card-equipe glass-effect rounded-xl overflow-hidden borda-sutil">
+                    <div class="h-64 bg-gradient-to-br from-[#14B8A6] to-[#0F172A] relative overflow-hidden">
+                        <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&q=80&w=400" alt="Dra. Mariana" class="w-full h-full object-cover">
+                    </div>
+                    <div class="p-6">
+                        <h3 class="text-lg font-bold text-[#0F172A]" style="font-family: 'Playfair Display', serif;">Dra. Mariana Costa</h3>
+                        <p class="text-[#14B8A6] font-semibold text-sm mb-3">Especialista em Estética | Ortodontista</p>
+                        <p class="text-[#64748B] text-sm leading-relaxed mb-4">Mestre em Odontologia Estética. Especialista em design de sorriso e harmonização facial. Referência em tratamentos de alinhamento invisível.</p>
+                        <div class="flex gap-3">
+                            <a href="#" class="text-[#14B8A6] hover:text-[#0F172A] transition"><i class="fab fa-linkedin"></i></a>
+                            <a href="#" class="text-[#14B8A6] hover:text-[#0F172A] transition"><i class="fas fa-envelope"></i></a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Especialista 3 -->
+                <div class="card-equipe glass-effect rounded-xl overflow-hidden borda-sutil">
+                    <div class="h-64 bg-gradient-to-br from-[#14B8A6] to-[#0F172A] relative overflow-hidden">
+                        <img src="https://images.unsplash.com/photo-1438761681033-6461ffad8d80?auto=format&fit=crop&q=80&w=400" alt="Dr. Lucas" class="w-full h-full object-cover">
+                    </div>
+                    <div class="p-6">
+                        <h3 class="text-lg font-bold text-[#0F172A]" style="font-family: 'Playfair Display', serif;">Dr. Lucas Mendes</h3>
+                        <p class="text-[#14B8A6] font-semibold text-sm mb-3">Periodontista | Cirurgião</p>
+                        <p class="text-[#64748B] text-sm leading-relaxed mb-4">Especialista em periodontia e cirurgia avançada. Pioneiro em técnicas regenerativas. Membro de sociedades internacionais de odontologia.</p>
+                        <div class="flex gap-3">
+                            <a href="#" class="text-[#14B8A6] hover:text-[#0F172A] transition"><i class="fab fa-linkedin"></i></a>
+                            <a href="#" class="text-[#14B8A6] hover:text-[#0F172A] transition"><i class="fas fa-envelope"></i></a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Especialista 4 -->
+                <div class="card-equipe glass-effect rounded-xl overflow-hidden borda-sutil">
+                    <div class="h-64 bg-gradient-to-br from-[#14B8A6] to-[#0F172A] relative overflow-hidden">
+                        <img src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?auto=format&fit=crop&q=80&w=400" alt="Dra. Juliana" class="w-full h-full object-cover">
+                    </div>
+                    <div class="p-6">
+                        <h3 class="text-lg font-bold text-[#0F172A]" style="font-family: 'Playfair Display', serif;">Dra. Juliana Rocha</h3>
+                        <p class="text-[#14B8A6] font-semibold text-sm mb-3">Protesista | Especialista em Reabilitação</p>
+                        <p class="text-[#64748B] text-sm leading-relaxed mb-4">Especialista em próteses dentárias avançadas. Criadora de soluções customizadas para reabilitação oral completa com excelência estética.</p>
+                        <div class="flex gap-3">
+                            <a href="#" class="text-[#14B8A6] hover:text-[#0F172A] transition"><i class="fab fa-linkedin"></i></a>
+                            <a href="#" class="text-[#14B8A6] hover:text-[#0F172A] transition"><i class="fas fa-envelope"></i></a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ===== SEÇÃO GALERIA DE TRANSFORMAÇÕES ===== -->
+    <section id="galeria" class="secao-galeria py-20 bg-[#F8FAFC]">
+        <div class="container mx-auto px-4 sm:px-6 lg:px-8">
+            <h2 class="titulo-secao text-[#0F172A] text-center mb-4">Galeria de Transformações</h2>
+            <p class="text-center text-[#64748B] max-w-2xl mx-auto mb-16">Veja os resultados extraordinários de nossos pacientes. Cada imagem conta uma história de transformação e confiança.</p>
+
+            <div class="grid-galeria">
+                <!-- Galeria 1 -->
+                <div class="card-galeria">
+                    <img src="https://images.unsplash.com/photo-1606811841689-23dfddce3e95?auto=format&fit=crop&q=80&w=500" alt="Transformação 1">
+                    <div class="absolute inset-0 flex items-end justify-start p-6 z-3">
+                        <div class="glass-effect-dark px-4 py-2 rounded-lg">
+                            <p class="text-white text-sm font-semibold">Facetas Premium</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Galeria 2 -->
+                <div class="card-galeria">
+                    <img src="https://images.unsplash.com/photo-1588776814546-1ffcf47267a5?auto=format&fit=crop&q=80&w=500" alt="Transformação 2">
+                    <div class="absolute inset-0 flex items-end justify-start p-6 z-3">
+                        <div class="glass-effect-dark px-4 py-2 rounded-lg">
+                            <p class="text-white text-sm font-semibold">Implantes Dentários</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Galeria 3 -->
+                <div class="card-galeria">
+                    <img src="https://images.unsplash.com/photo-1629909613654-2871b74214a9?auto=format&fit=crop&q=80&w=500" alt="Transformação 3">
+                    <div class="absolute inset-0 flex items-end justify-start p-6 z-3">
+                        <div class="glass-effect-dark px-4 py-2 rounded-lg">
+                            <p class="text-white text-sm font-semibold">Clareamento Profissional</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Galeria 4 -->
+                <div class="card-galeria">
+                    <img src="https://images.unsplash.com/photo-1606811841689-23dfddce3e95?auto=format&fit=crop&q=80&w=500" alt="Transformação 4">
+                    <div class="absolute inset-0 flex items-end justify-start p-6 z-3">
+                        <div class="glass-effect-dark px-4 py-2 rounded-lg">
+                            <p class="text-white text-sm font-semibold">Reabilitação Oral</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Galeria 5 -->
+                <div class="card-galeria">
+                    <img src="https://images.unsplash.com/photo-1588776814546-1ffcf47267a5?auto=format&fit=crop&q=80&w=500" alt="Transformação 5">
+                    <div class="absolute inset-0 flex items-end justify-start p-6 z-3">
+                        <div class="glass-effect-dark px-4 py-2 rounded-lg">
+                            <p class="text-white text-sm font-semibold">Ortodontia Invisível</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Galeria 6 -->
+                <div class="card-galeria">
+                    <img src="https://images.unsplash.com/photo-1629909613654-2871b74214a9?auto=format&fit=crop&q=80&w=500" alt="Transformação 6">
+                    <div class="absolute inset-0 flex items-end justify-start p-6 z-3">
+                        <div class="glass-effect-dark px-4 py-2 rounded-lg">
+                            <p class="text-white text-sm font-semibold">Harmonização Facial</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ===== SEÇÃO PROVA SOCIAL (TESTEMUNHOS) ===== -->
+    <section class="secao-depoimentos py-20 bg-white">
+        <div class="container mx-auto px-4 sm:px-6 lg:px-8">
+            <h2 class="titulo-secao text-[#0F172A] text-center mb-4">Histórias de Transformação</h2>
+            <p class="text-center text-[#64748B] max-w-2xl mx-auto mb-16">Vidas transformadas por sorrisos que refletem confiança, elegância e bem-estar.</p>
+
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <!-- Testemunho 1 -->
+                <div class="glass-effect p-8 rounded-xl borda-sutil hover:shadow-xl transition">
+                    <div class="flex items-center gap-4 mb-6">
+                        <img src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?auto=format&fit=crop&q=80&w=200" alt="Cliente 1" class="foto-circular">
+                        <div>
+                            <h4 class="font-bold text-[#0F172A]" style="font-family: 'Playfair Display', serif;">Marina Silva</h4>
+                            <p class="text-sm text-[#94A3B8]">Executiva de Moda</p>
+                        </div>
+                    </div>
+                    <div class="flex gap-1 mb-4">
+                        <i class="fas fa-star text-[#14B8A6]"></i>
+                        <i class="fas fa-star text-[#14B8A6]"></i>
+                        <i class="fas fa-star text-[#14B8A6]"></i>
+                        <i class="fas fa-star text-[#14B8A6]"></i>
+                        <i class="fas fa-star text-[#14B8A6]"></i>
+                    </div>
+                    <p class="text-[#64748B] italic">"Meu sorriso é agora minha assinatura. A Vibe Smile transformou não apenas meus dentes, mas minha confiança. Experiência verdadeiramente VIP."</p>
+                </div>
+
+                <!-- Testemunho 2 -->
+                <div class="glass-effect p-8 rounded-xl borda-sutil hover:shadow-xl transition">
+                    <div class="flex items-center gap-4 mb-6">
+                        <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&q=80&w=200" alt="Cliente 2" class="foto-circular">
+                        <div>
+                            <h4 class="font-bold text-[#0F172A]" style="font-family: 'Playfair Display', serif;">Carlos Mendes</h4>
+                            <p class="text-sm text-[#94A3B8]">Empresário de Tecnologia</p>
+                        </div>
+                    </div>
+                    <div class="flex gap-1 mb-4">
+                        <i class="fas fa-star text-[#14B8A6]"></i>
+                        <i class="fas fa-star text-[#14B8A6]"></i>
+                        <i class="fas fa-star text-[#14B8A6]"></i>
+                        <i class="fas fa-star text-[#14B8A6]"></i>
+                        <i class="fas fa-star text-[#14B8A6]"></i>
+                    </div>
+                    <p class="text-[#64748B] italic">"Implantes sem dor? Sim! A tecnologia 3D e a equipe profissional tornaram tudo indolor e rápido. Voltaria com os olhos fechados."</p>
+                </div>
+
+                <!-- Testemunho 3 -->
+                <div class="glass-effect p-8 rounded-xl borda-sutil hover:shadow-xl transition">
+                    <div class="flex items-center gap-4 mb-6">
+                        <img src="https://images.unsplash.com/photo-1438761681033-6461ffad8d80?auto=format&fit=crop&q=80&w=200" alt="Cliente 3" class="foto-circular">
+                        <div>
+                            <h4 class="font-bold text-[#0F172A]" style="font-family: 'Playfair Display', serif;">Juliana Costa</h4>
+                            <p class="text-sm text-[#94A3B8]">Advogada Renomada</p>
+                        </div>
+                    </div>
+                    <div class="flex gap-1 mb-4">
+                        <i class="fas fa-star text-[#14B8A6]"></i>
+                        <i class="fas fa-star text-[#14B8A6]"></i>
+                        <i class="fas fa-star text-[#14B8A6]"></i>
+                        <i class="fas fa-star text-[#14B8A6]"></i>
+                        <i class="fas fa-star text-[#14B8A6]"></i>
+                    </div>
+                    <p class="text-[#64748B] italic">"Facetas de porcelana que parecem naturais. A harmonia facial é perfeita. Cada detalhe foi considerado. Obra de arte mesmo!"</p>
+                </div>
+
+                <!-- Testemunho 4 -->
+                <div class="glass-effect p-8 rounded-xl borda-sutil hover:shadow-xl transition">
+                    <div class="flex items-center gap-4 mb-6">
+                        <img src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?auto=format&fit=crop&q=80&w=200" alt="Cliente 4" class="foto-circular">
+                        <div>
+                            <h4 class="font-bold text-[#0F172A]" style="font-family: 'Playfair Display', serif;">Patricia Gomes</h4>
+                            <p class="text-sm text-[#94A3B8]">Médica Cirurgiã</p>
+                        </div>
+                    </div>
+                    <div class="flex gap-1 mb-4">
+                        <i class="fas fa-star text-[#14B8A6]"></i>
+                        <i class="fas fa-star text-[#14B8A6]"></i>
+                        <i class="fas fa-star text-[#14B8A6]"></i>
+                        <i class="fas fa-star text-[#14B8A6]"></i>
+                        <i class="fas fa-star text-[#14B8A6]"></i>
+                    </div>
+                    <p class="text-[#64748B] italic">"Como profissional de saúde, exijo excelência. A Vibe Smile superou todas as minhas expectativas. Recomendo para todos os meus colegas."</p>
+                </div>
+
+                <!-- Testemunho 5 -->
+                <div class="glass-effect p-8 rounded-xl borda-sutil hover:shadow-xl transition">
+                    <div class="flex items-center gap-4 mb-6">
+                        <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&q=80&w=200" alt="Cliente 5" class="foto-circular">
+                        <div>
+                            <h4 class="font-bold text-[#0F172A]" style="font-family: 'Playfair Display', serif;">Roberto Santos</h4>
+                            <p class="text-sm text-[#94A3B8]">Produtor de Cinema</p>
+                        </div>
+                    </div>
+                    <div class="flex gap-1 mb-4">
+                        <i class="fas fa-star text-[#14B8A6]"></i>
+                        <i class="fas fa-star text-[#14B8A6]"></i>
+                        <i class="fas fa-star text-[#14B8A6]"></i>
+                        <i class="fas fa-star text-[#14B8A6]"></i>
+                        <i class="fas fa-star text-[#14B8A6]"></i>
+                    </div>
+                    <p class="text-[#64748B] italic">"Meu sorriso agora é cinematográfico! A precisão e o cuidado com os detalhes são impressionantes. Definitivamente a melhor clínica do Brasil."</p>
+                </div>
+
+                <!-- Testemunho 6 -->
+                <div class="glass-effect p-8 rounded-xl borda-sutil hover:shadow-xl transition">
+                    <div class="flex items-center gap-4 mb-6">
+                        <img src="https://images.unsplash.com/photo-1438761681033-6461ffad8d80?auto=format&fit=crop&q=80&w=200" alt="Cliente 6" class="foto-circular">
+                        <div>
+                            <h4 class="font-bold text-[#0F172A]" style="font-family: 'Playfair Display', serif;">Fernanda Oliveira</h4>
+                            <p class="text-sm text-[#94A3B8]">Influenciadora Digital</p>
+                        </div>
+                    </div>
+                    <div class="flex gap-1 mb-4">
+                        <i class="fas fa-star text-[#14B8A6]"></i>
+                        <i class="fas fa-star text-[#14B8A6]"></i>
+                        <i class="fas fa-star text-[#14B8A6]"></i>
+                        <i class="fas fa-star text-[#14B8A6]"></i>
+                        <i class="fas fa-star text-[#14B8A6]"></i>
+                    </div>
+                    <p class="text-[#64748B] italic">"Meus seguidores notaram a mudança imediatamente! Sorriso perfeito, natural e que brilha em qualquer foto. Muito obrigada Vibe Smile!"</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ===== SEÇÃO FAQ ===== -->
+    <section id="faq" class="secao-faq py-20 bg-[#F8FAFC]">
+        <div class="container mx-auto px-4 sm:px-6 lg:px-8 max-w-3xl">
+            <h2 class="titulo-secao text-[#0F172A] text-center mb-4">Perguntas Frequentes</h2>
+            <p class="text-center text-[#64748B] mb-16">Encontre respostas para as dúvidas mais comuns sobre nossos serviços e procedimentos.</p>
+
+            <div class="glass-effect p-8 rounded-xl">
+                <!-- FAQ 1 -->
+                <div class="faq-item">
+                    <div class="faq-pergunta" onclick="toggleFaq(this)">
+                        <span>Quanto tempo leva para ver os resultados dos implantes?</span>
+                        <i class="fas fa-chevron-down faq-icone"></i>
+                    </div>
+                    <div class="faq-resposta">
+                        <p>Os implantes dentários requerem um período de osseointegração de 3 a 6 meses. Durante esse tempo, o implante se integra ao osso. Após esse período, a prótese é colocada. Você verá resultados finais em aproximadamente 6 a 8 meses.</p>
+                    </div>
+                </div>
+
+                <!-- FAQ 2 -->
+                <div class="faq-item">
+                    <div class="faq-pergunta" onclick="toggleFaq(this)">
+                        <span>Os procedimentos são dolorosos?</span>
+                        <i class="fas fa-chevron-down faq-icone"></i>
+                    </div>
+                    <div class="faq-resposta">
+                        <p>Não! Utilizamos anestesia local avançada e técnicas minimamente invasivas. Nossos pacientes relatam conforto durante todo o procedimento. Oferecemos também sedação consciente para procedimentos mais complexos, garantindo sua tranquilidade.</p>
+                    </div>
+                </div>
+
+                <!-- FAQ 3 -->
+                <div class="faq-item">
+                    <div class="faq-pergunta" onclick="toggleFaq(this)">
+                        <span>Qual é a durabilidade das facetas de porcelana?</span>
+                        <i class="fas fa-chevron-down faq-icone"></i>
+                    </div>
+                    <div class="faq-resposta">
+                        <p>As facetas de porcelana premium têm durabilidade de 10 a 15 anos ou mais, dependendo dos cuidados. Com higiene adequada e visitas regulares ao dentista, muitos pacientes mantêm suas facetas por 20+ anos.</p>
+                    </div>
+                </div>
+
+                <!-- FAQ 4 -->
+                <div class="faq-item">
+                    <div class="faq-pergunta" onclick="toggleFaq(this)">
+                        <span>Posso fazer clareamento se tenho implantes?</span>
+                        <i class="fas fa-chevron-down faq-icone"></i>
+                    </div>
+                    <div class="faq-resposta">
+                        <p>O clareamento funciona apenas em dentes naturais. Se você tem implantes, recomendamos fazer o clareamento dos dentes naturais primeiro e depois ajustar a cor da prótese do implante para combinar. Nossos especialistas orientarão o melhor plano.</p>
+                    </div>
+                </div>
+
+                <!-- FAQ 5 -->
+                <div class="faq-item">
+                    <div class="faq-pergunta" onclick="toggleFaq(this)">
+                        <span>Qual é o tempo de recuperação após cirurgia de implante?</span>
+                        <i class="fas fa-chevron-down faq-icone"></i>
+                    </div>
+                    <div class="faq-resposta">
+                        <p>A recuperação inicial é de 7 a 10 dias. Durante esse período, pode haver inchaço e desconforto leve. A maioria dos pacientes retorna às atividades normais em uma semana. A osseointegração completa leva 3 a 6 meses.</p>
+                    </div>
+                </div>
+
+                <!-- FAQ 6 -->
+                <div class="faq-item">
+                    <div class="faq-pergunta" onclick="toggleFaq(this)">
+                        <span>Como funciona o sistema de alinhadores invisíveis?</span>
+                        <i class="fas fa-chevron-down faq-icone"></i>
+                    </div>
+                    <div class="faq-resposta">
+                        <p>Os alinhadores são moldados especificamente para seus dentes e trocados a cada 1-2 semanas. Cada novo alinhador move seus dentes gradualmente para a posição desejada. O tratamento dura tipicamente 6 a 18 meses, dependendo da complexidade.</p>
+                    </div>
+                </div>
+
+                <!-- FAQ 7 -->
+                <div class="faq-item">
+                    <div class="faq-pergunta" onclick="toggleFaq(this)">
+                        <span>Vocês aceitam convênios odontológicos?</span>
+                        <i class="fas fa-chevron-down faq-icone"></i>
+                    </div>
+                    <div class="faq-resposta">
+                        <p>Sim! Trabalhamos com os principais convênios odontológicos do Brasil. Oferecemos também planos de parcelamento personalizados e financiamento sem juros para procedimentos específicos. Entre em contato para detalhes.</p>
+                    </div>
+                </div>
+
+                <!-- FAQ 8 -->
+                <div class="faq-item">
+                    <div class="faq-pergunta" onclick="toggleFaq(this)">
+                        <span>Como agendar uma consulta?</span>
+                        <i class="fas fa-chevron-down faq-icone"></i>
+                    </div>
+                    <div class="faq-resposta">
+                        <p>Você pode agendar através do nosso site, por telefone (11) 9999-9999 ou enviando um e-mail para contato@vibesmile.com.br. Oferecemos consultas de avaliação gratuitas para novos pacientes. Agendamos com flexibilidade de horários.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ===== SEÇÃO CTA FINAL (MINIMALISTA COM BOTÃO MAGNÉTICO) ===== -->
+    <section class="secao-cta-final py-32 bg-gradient-to-br from-[#0F172A] to-[#1E293B] relative overflow-hidden">
+        <!-- Elementos decorativos -->
+        <div class="absolute top-0 right-0 w-96 h-96 bg-[#14B8A6] rounded-full opacity-10 blur-3xl"></div>
+        <div class="absolute bottom-0 left-0 w-96 h-96 bg-[#14B8A6] rounded-full opacity-10 blur-3xl"></div>
+
+        <div class="container mx-auto px-4 sm:px-6 lg:px-8 relative z-10 text-center">
+            <h2 class="titulo-secao text-white mb-6">Seu Sorriso Merece Excelência</h2>
+            <p class="text-lg md:text-xl text-[#CBD5E1] mb-12 max-w-2xl mx-auto font-light">
+                Transforme sua vida com a Experiência VIP da Vibe Smile. Agende sua consulta de harmonia facial hoje mesmo.
+            </p>
+
+            <button class="botao-magnetico botao-magnetico-primario text-lg px-12 py-4 mx-auto block">
+                <i class="fas fa-calendar-check mr-3"></i>Agendar Consulta VIP Agora
+            </button>
+
+            <div class="mt-16 pt-8 border-t border-[#94A3B8] border-opacity-30">
+                <p class="text-[#94A3B8] text-sm">
+                    <i class="fas fa-phone mr-2 text-[#14B8A6]"></i>+55 (11) 9999-9999 
+                    <span class="mx-4">|</span>
+                    <i class="fas fa-envelope mr-2 text-[#14B8A6]"></i>contato@vibesmile.com.br
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <!-- ===== FOOTER ===== -->
+    <footer class="bg-[#0F172A] text-[#94A3B8] py-12">
+        <div class="container mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid grid-cols-1 md:grid-cols-4 gap-8 mb-8">
+                <div>
+                    <div class="flex items-center gap-2 mb-4">
+                        <i class="fas fa-tooth text-[#14B8A6] text-xl"></i>
+                        <span class="font-bold text-white" style="font-family: 'Playfair Display', serif;">Vibe Smile</span>
+                    </div>
+                    <p class="text-sm">Clínica Odontológica de Excelência Editorial Luxury. Transformando sorrisos desde 2006.</p>
+                </div>
+                <div>
+                    <h4 class="font-bold text-white mb-4">Serviços</h4>
+                    <ul class="space-y-2 text-sm">
+                        <li><a href="#" class="hover:text-[#14B8A6] transition">Facetas de Porcelana</a></li>
+                        <li><a href="#" class="hover:text-[#14B8A6] transition">Implantes Dentários</a></li>
+                        <li><a href="#" class="hover:text-[#14B8A6] transition">Clareamento Premium</a></li>
+                        <li><a href="#" class="hover:text-[#14B8A6] transition">Ortodontia Invisível</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="font-bold text-white mb-4">Empresa</h4>
+                    <ul class="space-y-2 text-sm">
+                        <li><a href="#" class="hover:text-[#14B8A6] transition">Sobre Nós</a></li>
+                        <li><a href="#" class="hover:text-[#14B8A6] transition">Nossa Equipe</a></li>
+                        <li><a href="#" class="hover:text-[#14B8A6] transition">Blog</a></li>
+                        <li><a href="#" class="hover:text-[#14B8A6] transition">Contato</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="font-bold text-white mb-4">Redes Sociais</h4>
+                    <div class="flex gap-4 mb-6">
+                        <a href="#" class="text-[#14B8A6] hover:text-white transition"><i class="fab fa-instagram text-xl"></i></a>
+                        <a href="#" class="text-[#14B8A6] hover:text-white transition"><i class="fab fa-linkedin text-xl"></i></a>
+                        <a href="#" class="text-[#14B8A6] hover:text-white transition"><i class="fab fa-facebook text-xl"></i></a>
+                        <a href="#" class="text-[#14B8A6] hover:text-white transition"><i class="fab fa-youtube text-xl"></i></a>
+                    </div>
+                    <p class="text-xs">Certificado ISO 9001:2015</p>
+                </div>
+            </div>
+            <div class="border-t border-[#94A3B8] border-opacity-30 pt-8 text-center text-sm">
+                <p>&copy; 2024 Vibe Smile - Clínica Odontológica de Excelência. Todos os direitos reservados. | Desenvolvido pela Vibe Studio</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- ===== SCRIPTS GSAP E ANIMAÇÕES ===== -->
+    <script>
+        // Registrar ScrollTrigger com GSAP
+        gsap.registerPlugin(ScrollTrigger, Draggable);
+
+        // ===== SISTEMA DE PARTÍCULAS ===== 
+        const canvas = document.getElementById('particleCanvas');
+        const ctx = canvas.getContext('2d');
+        
+        canvas.width = window.innerWidth;
+        canvas.height = window.innerHeight;
+
+        const particles = [];
+
+        class Particle {
+            constructor() {
+                this.x = Math.random() * canvas.width;
+                this.y = Math.random() * canvas.height;
+                this.size = Math.random() * 3 + 1;
+                this.speedX = Math.random() * 0.5 - 0.25;
+                this.speedY = Math.random() * 0.5 - 0.25;
+                this.opacity = Math.random() * 0.5 + 0.1;
+            }
+
+            update() {
+                this.x += this.speedX;
+                this.y += this.speedY;
+
+                if (this.x > canvas.width) this.x = 0;
+                if (this.x < 0) this.x = canvas.width;
+                if (this.y > canvas.height) this.y = 0;
+                if (this.y < 0) this.y = canvas.height;
+            }
+
+            draw() {
+                ctx.fillStyle = `rgba(20, 184, 166, ${this.opacity})`;
+                ctx.beginPath();
+                ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
+                ctx.fill();
+            }
+        }
+
+        // Criar partículas
+        for (let i = 0; i < 50; i++) {
+            particles.push(new Particle());
+        }
+
+        function animateParticles() {
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+            
+            for (let particle of particles) {
+                particle.update();
+                particle.draw();
+            }
+
+            requestAnimationFrame(animateParticles);
+        }
+
+        animateParticles();
+
+        // Redimensionar canvas ao mudar tamanho da janela
+        window.addEventListener('resize', () => {
+            canvas.width = window.innerWidth;
+            canvas.height = window.innerHeight;
+        });
+
+        // ===== CURSOR CUSTOMIZADO =====
+        const cursorDot = document.querySelector('.cursor-dot');
+        const cursorOutline = document.querySelector('.cursor-outline');
+
+        document.addEventListener('mousemove', (e) => {
+            const x = e.clientX;
+            const y = e.clientY;
+
+            cursorDot.style.left = x + 'px';
+            cursorDot.style.top = y + 'px';
+
+            gsap.to(cursorOutline, {
+                left: x + 'px',
+                top: y + 'px',
+                duration: 0.3,
+                overwrite: 'auto'
+            });
+        });
+
+        document.querySelectorAll('a, button').forEach(el => {
+            el.addEventListener('mouseenter', () => {
+                gsap.to(cursorOutline, { scale: 1.5, duration: 0.3 });
+                gsap.to(cursorDot, { scale: 0, duration: 0.3 });
+            });
+            el.addEventListener('mouseleave', () => {
+                gsap.to(cursorOutline, { scale: 1, duration: 0.3 });
+                gsap.to(cursorDot, { scale: 1, duration: 0.3 });
+            });
+        });
+
+        // ===== ANIMAÇÕES COM SCROLLTRIGGER =====
+        
+        // Fade-in up para cards de diferenciais
+        gsap.utils.toArray('.card-servico').forEach((card, index) => {
+            gsap.from(card, {
+                scrollTrigger: {
+                    trigger: card,
+                    start: 'top 80%',
+                    end: 'top 50%',
+                    scrub: false,
+                    markers: false
+                },
+                opacity: 0,
+                y: 40,
+                duration: 0.8,
+                delay: index * 0.1
+            });
+        });
+
+        // Fade-in up para cards de equipe
+        gsap.utils.toArray('.card-equipe').forEach((card, index) => {
+            gsap.from(card, {
+                scrollTrigger: {
+                    trigger: card,
+                    start: 'top 80%',
+                    end: 'top 50%',
+                    scrub: false
+                },
+                opacity: 0,
+                y: 40,
+                duration: 0.8,
+                delay: index * 0.1
+            });
+        });
+
+        // Fade-in up para galeria
+        gsap.utils.toArray('.card-galeria').forEach((card, index) => {
+            gsap.from(card, {
+                scrollTrigger: {
+                    trigger: card,
+                    start: 'top 80%',
+                    end: 'top 50%',
+                    scrub: false
+                },
+                opacity: 0,
+                scale: 0.9,
+                duration: 0.8,
+                delay: index * 0.05
+            });
+        });
+
+        // Fade-in up para testemunhos
+        gsap.utils.toArray('.secao-depoimentos .glass-effect').forEach((card, index) => {
+            gsap.from(card, {
+                scrollTrigger: {
+                    trigger: card,
+                    start: 'top 80%',
+                    end: 'top 50%',
+                    scrub: false
+                },
+                opacity: 0,
+                y: 40,
+                duration: 0.8,
+                delay: index * 0.1
+            });
+        });
+
+        // Animação de estatísticas
+        gsap.from('.secao-stats', {
+            scrollTrigger: {
+                trigger: '.secao-stats',
+                start: 'top 70%',
+                end: 'top 30%',
+                scrub: false
+            },
+            opacity: 0,
+            duration: 0.8
+        });
+
+        // Animar contadores
+        gsap.utils.toArray('.contador').forEach((contador) => {
+            gsap.from(contador, {
+                scrollTrigger: {
+                    trigger: contador,
+                    start: 'top 80%',
+                    end: 'top 50%',
+                    scrub: false
+                },
+                textContent: 0,
+                duration: 2,
+                snap: { textContent: 1 }
+            });
+        });
+
+        // Animação de CTA final
+        gsap.from('.secao-cta-final', {
+            scrollTrigger: {
+                trigger: '.secao-cta-final',
+                start: 'top 70%',
+                end: 'top 30%',
+                scrub: false
+            },
+            opacity: 0,
+            y: 50,
+            duration: 1
+        });
+
+        // ===== PARALLAX EFFECT =====
+        gsap.to('.parallax', {
+            scrollTrigger: {
+                trigger: '.secao-hero',
+                start: 'top top',
+                end: 'bottom top',
+                scrub: 1,
+                markers: false
+            },
+            backgroundPosition: '50% 100px',
+            ease: 'none'
+        });
+
+        // ===== BOTÃO MAGNÉTICO (EFEITO PULL) =====
+        document.querySelectorAll('.botao-magnetico').forEach(button => {
+            button.addEventListener('mousemove', (e) => {
+                const rect = button.getBoundingClientRect();
+                const x = e.clientX - rect.left - rect.width / 2;
+                const y = e.clientY - rect.top - rect.height / 2;
+
+                gsap.to(button, {
+                    x: x * 0.3,
+                    y: y * 0.3,
+                    duration: 0.4,
+                    overwrite: 'auto'
+                });
+            });
+
+            button.addEventListener('mouseleave', () => {
+                gsap.to(button, {
+                    x: 0,
+                    y: 0,
+                    duration: 0.4
+                });
+            });
+        });
+
+        // ===== SMOOTH SCROLL PARA LINKS INTERNOS =====
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    gsap.to(window, {
+                        scrollTo: target,
+                        duration: 1,
+                        ease: 'power2.inOut'
+                    });
+                }
+            });
+        });
+
+        // ===== ACCORDION FAQ =====
+        function toggleFaq(element) {
+            const faqItem = element.closest('.faq-item');
+            const resposta = faqItem.querySelector('.faq-resposta');
+            const icone = element.querySelector('.faq-icone');
+
+            // Fechar todos os outros
+            document.querySelectorAll('.faq-item').forEach(item => {
+                if (item !== faqItem) {
+                    item.querySelector('.faq-resposta').classList.remove('ativo');
+                    item.querySelector('.faq-icone').classList.remove('ativo');
+                }
+            });
+
+            // Toggle atual
+            resposta.classList.toggle('ativo');
+            icone.classList.toggle('ativo');
+        }
+
+        // ===== SCROLL TRIGGER REFRESH =====
+        ScrollTrigger.refresh();
+    </script>
+</body>
+</html>
