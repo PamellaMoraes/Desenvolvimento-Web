@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="FOCUSTREINO - Produtos. Confira nosso catálogo completo de suplementos premium.">
+  <meta name="theme-color" content="#0A0A0A">
+  <title>Produtos — FOCUSTREINO</title>
+  <link rel="stylesheet" href="assets/css/style.css">
+</head>
+<body>
+
+  <!-- ============ HEADER / NAVEGAÇÃO ============ -->
+  <header>
+    <div class="container">
+      <nav>
+        <div class="logo">
+          <img src="assets/img/logotipo.png" alt="FOCUSTREINO Logo">
+          <span>FOCUSTREINO</span>
+        </div>
+
+        <div class="menu-toggle" id="mobile-menu" aria-label="Abrir menu" role="button" tabindex="0">
+          <span></span>
+          <span></span>
+          <span></span>
+        </div>
+
+        <ul id="nav-list" role="list">
+          <li><a href="index.html">Home</a></li>
+          <li><a href="index.html#dicas">Dicas</a></li>
+          <li><a href="index.html#contato">Contato</a></li>
+          <li><a href="produtos.html" aria-current="page">Produtos</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <!-- ============ PÁGINA DE PRODUTOS ============ -->
+  <section class="produtos-pagina" style="padding-top: 80px;">
+    <div class="container">
+
+      <h1>Nossos Produtos</h1>
+      <p>
+        Confira nosso catálogo completo de suplementos premium. Todos os produtos são
+        selecionados com rigor para garantir qualidade e eficácia.
+      </p>
+
+      <!-- ============ FILTROS AVANÇADOS ============ -->
+      <div class="filtros-section" role="search" aria-label="Filtrar produtos">
+        <div class="filtro-row">
+
+          <div class="filtro-group">
+            <label for="categoria">Categoria</label>
+            <select id="categoria" aria-label="Filtrar por categoria">
+              <option value="">Todas as Categorias</option>
+              <option value="Proteínas">Proteínas</option>
+              <option value="Creatina">Creatina</option>
+              <option value="Aminoácidos">Aminoácidos</option>
+              <option value="Pré-Treino">Pré-Treino</option>
+              <option value="Vitaminas">Vitaminas</option>
+              <option value="Queimadores">Queimadores</option>
+              <option value="Outros">Outros</option>
+            </select>
+          </div>
+
+          <div class="filtro-group">
+            <label for="preco">Faixa de Preço</label>
+            <select id="preco" aria-label="Filtrar por faixa de preço">
+              <option value="">Todos os Preços</option>
+              <option value="0-50">R$ 0 — R$ 50</option>
+              <option value="50-100">R$ 50 — R$ 100</option>
+              <option value="100-200">R$ 100 — R$ 200</option>
+              <option value="200+">R$ 200+</option>
+            </select>
+          </div>
+
+          <div class="filtro-group">
+            <label for="ordenar">Ordenar Por</label>
+            <select id="ordenar" aria-label="Ordenar produtos">
+              <option value="relevancia">Relevância</option>
+              <option value="preco-asc">Menor Preço</option>
+              <option value="preco-desc">Maior Preço</option>
+              <option value="nome">Nome (A–Z)</option>
+            </select>
+          </div>
+
+        </div>
+      </div>
+
+      <!-- ============ GRID DE PRODUTOS ============ -->
+      <!-- Os cards são injetados pelo scripts.js -->
+      <div
+        class="produtos-lista"
+        id="produtos-container"
+        role="list"
+        aria-label="Lista de produtos"
+      ></div>
+
+    </div>
+  </section>
+
+  <!-- ============ FOOTER ============ -->
+  <footer>
+    <div class="container">
+      <div class="footer-bottom">
+        <p>
+          &copy; 2026 FOCUSTREINO. Todos os direitos reservados.
+          | Desenvolvido com <i class="fas fa-heart" aria-hidden="true"></i> para sua performance.
+        </p>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Scripts -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+  <script src="assets/js/scripts.js"></script>
+  <script src="assets/js/gsap-animations.js"></script>
+</body>
+</html>

@@ -1,0 +1,557 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="FOCUSTREINO Admin — Cadastre novos produtos no catálogo.">
+  <meta name="theme-color" content="#0A0A0A">
+  <title>Cadastrar Produto — FOCUSTREINO Admin</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700;800&family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <link rel="stylesheet" href="../css/style.css">
+
+  <style>
+    /* ============ PÁGINA DE CADASTRO ============ */
+    .cadastro-page {
+      min-height: 100vh;
+      background: var(--cor-preto);
+      background-image:
+        linear-gradient(rgba(57, 255, 20, 0.02) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(57, 255, 20, 0.02) 1px, transparent 1px);
+      background-size: 50px 50px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      padding: var(--espacamento-lg);
+      overflow-x: hidden;
+    }
+
+    .cadastro-container {
+      width: 100%;
+      max-width: min(600px, calc(100vw - 2rem));
+      animation: slideUp 0.6s ease-out both;
+    }
+
+    @keyframes slideUp {
+      from {
+        opacity: 0;
+        transform: translateY(40px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    /* ============ HEADER ============ */
+    .cadastro-header {
+      text-align: center;
+      margin-bottom: var(--espacamento-xl);
+    }
+
+    .cadastro-header img {
+      height: 60px;
+      width: auto;
+      margin-bottom: var(--espacamento-sm);
+      display: block;
+      margin-left: auto;
+      margin-right: auto;
+    }
+
+    .cadastro-header h1 {
+      font-size: clamp(1.6rem, 5vw, 2rem);
+      color: var(--cor-verde-neon);
+      letter-spacing: 2px;
+      margin-bottom: 0.3rem;
+      text-shadow: 0 0 10px rgba(57, 255, 20, 0.2);
+    }
+
+    .cadastro-header p {
+      font-size: 0.9rem;
+      color: var(--cor-ciano-neon);
+      letter-spacing: 1px;
+      text-transform: uppercase;
+    }
+
+    /* ============ CARD DO FORMULÁRIO ============ */
+    .cadastro-card {
+      background: rgba(26, 26, 26, 0.95);
+      border: 1px solid rgba(57, 255, 20, 0.3);
+      border-radius: var(--raio-xl);
+      padding: clamp(1.5rem, 5vw, 2.5rem);
+      box-shadow: 0 0 40px rgba(57, 255, 20, 0.06), 0 20px 60px rgba(0, 0, 0, 0.5);
+      backdrop-filter: blur(12px);
+      position: relative;
+      overflow: hidden;
+    }
+
+    /* Linha decorativa no topo */
+    .cadastro-card::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 3px;
+      background: linear-gradient(90deg, transparent, var(--cor-verde-neon), var(--cor-ciano-neon), var(--cor-verde-neon), transparent);
+    }
+
+    .cadastro-card h2 {
+      font-size: clamp(1.3rem, 4vw, 1.6rem);
+      color: var(--cor-branco);
+      margin-bottom: 0.5rem;
+      text-align: center;
+    }
+
+    .cadastro-card h2 i {
+      color: var(--cor-verde-neon);
+      margin-right: 0.5rem;
+      font-size: 0.9em;
+    }
+
+    .cadastro-card .subtitle {
+      font-size: 0.9rem;
+      color: var(--cor-cinza-claro);
+      text-align: center;
+      margin-bottom: var(--espacamento-lg);
+    }
+
+    /* ============ FORMULÁRIO ============ */
+    .cadastro-form {
+      display: flex;
+      flex-direction: column;
+      gap: var(--espacamento-md);
+    }
+
+    /* Grid de 2 colunas */
+    .form-row {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: var(--espacamento-sm);
+    }
+
+    .form-group {
+      display: flex;
+      flex-direction: column;
+    }
+
+    .form-group label {
+      color: var(--cor-verde-neon);
+      font-size: 0.85rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      margin-bottom: 0.5rem;
+    }
+
+    .form-group label i {
+      margin-right: 0.4rem;
+      font-size: 0.8rem;
+      opacity: 0.8;
+    }
+
+    .form-group input,
+    .form-group select,
+    .form-group textarea {
+      padding: 0.85rem 1rem;
+      background: rgba(0, 0, 0, 0.6);
+      border: 1.5px solid rgba(57, 255, 20, 0.35);
+      color: var(--cor-branco);
+      border-radius: var(--raio-md);
+      font-size: 0.95rem;
+      font-family: var(--fonte-corpo);
+      transition: border-color 0.3s ease, box-shadow 0.3s ease;
+    }
+
+    .form-group input::placeholder,
+    .form-group textarea::placeholder {
+      color: rgba(176, 176, 176, 0.5);
+    }
+
+    .form-group input:focus,
+    .form-group select:focus,
+    .form-group textarea:focus {
+      border-color: var(--cor-verde-neon);
+      box-shadow: 0 0 12px rgba(57, 255, 20, 0.2);
+      outline: none;
+    }
+
+    .form-group select {
+      cursor: pointer;
+    }
+
+    .form-group select option {
+      background: var(--cor-preto-claro);
+      color: var(--cor-branco);
+    }
+
+    .form-group textarea {
+      resize: vertical;
+      min-height: 100px;
+      font-family: var(--fonte-corpo);
+    }
+
+    /* Descrição em largura total */
+    .form-group.full-width {
+      grid-column: 1 / -1;
+    }
+
+    /* ============ BOTÃO DE ENVIO ============ */
+    .btn-cadastro {
+      width: 100%;
+      padding: 0.95rem;
+      background: var(--cor-verde-neon);
+      color: var(--cor-preto);
+      border: none;
+      border-radius: var(--raio-md);
+      font-weight: 700;
+      font-size: 1rem;
+      text-transform: uppercase;
+      letter-spacing: 1.5px;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      margin-top: var(--espacamento-sm);
+    }
+
+    .btn-cadastro:hover {
+      box-shadow: 0 0 20px rgba(57, 255, 20, 0.4);
+      transform: translateY(-2px);
+    }
+
+    .btn-cadastro:active {
+      transform: translateY(0);
+    }
+
+    /* ============ RODAPÉ DO CARD ============ */
+    .cadastro-footer {
+      text-align: center;
+      margin-top: var(--espacamento-lg);
+      padding-top: var(--espacamento-md);
+      border-top: 1px solid rgba(57, 255, 20, 0.1);
+    }
+
+    .cadastro-footer p {
+      font-size: 0.9rem;
+      color: var(--cor-cinza-claro);
+      margin-bottom: 0.5rem;
+    }
+
+    .cadastro-footer a {
+      color: var(--cor-ciano-neon);
+      font-weight: 600;
+      transition: color 0.3s ease;
+      text-decoration: none;
+    }
+
+    .cadastro-footer a:hover {
+      color: var(--cor-verde-neon);
+      text-shadow: 0 0 8px rgba(57, 255, 20, 0.3);
+    }
+
+    .cadastro-footer .link-back {
+      display: inline-block;
+      margin-top: 0.75rem;
+      font-size: 0.85rem;
+      color: var(--cor-cinza-claro);
+    }
+
+    .cadastro-footer .link-back:hover {
+      color: var(--cor-branco);
+    }
+
+    /* ============ FEEDBACK ============ */
+    .cadastro-feedback {
+      display: none;
+      padding: 0.8rem 1rem;
+      border-radius: var(--raio-md);
+      font-size: 0.9rem;
+      font-weight: 600;
+      text-align: center;
+      margin-top: var(--espacamento-sm);
+    }
+
+    .cadastro-feedback.success {
+      display: block;
+      background: rgba(57, 255, 20, 0.1);
+      border: 1px solid var(--cor-verde-neon);
+      color: var(--cor-verde-neon);
+    }
+
+    .cadastro-feedback.error {
+      display: block;
+      background: rgba(255, 50, 50, 0.1);
+      border: 1px solid #FF3232;
+      color: #FF6B6B;
+    }
+
+    /* ============ RODAPÉ DA PÁGINA ============ */
+    .page-footer {
+      margin-top: var(--espacamento-xl);
+      font-size: 0.8rem;
+      color: rgba(176, 176, 176, 0.5);
+      text-align: center;
+    }
+
+    /* ============ RESPONSIVIDADE ============ */
+    @media (max-width: 600px) {
+      .form-row {
+        grid-template-columns: 1fr;
+        gap: var(--espacamento-sm);
+      }
+
+      .form-group.full-width {
+        grid-column: 1;
+      }
+    }
+
+    @media (max-width: 480px) {
+      .cadastro-page {
+        padding: var(--espacamento-md);
+      }
+
+      .cadastro-container {
+        max-width: 100%;
+      }
+
+      .cadastro-header {
+        margin-bottom: var(--espacamento-lg);
+      }
+
+      .cadastro-header h1 {
+        font-size: 1.4rem;
+      }
+
+      .cadastro-card {
+        padding: 1.25rem;
+      }
+
+      .form-group input,
+      .form-group select,
+      .form-group textarea {
+        padding: 0.75rem 0.875rem;
+        font-size: 0.9rem;
+      }
+
+      .btn-cadastro {
+        padding: 0.85rem;
+        font-size: 0.95rem;
+      }
+    }
+  </style>
+</head>
+<body class="cadastro-page">
+
+  <div class="cadastro-container">
+
+    <!-- ============ HEADER ============ -->
+    <div class="cadastro-header">
+      <a href="../../index.html" title="Voltar para o site">
+        <img src="../img/logotipo.png" alt="FOCUSTREINO Logo" onerror="this.style.display='none'">
+      </a>
+      <h1>FOCUSTREINO</h1>
+      <p>Painel Administrativo</p>
+    </div>
+
+    <!-- ============ CARD DO FORMULÁRIO ============ -->
+    <div class="cadastro-card">
+
+      <h2><i class="fas fa-plus-circle" aria-hidden="true"></i>Novo Produto</h2>
+      <p class="subtitle">Preencha os dados abaixo para cadastrar no catálogo</p>
+
+      <form class="cadastro-form" id="cadastro-form" novalidate>
+
+        <!-- Linha 1: Código + Nome -->
+        <div class="form-row">
+          <div class="form-group">
+            <label for="codigo">
+              <i class="fas fa-barcode" aria-hidden="true"></i>Código
+            </label>
+            <input
+              type="text"
+              id="codigo"
+              name="codigo"
+              placeholder="SUP001"
+              maxlength="20"
+              required
+            >
+          </div>
+          <div class="form-group">
+            <label for="nome">
+              <i class="fas fa-tag" aria-hidden="true"></i>Nome do Produto
+            </label>
+            <input
+              type="text"
+              id="nome"
+              name="nome"
+              placeholder="Whey Protein Gold Standard"
+              required
+            >
+          </div>
+        </div>
+
+        <!-- Linha 2: Marca + Categoria -->
+        <div class="form-row">
+          <div class="form-group">
+            <label for="marca">
+              <i class="fas fa-industry" aria-hidden="true"></i>Marca
+            </label>
+            <input
+              type="text"
+              id="marca"
+              name="marca"
+              placeholder="Optimum Nutrition"
+              required
+            >
+          </div>
+          <div class="form-group">
+            <label for="categoria">
+              <i class="fas fa-layer-group" aria-hidden="true"></i>Categoria
+            </label>
+            <select id="categoria" name="categoria" required>
+              <option value="" disabled selected>Selecione...</option>
+              <option value="Proteínas">Proteínas</option>
+              <option value="Creatina">Creatina</option>
+              <option value="Aminoácidos">Aminoácidos</option>
+              <option value="Pré-Treino">Pré-Treino</option>
+              <option value="Vitaminas">Vitaminas</option>
+              <option value="Queimadores">Queimadores</option>
+              <option value="Outros">Outros</option>
+            </select>
+          </div>
+        </div>
+
+        <!-- Linha 3: Preço + URL da Imagem -->
+        <div class="form-row">
+          <div class="form-group">
+            <label for="preco">
+              <i class="fas fa-dollar-sign" aria-hidden="true"></i>Preço (R$)
+            </label>
+            <input
+              type="number"
+              id="preco"
+              name="preco"
+              step="0.01"
+              min="0"
+              placeholder="199.90"
+              required
+            >
+          </div>
+          <div class="form-group">
+            <label for="imagem">
+              <i class="fas fa-image" aria-hidden="true"></i>Caminho da Imagem
+            </label>
+            <input
+              type="text"
+              id="imagem"
+              name="imagem"
+              placeholder="assets/img/produto-novo.png"
+            >
+          </div>
+        </div>
+
+        <!-- Descrição (campo largo) -->
+        <div class="form-row">
+          <div class="form-group full-width">
+            <label for="descricao">
+              <i class="fas fa-align-left" aria-hidden="true"></i>Descrição
+            </label>
+            <textarea
+              id="descricao"
+              name="descricao"
+              placeholder="Descreva os benefícios, ingredientes e modo de uso do produto..."
+              required
+            ></textarea>
+          </div>
+        </div>
+
+        <!-- Botão de submit -->
+        <button type="submit" class="btn-cadastro">
+          <i class="fas fa-save" aria-hidden="true"></i> Cadastrar Produto
+        </button>
+
+        <!-- Mensagem de feedback -->
+        <div class="cadastro-feedback" id="cadastro-feedback" role="alert" aria-live="polite"></div>
+
+      </form>
+
+      <!-- ============ RODAPÉ DO CARD ============ -->
+      <div class="cadastro-footer">
+        <p>
+          Já tem uma conta?
+          <a href="login.html">Fazer login</a>
+        </p>
+        <a href="../../index.html" class="link-back">
+          <i class="fas fa-arrow-left" aria-hidden="true"></i>
+          Voltar para o site
+        </a>
+      </div>
+
+    </div>
+
+  </div>
+
+  <!-- ============ RODAPÉ DA PÁGINA ============ -->
+  <p class="page-footer">
+    &copy; 2026 FOCUSTREINO. Todos os direitos reservados.
+  </p>
+
+  <!-- Scripts -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js" defer></script>
+  <script>
+    document.getElementById('cadastro-form').addEventListener('submit', function (e) {
+      e.preventDefault();
+      const feedback = document.getElementById('cadastro-feedback');
+
+      feedback.className = 'cadastro-feedback';
+      feedback.textContent = '';
+
+      const codigo    = document.getElementById('codigo').value.trim();
+      const nome      = document.getElementById('nome').value.trim();
+      const marca     = document.getElementById('marca').value.trim();
+      const categoria = document.getElementById('categoria').value;
+      const preco     = parseFloat(document.getElementById('preco').value);
+      const descricao = document.getElementById('descricao').value.trim();
+
+      if (!codigo || !nome || !marca || !categoria || isNaN(preco) || !descricao) {
+        feedback.textContent = 'Preencha todos os campos obrigatórios.';
+        feedback.classList.add('error');
+        return;
+      }
+
+      if (preco <= 0) {
+        feedback.textContent = 'O preço deve ser maior que zero.';
+        feedback.classList.add('error');
+        return;
+      }
+
+      const novoProduto = {
+        id:        codigo,
+        nome:      nome,
+        marca:     marca,
+        categoria: categoria,
+        preco:     preco,
+        imagem:    document.getElementById('imagem').value.trim() || 'assets/img/produto-whey.png',
+        descricao: descricao
+      };
+
+      if (typeof todosProdutos !== 'undefined') {
+        todosProdutos.push(novoProduto);
+      }
+      if (typeof produtosDestaque !== 'undefined') {
+        produtosDestaque.push(novoProduto);
+      }
+
+      feedback.textContent = `Produto "${nome}" cadastrado com sucesso!`;
+      feedback.classList.add('success');
+
+      this.reset();
+
+      document.querySelector('.cadastro-card').scrollIntoView({ behavior: 'smooth' });
+    });
+  </script>
+</body>
+</html>

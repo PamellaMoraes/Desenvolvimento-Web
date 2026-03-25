@@ -1,0 +1,449 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="FOCUSTREINO Admin — Acesse sua conta para gerenciar produtos.">
+  <meta name="theme-color" content="#0A0A0A">
+  <title>Login — FOCUSTREINO Admin</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700;800&family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <link rel="stylesheet" href="../css/style.css">
+
+  <style>
+    /* ============ PÁGINA DE LOGIN ============ */
+    .login-page {
+      min-height: 100vh;
+      background: var(--cor-preto);
+      background-image:
+        linear-gradient(rgba(57, 255, 20, 0.02) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(57, 255, 20, 0.02) 1px, transparent 1px);
+      background-size: 50px 50px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      padding: var(--espacamento-lg);
+      overflow-x: hidden;
+    }
+
+    .login-container {
+      width: 100%;
+      max-width: min(420px, calc(100vw - 2rem));
+      animation: slideUp 0.6s ease-out both;
+    }
+
+    @keyframes slideUp {
+      from {
+        opacity: 0;
+        transform: translateY(40px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    /* ============ HEADER ============ */
+    .login-header {
+      text-align: center;
+      margin-bottom: var(--espacamento-xl);
+    }
+
+    .login-header img {
+      height: 60px;
+      width: auto;
+      margin-bottom: var(--espacamento-sm);
+      display: block;
+      margin-left: auto;
+      margin-right: auto;
+    }
+
+    .login-header h1 {
+      font-size: clamp(1.6rem, 5vw, 2rem);
+      color: var(--cor-verde-neon);
+      letter-spacing: 2px;
+      margin-bottom: 0.3rem;
+      text-shadow: 0 0 10px rgba(57, 255, 20, 0.2);
+    }
+
+    .login-header p {
+      font-size: 0.9rem;
+      color: var(--cor-ciano-neon);
+      letter-spacing: 1px;
+      text-transform: uppercase;
+    }
+
+    /* ============ CARD DO FORMULÁRIO ============ */
+    .login-card {
+      background: rgba(26, 26, 26, 0.95);
+      border: 1px solid rgba(57, 255, 20, 0.3);
+      border-radius: var(--raio-xl);
+      padding: clamp(1.5rem, 5vw, 2.5rem);
+      box-shadow: 0 0 40px rgba(57, 255, 20, 0.06), 0 20px 60px rgba(0, 0, 0, 0.5);
+      backdrop-filter: blur(12px);
+      position: relative;
+      overflow: hidden;
+    }
+
+    /* Linha decorativa no topo */
+    .login-card::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 3px;
+      background: linear-gradient(90deg, transparent, var(--cor-verde-neon), var(--cor-ciano-neon), var(--cor-verde-neon), transparent);
+    }
+
+    .login-card h2 {
+      font-size: clamp(1.3rem, 4vw, 1.6rem);
+      color: var(--cor-branco);
+      margin-bottom: 0.5rem;
+      text-align: center;
+    }
+
+    .login-card .subtitle {
+      font-size: 0.9rem;
+      color: var(--cor-cinza-claro);
+      text-align: center;
+      margin-bottom: var(--espacamento-lg);
+    }
+
+    /* ============ FORMULÁRIO ============ */
+    .login-form {
+      display: flex;
+      flex-direction: column;
+      gap: var(--espacamento-md);
+    }
+
+    .form-group {
+      display: flex;
+      flex-direction: column;
+    }
+
+    .form-group label {
+      color: var(--cor-verde-neon);
+      font-size: 0.85rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      margin-bottom: 0.5rem;
+    }
+
+    .form-group input {
+      padding: 0.85rem 1rem;
+      background: rgba(0, 0, 0, 0.6);
+      border: 1.5px solid rgba(57, 255, 20, 0.35);
+      color: var(--cor-branco);
+      border-radius: var(--raio-md);
+      font-size: 0.95rem;
+      font-family: var(--fonte-corpo);
+      transition: border-color 0.3s ease, box-shadow 0.3s ease;
+    }
+
+    .form-group input::placeholder {
+      color: rgba(176, 176, 176, 0.5);
+    }
+
+    .form-group input:focus {
+      border-color: var(--cor-verde-neon);
+      box-shadow: 0 0 12px rgba(57, 255, 20, 0.2);
+      outline: none;
+    }
+
+    /* Wrapper para o campo de senha com toggle */
+    .password-wrapper {
+      position: relative;
+      display: flex;
+      align-items: center;
+    }
+
+    .password-wrapper input {
+      width: 100%;
+      padding-right: 3rem;
+    }
+
+    .btn-toggle-password {
+      position: absolute;
+      right: 0.75rem;
+      background: transparent;
+      border: none;
+      color: var(--cor-cinza-claro);
+      cursor: pointer;
+      font-size: 1rem;
+      padding: 0.25rem;
+      transition: color 0.3s ease;
+      line-height: 1;
+    }
+
+    .btn-toggle-password:hover {
+      color: var(--cor-verde-neon);
+    }
+
+    /* ============ BOTÃO DE ENVIO ============ */
+    .btn-login {
+      width: 100%;
+      padding: 0.95rem;
+      background: var(--cor-verde-neon);
+      color: var(--cor-preto);
+      border: none;
+      border-radius: var(--raio-md);
+      font-weight: 700;
+      font-size: 1rem;
+      text-transform: uppercase;
+      letter-spacing: 1.5px;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      margin-top: var(--espacamento-sm);
+    }
+
+    .btn-login:hover {
+      box-shadow: 0 0 20px rgba(57, 255, 20, 0.4);
+      transform: translateY(-2px);
+    }
+
+    .btn-login:active {
+      transform: translateY(0);
+    }
+
+    /* ============ RODAPÉ DO CARD ============ */
+    .login-footer {
+      text-align: center;
+      margin-top: var(--espacamento-lg);
+      padding-top: var(--espacamento-md);
+      border-top: 1px solid rgba(57, 255, 20, 0.1);
+    }
+
+    .login-footer p {
+      font-size: 0.9rem;
+      color: var(--cor-cinza-claro);
+      margin-bottom: 0.5rem;
+    }
+
+    .login-footer a {
+      color: var(--cor-ciano-neon);
+      font-weight: 600;
+      transition: color 0.3s ease;
+      text-decoration: none;
+    }
+
+    .login-footer a:hover {
+      color: var(--cor-verde-neon);
+      text-shadow: 0 0 8px rgba(57, 255, 20, 0.3);
+    }
+
+    .login-footer .link-back {
+      display: inline-block;
+      margin-top: 0.75rem;
+      font-size: 0.85rem;
+      color: var(--cor-cinza-claro);
+    }
+
+    .login-footer .link-back:hover {
+      color: var(--cor-branco);
+    }
+
+    /* ============ FEEDBACK ============ */
+    .login-feedback {
+      display: none;
+      padding: 0.8rem 1rem;
+      border-radius: var(--raio-md);
+      font-size: 0.9rem;
+      font-weight: 600;
+      text-align: center;
+      margin-top: var(--espacamento-sm);
+    }
+
+    .login-feedback.success {
+      display: block;
+      background: rgba(57, 255, 20, 0.1);
+      border: 1px solid var(--cor-verde-neon);
+      color: var(--cor-verde-neon);
+    }
+
+    .login-feedback.error {
+      display: block;
+      background: rgba(255, 50, 50, 0.1);
+      border: 1px solid #FF3232;
+      color: #FF6B6B;
+    }
+
+    /* ============ RODAPÉ DA PÁGINA ============ */
+    .page-footer {
+      margin-top: var(--espacamento-xl);
+      font-size: 0.8rem;
+      color: rgba(176, 176, 176, 0.5);
+      text-align: center;
+    }
+
+    /* ============ RESPONSIVIDADE ============ */
+    @media (max-width: 480px) {
+      .login-page {
+        padding: var(--espacamento-md);
+      }
+
+      .login-container {
+        max-width: 100%;
+      }
+
+      .login-header {
+        margin-bottom: var(--espacamento-lg);
+      }
+
+      .login-header h1 {
+        font-size: 1.4rem;
+      }
+
+      .login-card {
+        padding: 1.25rem;
+      }
+
+      .form-group input {
+        padding: 0.75rem 0.875rem;
+        font-size: 0.9rem;
+      }
+
+      .btn-login {
+        padding: 0.85rem;
+        font-size: 0.95rem;
+      }
+    }
+  </style>
+</head>
+<body class="login-page">
+
+  <div class="login-container">
+
+    <!-- ============ HEADER ============ -->
+    <div class="login-header">
+      <a href="../../index.html" title="Voltar para o site">
+        <img src="../img/logotipo.png" alt="FOCUSTREINO Logo" onerror="this.style.display='none'">
+      </a>
+      <h1>FOCUSTREINO</h1>
+      <p>Painel Administrativo</p>
+    </div>
+
+    <!-- ============ CARD DO FORMULÁRIO ============ -->
+    <div class="login-card">
+
+      <h2>Bem-vindo de volta</h2>
+      <p class="subtitle">Insira suas credenciais para acessar o painel</p>
+
+      <form class="login-form" id="login-form" novalidate>
+
+        <div class="form-group">
+          <label for="email">
+            <i class="fas fa-envelope" aria-hidden="true"></i> E-mail
+          </label>
+          <input
+            type="email"
+            id="email"
+            name="email"
+            placeholder="admin@focustreino.com"
+            autocomplete="email"
+            required
+          >
+        </div>
+
+        <div class="form-group">
+          <label for="senha">
+            <i class="fas fa-lock" aria-hidden="true"></i> Senha
+          </label>
+          <div class="password-wrapper">
+            <input
+              type="password"
+              id="senha"
+              name="senha"
+              placeholder="••••••••"
+              autocomplete="current-password"
+              required
+            >
+            <button
+              type="button"
+              class="btn-toggle-password"
+              aria-label="Mostrar ou ocultar senha"
+              title="Mostrar senha"
+            >
+              <i class="fas fa-eye" aria-hidden="true"></i>
+            </button>
+          </div>
+        </div>
+
+        <button type="submit" class="btn-login">
+          <i class="fas fa-sign-in-alt" aria-hidden="true"></i> Entrar
+        </button>
+
+        <div class="login-feedback" id="login-feedback" role="alert" aria-live="polite"></div>
+
+      </form>
+
+      <!-- ============ RODAPÉ DO CARD ============ -->
+      <div class="login-footer">
+        <p>
+          Não tem uma conta?
+          <a href="cadastro.html">Cadastre-se aqui</a>
+        </p>
+        <a href="../../index.html" class="link-back">
+          <i class="fas fa-arrow-left" aria-hidden="true"></i>
+          Voltar para o site
+        </a>
+      </div>
+
+    </div>
+
+  </div>
+
+  <!-- ============ RODAPÉ DA PÁGINA ============ -->
+  <p class="page-footer">
+    &copy; 2026 FOCUSTREINO. Todos os direitos reservados.
+  </p>
+
+  <!-- Scripts -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js" defer></script>
+  <script>
+    // Toggle visibilidade da senha
+    document.querySelector('.btn-toggle-password').addEventListener('click', function () {
+      const input = document.getElementById('senha');
+      const icon = this.querySelector('i');
+      if (input.type === 'password') {
+        input.type = 'text';
+        icon.classList.replace('fa-eye', 'fa-eye-slash');
+        this.title = 'Ocultar senha';
+      } else {
+        input.type = 'password';
+        icon.classList.replace('fa-eye-slash', 'fa-eye');
+        this.title = 'Mostrar senha';
+      }
+    });
+
+    // Submit do formulário
+    document.getElementById('login-form').addEventListener('submit', function (e) {
+      e.preventDefault();
+      const feedback = document.getElementById('login-feedback');
+      const email = document.getElementById('email').value.trim();
+      const senha = document.getElementById('senha').value;
+
+      feedback.className = 'login-feedback';
+      feedback.textContent = '';
+
+      if (!email || !senha) {
+        feedback.textContent = 'Preencha todos os campos.';
+        feedback.classList.add('error');
+        return;
+      }
+
+      feedback.textContent = 'Verificando credenciais...';
+      feedback.classList.add('success');
+
+      setTimeout(() => {
+        feedback.textContent = 'Login realizado com sucesso! Redirecionando...';
+      }, 1200);
+    });
+  </script>
+</body>
+</html>
